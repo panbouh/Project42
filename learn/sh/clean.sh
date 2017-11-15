@@ -1,0 +1,5 @@
+FILE="$(find . -type f)"
+DIR="$(find . -type d)"
+chmod 664 $FILE
+chmod 755 $DIR
+xattr -c $FILE $DIR
