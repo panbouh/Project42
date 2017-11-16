@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnchar.c                                      :+:      :+:    :+:   */
+/*   printf.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 13:40:07 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/11/16 13:40:09 by ccatoire         ###   ########.fr       */
+/*   Created: 2017/11/16 15:03:49 by ccatoire          #+#    #+#             */
+/*   Updated: 2017/11/16 15:03:49 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-void	ft_putnchar(char c, size_t n)
+# include "libft.h"
+# include "stdarg.h"
+
+# define	FLAG_NB		4
+
+typedef	struct	s_bouh
 {
-	size_t	i;
+	char	key;
+	void	(*f)(int);
+}				t_bouh;
 
-	i = 0;
-	while (i++ < n)
-		write(1, &c, 1);
-}
+t_bouh	g_bouhtab[] = {
+	{'i', &ft_putnbr},	\
+	{'d', &ft_putnbr},	\
+	{'s', &ft_putstr},	\
+	{'c', &ft_putchar}
+
+};
+
+int	ft_printf(const char *format);
+
+#endif
