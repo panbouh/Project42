@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static int		checkend(char **save, char **line, size_t i, char *buff)
 {
 	*line = ft_strsub(*save, 0, i);
-	*save = str_miam(*save, '\n');
+	*save = ft_strmiam(*save, '\n');
 	ft_strdel(&buff);
 	return (RD_DONE);
 }
@@ -46,13 +46,15 @@ static int		checkline(char *buff, int rd, char **line, int fd)
 	return (GO);
 }
 
-int		get_next_line(int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
 	char	*buff;
 	int		rd;
 	int		ret;
 
-	ret	= GO;
+	ret = GO;
+	if (!line)
+		return (FAIL);
 	while (ret == GO)
 	{
 		if (!(buff = (char *)malloc(sizeof(char) * BUFF_SIZE + 1)))
@@ -68,30 +70,4 @@ int		get_next_line(int fd, char **line)
 		ft_strdel(&buff);
 	}
 	return (FAIL);
-}
-
-/*
-** --------------libft------------
-*/
-
-char	*str_miam(char *str, char stop)
-{
-	size_t	i;
-	char	*burp;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	i = ft_skip_char(str, i, stop, TILL);
-	if (!str[i] || !str[i + 1])
-	{
-		ft_strdel(&str);
-		return (NULL);
-	}
-	else
-		if (!(burp = ft_strdup(&str[i + 1])))
-			return (NULL);
-	burp[ft_strlen(burp) + 1] = 0;
-	ft_strdel(&str);
-	return (burp);
 }

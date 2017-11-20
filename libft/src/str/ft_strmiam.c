@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   ft_strmiam.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/20 13:03:18 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/11/20 13:03:18 by ccatoire         ###   ########.fr       */
+/*   Created: 2017/11/20 19:19:34 by ccatoire          #+#    #+#             */
+/*   Updated: 2017/11/20 19:19:35 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-
-//#include "mlx.h"
-#include "../minilibx/mlx.h"
 #include "libft.h"
 
-# define	USE		"Use :\n./fdf [MAP.fdf]"
-# define	BAD_FD	"File not found."
+char			*ft_strmiam(char *str, char stop)
+{
+	size_t	i;
+	char	*burp;
 
-void	fdf(const char **map);
-
-#endif
+	i = 0;
+	if (!str)
+		return (NULL);
+	i = ft_skip_char(str, i, stop, TILL);
+	if (!str[i] || !str[i + 1])
+	{
+		ft_strdel(&str);
+		return (NULL);
+	}
+	else
+	{
+		if (!(burp = ft_strdup(&str[i + 1])))
+			return (NULL);
+	}
+	burp[ft_strlen(burp) + 1] = 0;
+	ft_strdel(&str);
+	return (burp);
+}

@@ -24,6 +24,9 @@
 # include <ctype.h>
 # include <unistd.h>
 # include <sys/types.h>
+# include <fcntl.h>
+
+# include "get_next_line.h"
 
 /*
 ** ###########
@@ -31,12 +34,12 @@
 ** ###########
 */
 
-# define FAIL	(-1)
-# define OK		(0)
-# define TILL	(96)
-# define ALL	(69)
-# define STOP	(1)
-# define GO		(3)
+# define FAIL	-1
+# define OK		0
+# define TILL	96
+# define ALL	69
+# define STOP	1
+# define GO		3
 
 /*
 ** ###############
@@ -110,6 +113,7 @@ char				*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char				*ft_strsub(const char *s, unsigned int start, size_t len);
 char				*ft_strjoin(const char *s1, const char *s2);
 char				*ft_strtrim(const char *s);
+char				*ft_strmiam(char *str, char stop);
 char				*ft_itoa(int n);
 
 int					ft_memcmp(const void *s1, const void *s2, size_t n);

@@ -13,21 +13,10 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFF_SIZE		(5)
-# define RD_DONE		(1)
-# define RD_END			(0)
+# define BUFF_SIZE		50
+# define RD_DONE		1
+# define RD_END			0
 
-# include "libft/includes/libft.h"
-# include <sys/stat.h>
-# include <fcntl.h>
-
-int			get_next_line(int fd, char **line);
-
-
-/* libft */
-int			ft_tablen(const char **tab);
-char		**ft_realloc(char **s, size_t size);
-char		*str_miam(char *str, char stop);
-
+int				get_next_line(int fd, char **line);
 
 #endif

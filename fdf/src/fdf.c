@@ -12,11 +12,11 @@
 
 #include "fdf.h"
 
-void	fdf()
+void	fdf(const char **map)
 {
 	void	*win;
 	void	*mlx;
-
+	
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, 400, 200, "BOUH");
 

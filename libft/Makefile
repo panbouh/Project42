@@ -17,6 +17,7 @@ SRC_MEM		=	$(addprefix $(SRC_PATH),memory/)
 SRC_MORPH	=	$(addprefix $(SRC_PATH),morphing/)
 SRC_PRINT	=	$(addprefix $(SRC_PATH),print/)
 SRC_STR		=	$(addprefix $(SRC_PATH),str/)
+SRC_FILE	=	$(addprefix $(SRC_PATH),file/)
 
 SRC		=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
 			$(addprefix $(SRC_LIST),$(LIST_FILE))		\
@@ -24,7 +25,8 @@ SRC		=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
 			$(addprefix $(SRC_MEM),$(MEM_FILE))			\
 			$(addprefix $(SRC_MORPH),$(MORPH_FILE))		\
 			$(addprefix $(SRC_PRINT),$(PRINT_FILE))		\
-			$(addprefix $(SRC_STR),$(STR_FILE))
+			$(addprefix $(SRC_STR),$(STR_FILE))			\
+			$(addprefix $(SRC_FILE),$(FILE_FILE))
 
 INC		=	$(addprefix $(INC_PATH),$(HEAD))
 
@@ -103,7 +105,10 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strsub.c								\
 				ft_strjoin.c							\
 				ft_strtrim.c							\
-				ft_strsplit.c
+				ft_strsplit.c							\
+				ft_strmiam.c
+
+FILE_FILE	=	get_next_line.c
 
 ##############
 ## INC FILE ##
