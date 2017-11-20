@@ -1,7 +1,6 @@
 #ifndef LA_KAISSE_H
 # define LA_KAISSE_H
 
-# include "libft.h"
 # include "../../get_next_line/git/get_next_line.h"
 
 # define MAX_BILL	5

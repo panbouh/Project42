@@ -13,9 +13,10 @@ LIBFT		=	libft
 LIBFTPATH	=	./libft/
 HEADLIBPATH	=	./libft/includes/
 
-LIBMLX		=	-I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+#LIBMLX		=	-I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+LIBMLX		=	-I minilibx/ -L minilibx/ -lmlx -framework OpenGL -framework AppKit
 
-CFLAGS	=	-Wall -Wextra -Werror -I $(HEADLIBFTPATH) -I $(WAYHEAD) $(LIBMLX)
+CFLAGS	=	-Wall -Wextra -Werror -I $(HEADLIBPATH) -I $(WAYHEAD)
 
 CCLIB		=	-L libft/ -lft
 
@@ -26,7 +27,7 @@ all		:	$(NAME)
 $(NAME)		: $(OBJ) $(LIBFT)
 				echo "EH SALUT"
 				$(MAKE) -C $(LIBFTPATH) all
-				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB)
+				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB)  $(LIBMLX)
 
 lib			:	libft/libft.a
 				$(MAKE) -C $(LIBFTPATH) all

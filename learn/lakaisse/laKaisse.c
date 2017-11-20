@@ -9,17 +9,17 @@ t_kaisse	take_input(t_kaisse kai)
 	get_next_line(0, &input);
 	while (input[i])
 	{
-		if (ft_strncmp("add", &input[i], 3))
+		if (ft_strncmp("add", &input[i], 3) == 0)
 			{
 				i += 2;
-				i = ft_skip_char(input, i, ' ', ALL);
+				i = ft_skip_char(input, i, ' ', TILL);
 				kai = mod_kaisse(ADD, &input[i], kai);
 				return (kai);
 			}
-		if (ft_strncmp("del", &input[i], 3))
+		if (ft_strncmp("del", &input[i], 3) == 0)
 			{
 				i += 2;
-				i = ft_skip_char(input, i, ' ', ALL);
+				i = ft_skip_char(input, i, ' ', TILL);
 				kai = mod_kaisse(DEL, &input[i], kai);
 				return (kai);
 			}
@@ -62,13 +62,14 @@ t_kaisse mod_kaisse(int flag, char *input, t_kaisse kai)
 
 	if (flag == ADD)
 	{
-		printf("Add %i bill of %i\n", mod, kai.bills.bill_val[bill]);
 		kai.bills.bill[bill] += mod;
+		printf("Add %i bill of %i\n", mod, kai.bills.bill_val[bill]);
+		
 	}
 	if (flag == DEL)
-	{
+	{kai.bills.bill[bill] -= mod;
 		printf("Delete %i bill of %i\n", mod, kai.bills.bill_val[bill]);
-		kai.bills.bill[bill] -= mod;
+		
 	}
 	kai = calc_kaisse(kai);
 	return (kai);

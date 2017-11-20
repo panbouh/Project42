@@ -4,13 +4,13 @@ SRC		=	main.c					\
 			$(WAY)laKaisse.c		\
 			$(WAY)print.c		\
 			$(WAY)init.c		\
-			~/rendu/get_next_line/git/get_next_line.c
+			~/project/get_next_line/git/get_next_line.c
 
 WAY	=	
 
 LIB		=	$(LIBPATH)libft.a
 
-LIBPATH	=	~/rendu/libft/
+LIBPATH	=	~/project/libft/
 
 HEADLIBPATH	=	$(LIBPATH)includes/
 

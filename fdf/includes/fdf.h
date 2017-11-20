@@ -13,9 +13,10 @@
 #ifndef FDF_H
 # define FDF_H
 
-#include "mlx.h"
+//#include "mlx.h"
+#include "../minilibx/mlx.h"
 #include "libft.h"
 
-
+void	fdf();
 
 #endif
