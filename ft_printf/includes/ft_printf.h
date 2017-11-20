@@ -21,17 +21,15 @@
 typedef	struct	s_bouh
 {
 	char	key;
-	void	(*f)(int);
+	void	(*f)(va_list);
 }				t_bouh;
 
-t_bouh	g_bouhtab[] = {
-	{'i', &ft_putnbr},	\
-	{'d', &ft_putnbr},	\
-	{'s', &ft_putstr},	\
-	{'c', &ft_putchar}
+void	flag_int(va_list ap);
+void	flag_char(va_list ap);
+void	flag_str(va_list ap);
 
-};
 
-int	ft_printf(const char *format);
+
+int	ft_printf(const char *format, ...);
 
 #endif

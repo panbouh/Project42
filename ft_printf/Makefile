@@ -1,11 +1,12 @@
-NAME	=	printf
+NAME	=	ft_printf
 
 SRC		=	main.c					\
-			$(WAY)ft_printf.c
+			$(WAY)ft_printf.c		\
+			$(WAY)func_flags_basics.c
 
 WAY	=	src/
 
-WAYHEAD	=	includes/
+WAYHEAD	=	./includes/
 
 LIB		=	libft
 
@@ -15,7 +16,7 @@ HEADLIBPATH	=	./libft/includes/
 
 OBJ		=	$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -Werror -I $(HEADLIBPATH) -I $(WAYHEAD)
+CFLAGS	=	-Wall -Wextra -Werror -I $(HEADLIBPATH) -I $(WAYHEAD) 
 
 CCLIB		=	-L libft/ -lft
 
@@ -25,7 +26,7 @@ all		:	$(NAME)
 
 $(NAME)		: $(OBJ) $(LIB)
 				$(MAKE) -C $(LIBPATH) all
-				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB) -I $(HEADLIBPATH)
+				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB)
 
 lib			:	libft/libft.a
 				$(MAKE) -C $(LIBPATH) all

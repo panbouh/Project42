@@ -10,9 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	found_flags(va_list ap, char flag)
+t_bouh	g_bouhtab[] = {
+	{'i', &flag_int},	\
+	{'d', &flag_int},	\
+	{'s', &flag_str},	\
+	{'c', &flag_char},
+};
+
+int	ret_err()
+{
+	ft_putendl_fd("<ERROR parsing ERROR>", 2);
+	return (FAIL);
+}
+
+int	found_flags(char flag, va_list ap)
 {
 	size_t	i;
 
@@ -20,9 +33,13 @@ void	found_flags(va_list ap, char flag)
 	while (i < FLAG_NB)
 	{
 		if (g_bouhtab[i].key == flag)
-			g_bouhtab[i].f(ap);
+			{
+				g_bouhtab[i].f(ap);
+				return (OK);
+			}
 		i++;
 	}
+	return (FAIL);
 }
 
 int	ft_printf(const char *format, ...)
@@ -31,15 +48,25 @@ int	ft_printf(const char *format, ...)
 	size_t		i;
 
 	i = 0;
+	if (!format)
+		return (FAIL);
 	va_start(ap, format);
 	while (format[i])
 	{
-		if (format[i] == '#')
+		if (format[i] == '%' && format[i + 1])
 		{
-			found_flags(va_arg(ap), format[i + 1]);
-			i += 2;
+			if (format[i + 1] != '%')
+				{
+
+					if (found_flags(format[i + 1], ap) == FAIL)
+						return (ret_err());
+					i++;
+				}
+			i++;
 		}
+		ft_putchar(format[i]);
 		i++;
 	}
 	va_end(ap);
+	return (OK);
 }
