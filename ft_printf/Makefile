@@ -2,7 +2,10 @@ NAME	=	ft_printf
 
 SRC		=	main.c					\
 			$(WAY)ft_printf.c		\
-			$(WAY)func_flags_basics.c
+			$(WAY)func_flags.c		\
+			$(WAY)func_calc.c		\
+			$(WAY)func_err.c		\
+			$(WAY)func_convs_basics.c
 
 WAY	=	src/
 
@@ -16,7 +19,9 @@ HEADLIBPATH	=	./libft/includes/
 
 OBJ		=	$(SRC:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -Werror -I $(HEADLIBPATH) -I $(WAYHEAD) 
+CFLAGS	=	 -I $(HEADLIBPATH) -I $(WAYHEAD) 
+
+#-Wall -Wextra -Werror
 
 CCLIB		=	-L libft/ -lft
 

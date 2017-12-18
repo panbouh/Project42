@@ -12,33 +12,96 @@
 
 #include "ft_printf.h"
 
-t_bouh	g_bouhtab[] = {
-	{'i', &flag_int},	\
-	{'d', &flag_int},	\
-	{'s', &flag_str},	\
-	{'c', &flag_char},
+t_flag	g_flagtab[] = {
+	{'#', &flag_sharp},	\
+	{'0', &flag_zero},	\
+	{'-', &flag_min},	\
+	{'+', &flag_plus},	\
+	{0, NULL}
 };
 
-int	ret_err()
+t_conv	g_convtab[] = {
+	{"i", &conv_int},	\
+	{"d", &conv_int},	\
+	{"s", &conv_str},	\
+	{"c", &conv_char},	\
+	{NULL, NULL},
+};
+
+/*
+		[flags]			#0-+
+		[largeur]		N
+		[precision]		.N
+		[conversion]	sSpdDioOuUxXcC (hh h ll l j z)
+*/
+
+void	ion_ft(const char *form, size_t *i, t_flag_list *t_fl)
 {
-	ft_putendl_fd("<ERROR parsing ERROR>", 2);
+	size_t	nb_f;
+
+	nb_f = 0;
+	while (g_flagtab[nb_f].key)
+	{
+		if (g_flagtab[nb_f++].key == form[*i])
+		{
+			g_flagtab[nb_f - 1].f(t_fl);
+			(*i)++;
+			nb_f = 0;
+		}
+	}
+}
+
+int	do_conv(const char *form, size_t *i, t_flag_list t_fl, va_list ap)
+{
+	size_t	n;
+	size_t	size;
+
+	n = 0;
+	while (g_convtab[n].key)
+	{
+		size = ft_strlen(g_convtab[n].key);
+		if (!ft_strncmp(g_convtab[n].key, &form[*i], size))
+			{
+				g_convtab[n].f(ap, t_fl);
+				(*i)++;
+				return (OK);
+			}
+		if (ft_isalpha(form[*i]))
+			return (conv_nothing(t_fl, form[(*i)++]));
+		n++;
+	}
 	return (FAIL);
 }
 
-int	found_flags(char flag, va_list ap)
+int	found_flags(const char *form, va_list ap, size_t *i)
 {
-	size_t	i;
+	t_flag_list	t_fl;
+	char	ret_end;
 
-	i = 0;
-	while (i < FLAG_NB)
+	(*i)++;
+	t_fl = init_fl();
+	*i = ft_skip_char(form, *i, ' ', ALL);
+
+
+	while ((ret_end = do_conv(form, i, t_fl, ap)) != OK)
 	{
-		if (g_bouhtab[i].key == flag)
-			{
-				g_bouhtab[i].f(ap);
-				return (OK);
-			}
-		i++;
+		SKIP_SPACE
+		ion_ft(form, i, &t_fl);
+		SKIP_SPACE
+		if (ft_isdigit(form[*i]))
+			if ((t_fl.width = ft_atoi(&form[*i])))
+				*i += ft_count_digit(t_fl.width);
+		SKIP_SPACE
+		if (form[*i] == '.')
+		{
+			(*i)++;
+			t_fl.prec = ft_atoi(&form[*i]);
+			*i += ft_count_digit(t_fl.prec);
+		}
+		SKIP_SPACE
 	}
+	if (ret_end == OK)
+		return (OK);
 	return (FAIL);
 }
 
@@ -53,16 +116,12 @@ int	ft_printf(const char *format, ...)
 	va_start(ap, format);
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1])
+		if (format[i] == '%' && format[i + 1] && format[i + 1] != '%')
 		{
-			if (format[i + 1] != '%')
-				{
-
-					if (found_flags(format[i + 1], ap) == FAIL)
-						return (ret_err());
-					i++;
-				}
-			i++;
+			if (found_flags(format, ap, &i) == FAIL)
+			{
+				return (ret_err());
+			}
 		}
 		ft_putchar(format[i]);
 		i++;

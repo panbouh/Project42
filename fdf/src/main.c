@@ -43,14 +43,14 @@ char	**get_map(int fd)
 
 int		main(int ac, char **av)
 {
-	int		fd;
+	int			fd;
 	const char	**map;
 
 	if (ac != 2)
 		return (ft_error(USE));
 	if ((fd = open (av[1], O_RDONLY)) == FAIL)
 		return (ft_error(BAD_FD));
-	map = get_map(fd);
+	map = (const char **)get_map(fd);
 	ft_puttab(map);		//debug
 	fdf(map);
 	return (0);

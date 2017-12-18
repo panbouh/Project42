@@ -17,6 +17,8 @@ size_t	ft_count_digit(int n)
 	size_t	count;
 	long	nb;
 
+	if (n == 0)
+		return (1);
 	nb = n;
 	count = 0;
 	if (nb < 0)

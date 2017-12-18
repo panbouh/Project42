@@ -48,7 +48,8 @@ LIST_FILE	=	ft_lstnew.c								\
 				ft_lstmap.c
 
 MATH_FILE	=	ft_power.c								\
-				ft_count_digit.c
+				ft_count_digit.c						\
+				ft_abs.c
 
 MEM_FILE	=	ft_memset.c								\
 				ft_bzero.c								\
@@ -74,7 +75,8 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_putendl_fd.c							\
 				ft_putnbr_fd.c							\
 				ft_puttab.c								\
-				ft_putnchar.c
+				ft_putnchar.c							\
+				ft_putnofstr.c							\
 
 STR_FILE	=	ft_skip_char.c							\
 				ft_count_word.c							\

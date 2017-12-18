@@ -72,6 +72,10 @@ long				ft_power(long nb, long power);
 
 void				ft_puttab(const char **tab);
 void				ft_putnchar(char c, size_t n);
+void				ft_putnofstr(const char *str, size_t n);
+
+int					ft_abs(int n);
+
 /*
 ** ---libsujet---
 */
