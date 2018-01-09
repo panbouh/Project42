@@ -21,10 +21,22 @@ t_flag	g_flagtab[] = {
 };
 
 t_conv	g_convtab[] = {
-	{"i", &conv_int},	\
-	{"d", &conv_int},	\
-	{"s", &conv_str},	\
-	{"c", &conv_char},	\
+	{"i", &conv_int},		\
+	{"d", &conv_int},		\
+	{"s", &conv_str},		\
+	{"c", &conv_char},		\
+	{"u", &conv_unsigned},	\
+	{"x", &conv_hexa},		\
+	{"X", &conv_hexaup},	\
+	{"b", &conv_bina},		\
+	{"o", &conv_octa},		\
+	{"p", &conv_hexa},		\
+	/*{"l", &conv_long},		/
+	{"ll", &conv_llong},		\
+	{"h", &conv_short},		\
+	{"hh", &conv_schar},		\
+	{"j", &conv_imax},		\
+	{"z", &conv_sizet},		\*/
 	{NULL, NULL},
 };
 
@@ -66,10 +78,10 @@ int	do_conv(const char *form, size_t *i, t_flag_list t_fl, va_list ap)
 				(*i)++;
 				return (OK);
 			}
-		if (ft_isalpha(form[*i]))
-			return (conv_nothing(t_fl, form[(*i)++]));
 		n++;
 	}
+	if (ft_isalpha(form[*i]))
+			return (conv_nothing(t_fl, form[(*i)++]));
 	return (FAIL);
 }
 

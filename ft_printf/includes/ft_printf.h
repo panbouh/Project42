@@ -33,7 +33,7 @@ typedef	struct	s_flag_list
 typedef	struct	s_conv
 {
 	char		*key;
-	void	(*f)(va_list, t_flag_list);
+	void		(*f)(va_list, t_flag_list);
 }				t_conv;
 
 typedef	struct	s_flag
@@ -42,10 +42,17 @@ typedef	struct	s_flag
 	void		(*f)(t_flag_list*);
 }				t_flag;
 
-//conv_bas.c
+//conv_basic.c
 void		conv_int(va_list ap, t_flag_list t_fl);
 void		conv_char(va_list ap, t_flag_list t_fl);
 void		conv_str(va_list ap, t_flag_list t_fl);
+void		conv_unsigned(va_list ap, t_flag_list t_fl);
+
+//conv_base.c
+void		conv_hexa(va_list ap, t_flag_list t_fl);
+void		conv_hexaup(va_list ap, t_flag_list t_fl);
+void		conv_octa(va_list ap, t_flag_list t_fl);
+void		conv_bina(va_list ap, t_flag_list t_fl);
 
 //err.c (printf.c)
 int			conv_nothing(t_flag_list t_fl, char c);
@@ -56,6 +63,7 @@ void		flag_sharp(t_flag_list *f_list);
 void		flag_zero(t_flag_list *f_list);
 void		flag_min(t_flag_list *f_list);
 void		flag_plus(t_flag_list *f_list);
+
 
 //ft_printf.c
 int			ft_printf(const char *format, ...);

@@ -14,28 +14,45 @@
 
 void	ft_putnbr_fd(int nb, int fd)
 {
-	int div;
-	int is_max;
+	unsigned int n;
 
-	is_max = 0;
-	div = 1;
-	if (nb == -2147483648)
-	{
-		nb = -214748364;
-		is_max = 1;
-	}
 	if (nb < 0)
 	{
-		nb *= -1;
 		ft_putchar_fd('-', fd);
+		n = -nb;
 	}
-	while ((nb / div) > 9)
-		div *= 10;
-	while (div > 0)
-	{
-		ft_putchar_fd(((nb / div) % 10) + 48, fd);
-		div /= 10;
-	}
-	if (is_max == 1)
-		ft_putchar_fd('8', fd);
+	else
+		n = nb;
+	if (n >= 10)
+		ft_putnbr_fd(n / 10, fd);
+	ft_putchar_fd((n % 10) + 48, fd);
 }
+
+
+// void	ft_putnbr_fd(int nb, int fd)
+// {
+// 	int div;
+// 	int is_max;
+
+// 	is_max = 0;
+// 	div = 1;
+// 	if (nb == -2147483648)
+// 	{
+// 		nb = -214748364;
+// 		is_max = 1;
+// 	}
+// 	if (nb < 0)
+// 	{
+// 		nb *= -1;
+// 		ft_putchar_fd('-', fd);
+// 	}
+// 	while ((nb / div) > 9)
+// 		div *= 10;
+// 	while (div > 0)
+// 	{
+// 		ft_putchar_fd(((nb / div) % 10) + 48, fd);
+// 		div /= 10;
+// 	}
+// 	if (is_max == 1)
+// 		ft_putchar_fd('8', fd);
+// }

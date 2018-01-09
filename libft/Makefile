@@ -10,6 +10,7 @@ NAME		=	libft.a
 SRC_PATH	=	./src/
 INC_PATH	=	./includes/
 
+#Add new folder here
 SRC_CHECK	=	$(addprefix $(SRC_PATH),checking/)
 SRC_LIST	=	$(addprefix $(SRC_PATH),list/)
 SRC_MATH	=	$(addprefix $(SRC_PATH),math/)
@@ -19,6 +20,7 @@ SRC_PRINT	=	$(addprefix $(SRC_PATH),print/)
 SRC_STR		=	$(addprefix $(SRC_PATH),str/)
 SRC_FILE	=	$(addprefix $(SRC_PATH),file/)
 
+#PATH MIXED
 SRC		=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
 			$(addprefix $(SRC_LIST),$(LIST_FILE))		\
 			$(addprefix $(SRC_MATH),$(MATH_FILE))		\
@@ -27,6 +29,7 @@ SRC		=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
 			$(addprefix $(SRC_PRINT),$(PRINT_FILE))		\
 			$(addprefix $(SRC_STR),$(STR_FILE))			\
 			$(addprefix $(SRC_FILE),$(FILE_FILE))
+
 
 INC		=	$(addprefix $(INC_PATH),$(HEAD))
 
@@ -49,7 +52,8 @@ LIST_FILE	=	ft_lstnew.c								\
 
 MATH_FILE	=	ft_power.c								\
 				ft_count_digit.c						\
-				ft_abs.c
+				ft_abs.c								\
+				ft_conv_n_base.c
 
 MEM_FILE	=	ft_memset.c								\
 				ft_bzero.c								\
@@ -64,7 +68,8 @@ MEM_FILE	=	ft_memset.c								\
 MORPH_FILE	=	ft_atoi.c								\
 				ft_itoa.c								\
 				ft_toupper.c							\
-				ft_tolower.c
+				ft_tolower.c							\
+				ft_strupper.c
 
 PRINT_FILE	=	ft_putchar.c							\
 				ft_putstr.c								\
@@ -77,6 +82,10 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_puttab.c								\
 				ft_putnchar.c							\
 				ft_putnofstr.c							\
+				ft_putlnbr_fd.c							\
+				ft_putlnbr.c							\
+				ft_putunbr_fd.c							\
+				ft_putunbr.c							\
 
 STR_FILE	=	ft_skip_char.c							\
 				ft_count_word.c							\
@@ -111,6 +120,7 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strmiam.c
 
 FILE_FILE	=	get_next_line.c
+
 
 ##############
 ## INC FILE ##

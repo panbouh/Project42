@@ -1,11 +1,12 @@
 NAME	=	ft_printf
 
-SRC		=	main.c					\
-			$(WAY)ft_printf.c		\
-			$(WAY)func_flags.c		\
-			$(WAY)func_calc.c		\
-			$(WAY)func_err.c		\
-			$(WAY)func_convs_basics.c
+SRC		=	main.c							\
+			$(WAY)ft_printf.c				\
+			$(WAY)func_flags.c				\
+			$(WAY)func_calc.c				\
+			$(WAY)func_err.c				\
+			$(WAY)func_convs_basics.c		\
+			$(WAY)func_convs_base.c
 
 WAY	=	src/
 
@@ -29,11 +30,11 @@ RM		=	rm -rf
 
 all		:	$(NAME)
 
-$(NAME)		: $(OBJ) $(LIB)
+$(NAME)		: $(OBJ) $(LIB) lib
 				$(MAKE) -C $(LIBPATH) all
 				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB)
 
-lib			:	libft/libft.a
+lib			:
 				$(MAKE) -C $(LIBPATH) all
 
 dellib		:

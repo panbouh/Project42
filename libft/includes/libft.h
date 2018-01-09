@@ -62,6 +62,8 @@ typedef struct		s_list
 ** ---libperso---
 */
 char				*ft_strrev(char *str);
+char				*ft_conv_n_base(int n, unsigned int base);
+char				*ft_strupper(char *str);
 
 size_t				ft_skip_char(const char *s, size_t i, char c, int flags);
 size_t				ft_count_word(const char *str, char space);
@@ -73,7 +75,10 @@ long				ft_power(long nb, long power);
 void				ft_puttab(const char **tab);
 void				ft_putnchar(char c, size_t n);
 void				ft_putnofstr(const char *str, size_t n);
-
+void				ft_putlnbr_fd(long long nb, int fd);
+void				ft_putlnbr(long long nb);
+void				ft_putunbr_fd(unsigned long long nb, int fd);
+void				ft_putunbr(unsigned long long nb);
 int					ft_abs(int n);
 
 /*
@@ -123,7 +128,6 @@ char				*ft_itoa(int n);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
-int					ft_atoi(const char *str);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
@@ -134,6 +138,8 @@ int					ft_tolower(int c);
 int					ft_strequ(const char *s1, const char *s2);
 int					ft_strnequ(const char *s1, const char *s2, size_t n);
 int					ft_strdel(char **as);
+
+long long			ft_atoi(const char *str);
 
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);

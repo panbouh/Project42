@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+#include "limits.h"
 
 t_flag_list	init_fl()
 {
@@ -14,13 +15,23 @@ t_flag_list	init_fl()
 	return (new);
 }
 
-int	main()
+int	main(int ac, char **av)
 {
-	const char	*bouh = "<%14-.7i>\n";
+	const char	*bouh = "<%#15.8x>\n";
+
+	int	a = 30098;
 	ft_putstr("Real : ");
-	   printf(bouh, -4242);
+	   printf(bouh, a);
+	// ft_putstr("Rea2 : ");
+	//    printf("<%x>\n", a);
 	ft_putstr("Mine : ");
-	ft_printf(bouh, -4242);
+	ft_printf(bouh, a);
+	// ft_putstr(ft_conv_n_base(bouh, 16));
+
+	// printf("<%#x>\n", &a);
+	// printf("<%08X>\n", a);
+	// printf("<%i>\n", &a);
+	// printf("<%p>\n", a);
 	return (0);
 }
 
@@ -29,15 +40,15 @@ int	main()
 s OK
 S
 p
-d OK ~
+d OK
 D
-i OK ~
-o
+i OK
+o OK
 O
-u
+u OK
 U
-x
-X
-c
+x OK
+X OK
+c OK
 C
 */
