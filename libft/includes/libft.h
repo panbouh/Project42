@@ -139,7 +139,7 @@ int					ft_strequ(const char *s1, const char *s2);
 int					ft_strnequ(const char *s1, const char *s2, size_t n);
 int					ft_strdel(char **as);
 
-long long			ft_atoi(const char *str);
+long			ft_atoi(const char *str);
 
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);

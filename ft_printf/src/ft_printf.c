@@ -94,8 +94,7 @@ int	found_flags(const char *form, va_list ap, size_t *i)
 	t_fl = init_fl();
 	*i = ft_skip_char(form, *i, ' ', ALL);
 
-
-	while ((ret_end = do_conv(form, i, t_fl, ap)) != OK)
+	while ((ret_end = do_conv(form, i, t_fl, ap)) != OK && ret_end != FAIL)
 	{
 		SKIP_SPACE
 		ion_ft(form, i, &t_fl);
@@ -135,6 +134,8 @@ int	ft_printf(const char *format, ...)
 				return (ret_err());
 			}
 		}
+		if (format[i + 1] && format[i + 1] == '%')
+			i++;
 		ft_putchar(format[i]);
 		i++;
 	}

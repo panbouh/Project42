@@ -76,7 +76,7 @@ void		calc_wp_num(t_flag_list *t_fl, int size);
 void		calc_wp_str(t_flag_list *t_fl, int size);
 
 
-//init.c (main.c)
+//init.c
 t_flag_list	init_fl();
 
 #endif

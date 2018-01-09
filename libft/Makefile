@@ -159,10 +159,10 @@ lol		:
 		@echo "MDR"
 
 $(NAME)		: $(OBJ) $(INC)
-			@echo "\033[0;33mLibrary Creation\033[0m"
+			@echo "\033[0;33mLibrary < $(NAME) > Creation\033[0m"
 			@ar rc $(NAME) $(OBJ)
 			@ranlib $(NAME)
-			@echo "\033[0;32mLibray Correctly Build\033[0m"
+			@echo "\033[0;32mLibray < $(NAME) > Correctly Build\033[0m"
 
 # ####################
 # ## Cleaning Rules ##

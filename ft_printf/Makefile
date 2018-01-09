@@ -1,54 +1,205 @@
-NAME	=	ft_printf
+################################################################################
+#####                                LIBFTPRINTF                           #####
+################################################################################
 
-SRC		=	main.c							\
-			$(WAY)ft_printf.c				\
-			$(WAY)func_flags.c				\
-			$(WAY)func_calc.c				\
-			$(WAY)func_err.c				\
-			$(WAY)func_convs_basics.c		\
-			$(WAY)func_convs_base.c
+NAME		=	libftprintf.a
+NAME_TEST	=	ft_printf
 
-WAY	=	src/
+###################
+## PATH SRC FILE ##
+###################
+SRC_PATH	=	./libft/src/
+INC_PATH	=	./libft/includes/
+SRC_PS_PATH	=	./src/
+INC_PI_PATH	=	./includes/
 
-WAYHEAD	=	./includes/
+#Add new folder here
+SRC_CHECK	=	$(addprefix $(SRC_PATH),checking/)
+SRC_LIST	=	$(addprefix $(SRC_PATH),list/)
+SRC_MATH	=	$(addprefix $(SRC_PATH),math/)
+SRC_MEM		=	$(addprefix $(SRC_PATH),memory/)
+SRC_MORPH	=	$(addprefix $(SRC_PATH),morphing/)
+SRC_PRINT	=	$(addprefix $(SRC_PATH),print/)
+SRC_STR		=	$(addprefix $(SRC_PATH),str/)
+SRC_FILE	=	$(addprefix $(SRC_PATH),file/)
 
-LIB		=	libft
+#PATH MIXED
+SRC			=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
+				$(addprefix $(SRC_LIST),$(LIST_FILE))		\
+				$(addprefix $(SRC_MATH),$(MATH_FILE))		\
+				$(addprefix $(SRC_MEM),$(MEM_FILE))			\
+				$(addprefix $(SRC_MORPH),$(MORPH_FILE))		\
+				$(addprefix $(SRC_PRINT),$(PRINT_FILE))		\
+				$(addprefix $(SRC_STR),$(STR_FILE))			\
+				$(addprefix $(SRC_FILE),$(FILE_FILE))		\
+				$(addprefix $(SRC_PS_PATH), $(PRINTF_FILE))
 
-LIBPATH	=	./libft/
+INC			=	$(addprefix $(INC_PATH),$(HEAD))
+INC_PRINTF	=	$(addprefix $(INC_PI_PATH),$(HEAD_P))
 
-HEADLIBPATH	=	./libft/includes/
+##############
+## SRC FILE ##
+##############
+
+PRINTF_FILE	=	ft_printf.c				\
+				init.c					\
+				func_flags.c			\
+				func_calc.c				\
+				func_err.c				\
+				func_convs_basics.c		\
+				func_convs_base.c
+
+CHECK_FILE	=	ft_isalpha.c							\
+				ft_isdigit.c							\
+				ft_isalnum.c							\
+				ft_isascii.c							\
+				ft_isprint.c
+
+LIST_FILE	=	ft_lstnew.c								\
+				ft_lstdelone.c							\
+				ft_lstdel.c								\
+				ft_lstadd.c								\
+				ft_lstiter.c							\
+				ft_lstmap.c
+
+MATH_FILE	=	ft_power.c								\
+				ft_count_digit.c						\
+				ft_abs.c								\
+				ft_conv_n_base.c
+
+MEM_FILE	=	ft_memset.c								\
+				ft_bzero.c								\
+				ft_memcpy.c								\
+				ft_memccpy.c							\
+				ft_memmove.c							\
+				ft_memchr.c								\
+				ft_memcmp.c								\
+				ft_memalloc.c							\
+				ft_memdel.c
+
+MORPH_FILE	=	ft_atoi.c								\
+				ft_itoa.c								\
+				ft_toupper.c							\
+				ft_tolower.c							\
+				ft_strupper.c
+
+PRINT_FILE	=	ft_putchar.c							\
+				ft_putstr.c								\
+				ft_putendl.c							\
+				ft_putnbr.c								\
+				ft_putchar_fd.c							\
+				ft_putstr_fd.c							\
+				ft_putendl_fd.c							\
+				ft_putnbr_fd.c							\
+				ft_puttab.c								\
+				ft_putnchar.c							\
+				ft_putnofstr.c							\
+				ft_putlnbr_fd.c							\
+				ft_putlnbr.c							\
+				ft_putunbr_fd.c							\
+				ft_putunbr.c							\
+
+STR_FILE	=	ft_skip_char.c							\
+				ft_count_word.c							\
+				ft_strlen_till.c						\
+				ft_strrev.c								\
+				ft_strlen.c								\
+				ft_strdup.c								\
+				ft_strcpy.c								\
+				ft_strncpy.c							\
+				ft_strcat.c								\
+				ft_strncat.c							\
+				ft_strlcat.c							\
+				ft_strchr.c								\
+				ft_strrchr.c							\
+				ft_strstr.c								\
+				ft_strnstr.c							\
+				ft_strcmp.c								\
+				ft_strncmp.c							\
+				ft_strnew.c								\
+				ft_strdel.c								\
+				ft_strclr.c								\
+				ft_striter.c							\
+				ft_striteri.c							\
+				ft_strmap.c								\
+				ft_strmapi.c							\
+				ft_strequ.c								\
+				ft_strnequ.c							\
+				ft_strsub.c								\
+				ft_strjoin.c							\
+				ft_strtrim.c							\
+				ft_strsplit.c							\
+				ft_strmiam.c
+
+FILE_FILE	=	get_next_line.c
+
+
+##############
+## INC FILE ##
+##############
+
+HEAD		=	libft.h
+HEAD_P		=	ft_printf.h
+
+
+# ################
+# ## Conversion ##
+# ################
 
 OBJ		=	$(SRC:.c=.o)
 
-CFLAGS	=	 -I $(HEADLIBPATH) -I $(WAYHEAD) 
+# ###########################
+# ## Random Initialisation ##
+# ###########################
 
-#-Wall -Wextra -Werror
+CC		=	gcc
 
-CCLIB		=	-L libft/ -lft
+CFLAGS	=	-I$(INC_PATH) -I$(INC_PI_PATH) -g
+
+#-Wall -Wextra -Werror 
+
+CCLIB	= -L. -lftprintf
 
 RM		=	rm -rf
 
-all		:	$(NAME)
+# ######################
+# ## Compilatin Rules ##
+# ######################
 
-$(NAME)		: $(OBJ) $(LIB) lib
-				$(MAKE) -C $(LIBPATH) all
-				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB)
+all		: $(NAME) test
 
-lib			:
-				$(MAKE) -C $(LIBPATH) all
+color	: 
+	@echo "\033[0;33mTest Colorlolol\033[0m"
 
-dellib		:
-				$(MAKE) -C $(LIBPATH) fclean
+lol		:
+		gcc -c $(CFLAGS) $(SRC)
+		@echo "MDR"
+
+$(NAME)		: $(OBJ) $(INC) $(INC_PRINTF)
+			@echo "\033[0;33mLibrary < $(NAME) > Creation\033[0m"
+			@ar rc $(NAME) $(OBJ)
+			@ranlib $(NAME)
+			@echo "\033[0;32mLibray < $(NAME) > Correctly Build\033[0m"
+
+test		: main.c $(NAME)
+			gcc -o $(NAME_TEST) main.c $(CFLAGS) $(CCLIB)
+
+# ####################
+# ## Cleaning Rules ##
+# ####################
 
 clean		:
-			$(RM) $(OBJ)
+			@$(RM) $(OBJ)
+			@echo "\033[0;32mObject File Delete\033[0m"
 
-fclean		:	clean
-			$(RM) $(NAME)
+fclean		: clean
+			@$(RM) $(NAME)
+			@echo "\033[0;32mBinary $(NAME) Delete\033[0m"
 
-relib		:
-			$(MAKE) -C $(LIBPATH) re
+re		:	fclean $(NAME)
 
-re			:	fclean dellib $(NAME)
+# ################
+# ## Protection ##
+# ################
 
-.PHONY		:	all re clean fclean lib dellib all relib
+.PHONY		:	re clean fclean

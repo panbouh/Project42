@@ -71,6 +71,7 @@ void	conv_char(va_list ap, t_flag_list t_fl)
 	unsigned char	c;
 
 	c = (unsigned char)va_arg(ap, int);
+	(void)t_fl;
 	ft_putchar(c);
 }
 

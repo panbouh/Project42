@@ -17,7 +17,7 @@ t_flag_list	init_fl()
 
 int	main(int ac, char **av)
 {
-	const char	*bouh = "<%#15.8x>\n";
+	const char	*bouh = "<%x>\n";
 
 	int	a = 30098;
 	ft_putstr("Real : ");
