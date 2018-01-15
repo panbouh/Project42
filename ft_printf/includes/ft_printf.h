@@ -63,12 +63,14 @@ void	conv_mod_j(va_list ap, t_flag_list t_fl, char form);
 void	conv_mod_z(va_list ap, t_flag_list t_fl, char form);
 
 /*
-** conv_iusc.c
+** conv_uisc_z_ui.c
 */
-void		conv_int(va_list ap, t_flag_list t_fl);
-void		conv_char(va_list ap, t_flag_list t_fl);
-void		conv_str(va_list ap, t_flag_list t_fl);
 void		conv_unsigned(va_list ap, t_flag_list t_fl);
+void		conv_int(va_list ap, t_flag_list t_fl);
+void		conv_str(va_list ap, t_flag_list t_fl);
+void		conv_char(va_list ap, t_flag_list t_fl);
+void		conv_sizet(va_list ap, t_flag_list t_fl);
+
 
 /*
 ** conv_xob.c
@@ -82,45 +84,59 @@ void		conv_bina(va_list ap, t_flag_list t_fl);
 /*
 ** conv_l_scox.c 
 */
-void	conv_wchat(va_list, t_flag_list t_fl);
-void	conv_wintt(va_list, t_flag_list t_fl);
-void	conv_ulintocta(va_list, t_flag_list t_fl);
-void	conv_ulinthexa(va_list, t_flag_list t_fl);
-void	conv_ulinthexaup(va_list, t_flag_list t_fl);
+void	conv_wchat(va_list ap, t_flag_list t_fl);
+void	conv_wintt(va_list ap, t_flag_list t_fl);
+void	conv_ulintocta(va_list ap, t_flag_list t_fl);
+void	conv_ulinthexa(va_list ap, t_flag_list t_fl);
+void	conv_ulinthexaup(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_l_ui_hox.c
 */
-void	conv_ulongint(va_list, t_flag_list t_fl);
+void	conv_ulongint(va_list ap, t_flag_list t_fl);
 void	conv_long(va_list ap, t_flag_list t_fl);
-void	conv_ushortocta(va_list, t_flag_list t_fl);
-void	conv_ushorthexa(va_list, t_flag_list t_fl);
-void	conv_ushorthexaup(va_list, t_flag_list t_fl);
+void	conv_ushortocta(va_list ap, t_flag_list t_fl);
+void	conv_ushorthexa(va_list ap, t_flag_list t_fl);
+void	conv_ushorthexaup(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_h_ui_ll_ox.c
 */
-void	conv_ushort(va_list, t_flag_list t_fl);
-void	conv_short(va_list, t_flag_list t_fl);
-void	conv_ullintocta(va_list, t_flag_list t_fl);
-void	conv_ullinthexa(va_list, t_flag_list t_fl);
-void	conv_ullinthexaup(va_list, t_flag_list t_fl);
+void	conv_ushort(va_list ap, t_flag_list t_fl);
+void	conv_short(va_list ap, t_flag_list t_fl);
+void	conv_ullintocta(va_list ap, t_flag_list t_fl);
+void	conv_ullinthexa(va_list ap, t_flag_list t_fl);
+void	conv_ullinthexaup(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_ll_ui_hh_ox.c
 */
 
-void	conv_ullongint(va_list, t_flag_list t_fl);
-void	conv_llong(va_list, t_flag_list t_fl);
-void	conv_ucharocta(va_list, t_flag_list t_fl);
-void	conv_ucharhexa(va_list, t_flag_list t_fl);
-void	conv_ucharhexaup(va_list, t_flag_list t_fl);
+void	conv_ullongint(va_list ap, t_flag_list t_fl);
+void	conv_llong(va_list ap, t_flag_list t_fl);
+void	conv_ucharocta(va_list ap, t_flag_list t_fl);
+void	conv_ucharhexa(va_list ap, t_flag_list t_fl);
+void	conv_ucharhexaup(va_list ap, t_flag_list t_fl);
 
 /*
-** conv_hh_ui.c
+** conv_hh_ui_j_ox.c
 */
-void	conv_schar(va_list, t_flag_list t_fl);
-void	conv_uchar(va_list, t_flag_list t_fl);
+void	conv_schar(va_list ap, t_flag_list t_fl);
+void	conv_uchar(va_list ap, t_flag_list t_fl);
+void	conv_uintmaxtocta(va_list ap, t_flag_list t_fl);
+void	conv_uintmaxthexa(va_list ap, t_flag_list t_fl);
+void	conv_uintmaxthexaup(va_list ap, t_flag_list t_fl);
+
+/*
+** conv_j_ui_z_ox.c
+*/
+void	conv_uintmaxt(va_list ap, t_flag_list t_fl);
+void	conv_intmaxt(va_list ap, t_flag_list t_fl);
+void	conv_sizethexa(va_list ap, t_flag_list t_fl);
+void	conv_sizethexaup(va_list ap, t_flag_list t_fl);
+void	conv_sizetocta(va_list ap, t_flag_list t_fl);
+
+
 
 /*
 ** -----------------------------------------------------------------------------

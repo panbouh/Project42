@@ -46,15 +46,17 @@ PRINTF_FILE	=	ft_printf.c				\
 				flags.c					\
 				calc.c					\
 				err.c					\
-				conv_uisc.c				\
-				conv_mod_lhllhh			\
-				conv_mod_jz				\
+				conv_uisc_z_ui.c		\
 				conv_xob.c				\
 				conv_l_scox.c			\
-				conv_l_ui_h_ox.c			\
+				conv_l_ui_h_ox.c		\
 				conv_h_ui_ll_ox.c		\
 				conv_ll_ui_hh_ox.c		\
-				conv_hh_ui.c
+				conv_hh_ui_j_ox.c		\
+				conv_j_ui_z_ox.c		\
+				conv_mod_jz				\
+				conv_mod_lhllhh
+
 
 
 CHECK_FILE	=	ft_isalpha.c							\

@@ -84,3 +84,8 @@ void	conv_char(va_list ap, t_flag_list t_fl)
 	(void)t_fl;
 	ft_putchar(c);
 }
+
+void	conv_sizet(va_list ap, t_flag_list t_fl)
+{
+	
+}

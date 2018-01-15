@@ -10,14 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_printf.h"
 
 /*
 ** lu li
 */
 
-void	conv_ulongint(va_list, t_flag_list t_fl)
+void	conv_ulongint(va_list ap, t_flag_list t_fl)
 {
 	
 }
@@ -49,17 +48,17 @@ void	conv_long(va_list ap, t_flag_list t_fl)
 ** ho hxX
 */
 
-void	conv_ushortocta(va_list, t_flag_list t_fl)
+void	conv_ushortocta(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_ushorthexa(va_list, t_flag_list t_fl)
+void	conv_ushorthexa(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_ushorthexaup(va_list, t_flag_list t_fl)
+void	conv_ushorthexaup(va_list ap, t_flag_list t_fl)
 {
 
 }

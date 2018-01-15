@@ -10,19 +10,37 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "ft_printf.h"
 
 /*
 ** hhu hhi/d
 */
 
-void	conv_schar(va_list, t_flag_list t_fl)
+void	conv_schar(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_uchar(va_list, t_flag_list t_fl)
+void	conv_uchar(va_list ap, t_flag_list t_fl)
+{
+
+}
+
+/*
+** jo jx jX
+*/
+
+void	conv_uintmaxtocta(va_list ap, t_flag_list t_fl)
+{
+
+}
+
+void	conv_uintmaxthexa(va_list ap, t_flag_list t_fl)
+{
+
+}
+
+void	conv_uintmaxthexaup(va_list ap, t_flag_list t_fl)
 {
 
 }

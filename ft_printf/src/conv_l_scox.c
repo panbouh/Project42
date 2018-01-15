@@ -16,29 +16,29 @@
 **  ls lc lo lx lX
 */
 
-void	conv_wchat(va_list, t_flag_list t_fl)
+void	conv_wchat(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_wintt(va_list, t_flag_list t_fl)
-{
-	
-}
-
-void	conv_ulintocta(va_list, t_flag_list t_fl)
-{
-
-}
-
-
-void	conv_ulinthexa(va_list, t_flag_list t_fl)
+void	conv_wintt(va_list ap, t_flag_list t_fl)
 {
 	
 }
 
+void	conv_ulintocta(va_list ap, t_flag_list t_fl)
+{
 
-void	conv_ulinthexaup(va_list, t_flag_list t_fl)
+}
+
+
+void	conv_ulinthexa(va_list ap, t_flag_list t_fl)
+{
+	
+}
+
+
+void	conv_ulinthexaup(va_list ap, t_flag_list t_fl)
 {
 
 }

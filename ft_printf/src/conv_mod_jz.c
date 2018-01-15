@@ -10,28 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ft_printf.h>
+#include "ft_printf.h"
 
 void	conv_mod_j(va_list ap, t_flag_list t_fl, char form)
 {
-	size_t	i;
-	t_flag	keytab[] =
-	{
-		{'i', &conv_intmaxt},			\
-		{'d', &conv_intmaxt},			\
-		{'u', &conv_uintmaxt},			\
-		{'x', &conv_uintmaxthexa},		\
-		{'X', &conv_uintmaxthexaup},	\
-		{'o', &conv_uintmaxtocta},		\
+	t_conv	keytab[] = {
+		{'i', &conv_intmaxt},
+		{'d', &conv_intmaxt},
+		{'u', &conv_uintmaxt},
+		{'x', &conv_uintmaxthexa},
+		{'X', &conv_uintmaxthexaup},
+		{'o', &conv_uintmaxtocta},
 		{0, NULL},
 	};
-	i = 0;
+	size_t	i;
 
+	i = 0;
 	while (keytab[i].key)
 	{
 		if (form == keytab[i].key)
 		{
-			keytab[i].f(ap, t_fl)
+			keytab[i].f(ap, t_fl);
 			return ;
 		}
 		i++;
@@ -40,24 +39,23 @@ void	conv_mod_j(va_list ap, t_flag_list t_fl, char form)
 
 void	conv_mod_z(va_list ap, t_flag_list t_fl, char form)
 {
-	size_t	i;
-	t_flag	keytab[] =
-	{
-		{'i', &sizet},			\
-		{'d', &sizet},			\
-		{'u', &sizet},			\
-		{'x', &sizethexa},		\
-		{'X', &sizethexaup},	\
-		{'o', &sizetocta},		\
+	t_conv	keytab[] = {
+		{'i', &conv_sizet},
+		{'d', &conv_sizet},
+		{'u', &conv_sizet},
+		{'x', &conv_sizethexa},
+		{'X', &conv_sizethexaup},
+		{'o', &conv_sizetocta},
 		{0, NULL},
 	};
-	i = 0;
+	size_t	i;
 
+	i = 0;
 	while (keytab[i].key)
 	{
 		if (form == keytab[i].key)
 		{
-			keytab[i].f(ap, t_fl)
+			keytab[i].f(ap, t_fl);
 			return ;
 		}
 		i++;

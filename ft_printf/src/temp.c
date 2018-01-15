@@ -17,27 +17,27 @@
 ** 
 */
 
-void	(va_list, t_flag t_fl)
+void	(va_list ap, t_flag t_fl)
 {
 
 }
 
-void	(va_list, t_flag t_fl)
+void	(va_list ap, t_flag t_fl)
 {
 
 }
 
-void	(va_list, t_flag t_fl)
+void	(va_list ap, t_flag t_fl)
 {
 
 }
 
-void	(va_list, t_flag t_fl)
+void	(va_list ap, t_flag t_fl)
 {
 
 }
 
-void	(va_list, t_flag t_fl)
+void	(va_list ap, t_flag t_fl)
 {
 
 }
