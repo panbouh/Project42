@@ -12,16 +12,25 @@
 
 #include "ft_printf.h"
 
-t_flag_list	init_fl()
+int	ret_err()
 {
-	t_flag_list	new;
+	ft_putendl_fd("<ERROR parsing ERROR>", 2);
+	return (FAIL);
+}
 
-	new.sharp = 0;
-	new.zero = 0;
-	new.min = 0;
-	new.plus = 0;
-	new.width = 0;
-	new.prec = 0;
-	new.c_space = ' ';
-	return (new);
+int	conv_nothing(t_flag_list t_fl, char c)
+{
+	char	c_space;
+
+	t_fl.prec = 0;
+	calc_wp_str(&t_fl, 1);
+
+	if (!t_fl.min)
+		ft_putnchar(t_fl.c_space, t_fl.width);
+
+	ft_putchar(c);
+
+	if (t_fl.min)
+		ft_putnchar(t_fl.c_space, t_fl.width);
+	return (OK);
 }

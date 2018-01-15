@@ -12,16 +12,22 @@
 
 #include "ft_printf.h"
 
-t_flag_list	init_fl()
+void	flag_sharp(t_flag_list *f_list)
 {
-	t_flag_list	new;
+	f_list->sharp = 1;
+}
 
-	new.sharp = 0;
-	new.zero = 0;
-	new.min = 0;
-	new.plus = 0;
-	new.width = 0;
-	new.prec = 0;
-	new.c_space = ' ';
-	return (new);
+void	flag_zero(t_flag_list *f_list)
+{
+	f_list->zero = 1;
+}
+
+void	flag_min(t_flag_list *f_list)
+{
+	f_list->min = 1;
+}
+
+void	flag_plus(t_flag_list *f_list)
+{
+	f_list->plus = 1;
 }

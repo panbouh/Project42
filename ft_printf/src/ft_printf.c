@@ -12,34 +12,40 @@
 
 #include "ft_printf.h"
 
-t_flag	g_flagtab[] = {
-	{'#', &flag_sharp},	\
-	{'0', &flag_zero},	\
-	{'-', &flag_min},	\
-	{'+', &flag_plus},	\
-	{0, NULL}
+t_flag	g_flagtab[] =
+{
+	{'#', &flag_sharp},
+	{'0', &flag_zero},
+	{'-', &flag_min},
+	{'+', &flag_plus},
+	{0, NULL},
 };
 
-t_conv	g_convtab[] = {
-	{"i", &conv_int},		\
-	{"d", &conv_int},		\
-	{"s", &conv_str},		\
-	{"c", &conv_char},		\
-	{"u", &conv_unsigned},	\
-	{"x", &conv_hexa},		\
-	{"X", &conv_hexaup},	\
-	{"b", &conv_bina},		\
-	{"o", &conv_octa},		\
-	{"p", &conv_hexa},		\
-	/*{"l", &conv_long},		/
-	{"ll", &conv_llong},		\
-	{"h", &conv_short},		\
-	{"hh", &conv_schar},		\
-	{"j", &conv_imax},		\
-	{"z", &conv_sizet},		\*/
+t_conv	g_convtab[] =
+{
+	{'i', &conv_int},
+	{'d', &conv_int},
+	{'s', &conv_str},
+	{'c', &conv_char},
+	{'u', &conv_unsigned},
+	{'x', &conv_hexa},
+	{'X', &conv_hexaup},
+	{'b', &conv_bina},
+	{'o', &conv_octa},
+	{'p', &conv_hexa},
+	{0, NULL},
+};
+
+t_mod	g_modtab[] =
+{
+	{"l", &conv_mod_l},
+	{"ll", &conv_mod_ll},
+	{"h", &conv_mod_h},
+	{"hh", &conv_mod_h},
+	{"j", &conv_mod_j},
+	{"z", &conv_mod_z},
 	{NULL, NULL},
 };
-
 /*
 		[flags]			#0-+
 		[largeur]		N
@@ -71,11 +77,17 @@ int	do_conv(const char *form, size_t *i, t_flag_list t_fl, va_list ap)
 	n = 0;
 	while (g_convtab[n].key)
 	{
-		size = ft_strlen(g_convtab[n].key);
-		if (!ft_strncmp(g_convtab[n].key, &form[*i], size))
+		if (g_convtab[n].key == form[*i])
 			{
+				(*i)++;;
 				g_convtab[n].f(ap, t_fl);
-				(*i)++;
+				return (OK);
+			}
+		size = ft_strlen(g_modtab[n].key);
+		if (!ft_strncmp(g_modtab[n].key, &form[*i], size))
+			{
+				(*i) += size;
+				g_modtab[n].f(ap, t_fl, form[*i]);
 				return (OK);
 			}
 		n++;

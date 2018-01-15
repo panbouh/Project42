@@ -43,11 +43,19 @@ INC_PRINTF	=	$(addprefix $(INC_PI_PATH),$(HEAD_P))
 
 PRINTF_FILE	=	ft_printf.c				\
 				init.c					\
-				func_flags.c			\
-				func_calc.c				\
-				func_err.c				\
-				func_convs_basics.c		\
-				func_convs_base.c
+				flags.c					\
+				calc.c					\
+				err.c					\
+				conv_uisc.c				\
+				conv_mod_lhllhh			\
+				conv_mod_jz				\
+				conv_xob.c				\
+				conv_l_scox.c			\
+				conv_l_ui_h_ox.c			\
+				conv_h_ui_ll_ox.c		\
+				conv_ll_ui_hh_ox.c		\
+				conv_hh_ui.c
+
 
 CHECK_FILE	=	ft_isalpha.c							\
 				ft_isdigit.c							\

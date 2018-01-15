@@ -17,21 +17,14 @@ t_flag_list	init_fl()
 
 int	main(int ac, char **av)
 {
-	const char	*bouh = "<%x>\n";
+	const char	*bouh = "<%li>\n";
 
 	int	a = 30098;
 	ft_putstr("Real : ");
 	   printf(bouh, a);
-	// ft_putstr("Rea2 : ");
-	//    printf("<%x>\n", a);
 	ft_putstr("Mine : ");
 	ft_printf(bouh, a);
 	// ft_putstr(ft_conv_n_base(bouh, 16));
-
-	// printf("<%#x>\n", &a);
-	// printf("<%08X>\n", a);
-	// printf("<%i>\n", &a);
-	// printf("<%p>\n", a);
 	return (0);
 }
 

@@ -12,16 +12,26 @@
 
 #include "ft_printf.h"
 
-t_flag_list	init_fl()
+void		calc_wp_num(t_flag_list *t_fl, int size)
 {
-	t_flag_list	new;
+	if (t_fl->zero && !t_fl->min && !t_fl->prec)
+		t_fl->c_space = '0';
 
-	new.sharp = 0;
-	new.zero = 0;
-	new.min = 0;
-	new.plus = 0;
-	new.width = 0;
-	new.prec = 0;
-	new.c_space = ' ';
-	return (new);
+	if ((t_fl->prec -= size) < 0)
+		 t_fl->prec = 0;
+
+	if ((t_fl->width = t_fl->width - t_fl->prec- size - t_fl->plus) < 0)
+		t_fl->width = 0;
+}
+
+void		calc_wp_str(t_flag_list *t_fl, int size)
+{
+	if (t_fl->zero && !t_fl->min && !t_fl->prec)
+		t_fl->c_space = '0';
+
+	if (!t_fl->prec)
+		t_fl->prec = size;
+
+	if ((t_fl->width = t_fl->width - t_fl->prec) < 0)
+		t_fl->width = 0;
 }

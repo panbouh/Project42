@@ -10,18 +10,56 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include <ft_printf.h>
 
-t_flag_list	init_fl()
+void	conv_mod_j(va_list ap, t_flag_list t_fl, char form)
 {
-	t_flag_list	new;
+	size_t	i;
+	t_flag	keytab[] =
+	{
+		{'i', &conv_intmaxt},			\
+		{'d', &conv_intmaxt},			\
+		{'u', &conv_uintmaxt},			\
+		{'x', &conv_uintmaxthexa},		\
+		{'X', &conv_uintmaxthexaup},	\
+		{'o', &conv_uintmaxtocta},		\
+		{0, NULL},
+	};
+	i = 0;
 
-	new.sharp = 0;
-	new.zero = 0;
-	new.min = 0;
-	new.plus = 0;
-	new.width = 0;
-	new.prec = 0;
-	new.c_space = ' ';
-	return (new);
+	while (keytab[i].key)
+	{
+		if (form == keytab[i].key)
+		{
+			keytab[i].f(ap, t_fl)
+			return ;
+		}
+		i++;
+	}
+}
+
+void	conv_mod_z(va_list ap, t_flag_list t_fl, char form)
+{
+	size_t	i;
+	t_flag	keytab[] =
+	{
+		{'i', &sizet},			\
+		{'d', &sizet},			\
+		{'u', &sizet},			\
+		{'x', &sizethexa},		\
+		{'X', &sizethexaup},	\
+		{'o', &sizetocta},		\
+		{0, NULL},
+	};
+	i = 0;
+
+	while (keytab[i].key)
+	{
+		if (form == keytab[i].key)
+		{
+			keytab[i].f(ap, t_fl)
+			return ;
+		}
+		i++;
+	}
 }

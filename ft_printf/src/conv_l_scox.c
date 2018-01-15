@@ -12,16 +12,33 @@
 
 #include "ft_printf.h"
 
-t_flag_list	init_fl()
-{
-	t_flag_list	new;
+/*
+**  ls lc lo lx lX
+*/
 
-	new.sharp = 0;
-	new.zero = 0;
-	new.min = 0;
-	new.plus = 0;
-	new.width = 0;
-	new.prec = 0;
-	new.c_space = ' ';
-	return (new);
+void	conv_wchat(va_list, t_flag_list t_fl)
+{
+
+}
+
+void	conv_wintt(va_list, t_flag_list t_fl)
+{
+	
+}
+
+void	conv_ulintocta(va_list, t_flag_list t_fl)
+{
+
+}
+
+
+void	conv_ulinthexa(va_list, t_flag_list t_fl)
+{
+	
+}
+
+
+void	conv_ulinthexaup(va_list, t_flag_list t_fl)
+{
+
 }
