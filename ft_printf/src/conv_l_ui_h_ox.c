@@ -16,20 +16,21 @@
 ** lu li
 */
 
-void	conv_ulongint(va_list ap, t_flag_list t_fl)
+int	conv_ulongint(va_list ap, t_flag_list t_fl)
 {
 	
 }
 
-void	conv_long(va_list ap, t_flag_list t_fl)
+int	conv_long(va_list ap, t_flag_list t_fl)
 {
 	long		nb;
 
-	nb = va_arg(ap, int);
+
+	nb = va_arg(ap, long);
+
 	// printf("\n1) w = %i\np = %i\n", t_fl.width, t_fl.prec);
 	calc_wp_num(&t_fl, ft_count_digit(ft_abs(nb)));
 	// printf("\n2) w = %i\np = %i\n", t_fl.width, t_fl.prec);
-
 	if (nb < 0 && !t_fl.plus)
 		t_fl.width--;
 	if (!t_fl.min)
@@ -39,7 +40,7 @@ void	conv_long(va_list ap, t_flag_list t_fl)
 	if (nb < 0)
 		ft_putchar('-');
 	ft_putnchar('0', t_fl.prec);
-	ft_putnbr(ft_abs(nb));
+	ft_putlnbr(ft_abs(nb));
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_space, t_fl.width);
 }
@@ -48,17 +49,17 @@ void	conv_long(va_list ap, t_flag_list t_fl)
 ** ho hxX
 */
 
-void	conv_ushortocta(va_list ap, t_flag_list t_fl)
+int	conv_ushortocta(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_ushorthexa(va_list ap, t_flag_list t_fl)
+int	conv_ushorthexa(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_ushorthexaup(va_list ap, t_flag_list t_fl)
+int	conv_ushorthexaup(va_list ap, t_flag_list t_fl)
 {
 
 }

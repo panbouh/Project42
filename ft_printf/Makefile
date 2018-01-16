@@ -54,9 +54,8 @@ PRINTF_FILE	=	ft_printf.c				\
 				conv_ll_ui_hh_ox.c		\
 				conv_hh_ui_j_ox.c		\
 				conv_j_ui_z_ox.c		\
-				conv_mod_jz				\
-				conv_mod_lhllhh
-
+				conv_mod_jz.c			\
+				conv_mod_lhllhh.c
 
 
 CHECK_FILE	=	ft_isalpha.c							\
@@ -107,7 +106,7 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_putlnbr_fd.c							\
 				ft_putlnbr.c							\
 				ft_putunbr_fd.c							\
-				ft_putunbr.c							\
+				ft_putunbr.c
 
 STR_FILE	=	ft_skip_char.c							\
 				ft_count_word.c							\
@@ -164,9 +163,11 @@ OBJ		=	$(SRC:.c=.o)
 
 CC		=	gcc
 
-CFLAGS	=	-I$(INC_PATH) -I$(INC_PI_PATH) -g
+CFLAGS	=	-I$(INC_PATH) -I$(INC_PI_PATH)
+#-fsanitize=address 
+#-g
 
-#-Wall -Wextra -Werror 
+#-Wall -Wextra -Werror
 
 CCLIB	= -L. -lftprintf
 
@@ -193,6 +194,9 @@ $(NAME)		: $(OBJ) $(INC) $(INC_PRINTF)
 
 test		: main.c $(NAME)
 			gcc -o $(NAME_TEST) main.c $(CFLAGS) $(CCLIB)
+
+%.o :%.c
+		gcc $(CFLAGS) -c $< -o $@
 
 # ####################
 # ## Cleaning Rules ##

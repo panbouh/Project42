@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	ft_count_digit(int n)
+size_t	ft_count_digit(long n)
 {
 	size_t	count;
 	long	nb;

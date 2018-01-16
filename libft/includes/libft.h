@@ -68,9 +68,10 @@ char				*ft_strupper(char *str);
 size_t				ft_skip_char(const char *s, size_t i, char c, int flags);
 size_t				ft_count_word(const char *str, char space);
 size_t				ft_strlen_till(const char *s, char stop);
-size_t				ft_count_digit(int n);
+size_t				ft_count_digit(long n);
 
 long				ft_power(long nb, long power);
+long				ft_abs(long n);
 
 void				ft_puttab(const char **tab);
 void				ft_putnchar(char c, size_t n);
@@ -79,7 +80,7 @@ void				ft_putlnbr_fd(long long nb, int fd);
 void				ft_putlnbr(long long nb);
 void				ft_putunbr_fd(unsigned long long nb, int fd);
 void				ft_putunbr(unsigned long long nb);
-int					ft_abs(int n);
+
 
 /*
 ** ---libsujet---
@@ -139,7 +140,7 @@ int					ft_strequ(const char *s1, const char *s2);
 int					ft_strnequ(const char *s1, const char *s2, size_t n);
 int					ft_strdel(char **as);
 
-long			ft_atoi(const char *str);
+long				ft_atoi(const char *str);
 
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);

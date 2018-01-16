@@ -17,12 +17,12 @@
 ** ju ji/d
 */
 
-void	conv_uintmaxt(va_list ap, t_flag_list t_fl)
+int	conv_uintmaxt(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_intmaxt(va_list ap, t_flag_list t_fl)
+int	conv_intmaxt(va_list ap, t_flag_list t_fl)
 {
 
 }
@@ -31,17 +31,17 @@ void	conv_intmaxt(va_list ap, t_flag_list t_fl)
 ** zo zx zX
 */
 
-void	conv_sizethexa(va_list ap, t_flag_list t_fl)
+int	conv_sizethexa(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_sizethexaup(va_list ap, t_flag_list t_fl)
+int	conv_sizethexaup(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_sizetocta(va_list ap, t_flag_list t_fl)
+int	conv_sizetocta(va_list ap, t_flag_list t_fl)
 {
 
 }

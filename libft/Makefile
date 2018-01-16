@@ -86,6 +86,7 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_putlnbr.c							\
 				ft_putunbr_fd.c							\
 				ft_putunbr.c							\
+				ft_putlnbr.c
 
 STR_FILE	=	ft_skip_char.c							\
 				ft_count_word.c							\

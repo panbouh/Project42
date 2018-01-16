@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.c                                           :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 14:58:15 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/11/16 14:58:15 by ccatoire         ###   ########.fr       */
+/*   Created: 2018/01/16 16:58:31 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/01/16 16:58:31 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_flag	g_flagtab[] =
 	{'0', &flag_zero},
 	{'-', &flag_min},
 	{'+', &flag_plus},
+	{' ', &flag_space},
 	{0, NULL},
 };
 
@@ -46,111 +47,103 @@ t_mod	g_modtab[] =
 	{"z", &conv_mod_z},
 	{NULL, NULL},
 };
-/*
-		[flags]			#0-+
-		[largeur]		N
-		[precision]		.N
-		[conversion]	sSpdDioOuUxXcC (hh h ll l j z)
-*/
 
-void	ion_ft(const char *form, size_t *i, t_flag_list *t_fl)
+int		check_for_flag(char c, t_flag_list *t_fl)
 {
-	size_t	nb_f;
-
-	nb_f = 0;
-	while (g_flagtab[nb_f].key)
-	{
-		if (g_flagtab[nb_f++].key == form[*i])
-		{
-			g_flagtab[nb_f - 1].f(t_fl);
-			(*i)++;
-			nb_f = 0;
-		}
-	}
-}
-
-int	do_conv(const char *form, size_t *i, t_flag_list t_fl, va_list ap)
-{
-	size_t	n;
-	size_t	size;
-
-	n = 0;
-	while (g_convtab[n].key)
-	{
-		if (g_convtab[n].key == form[*i])
-			{
-				(*i)++;;
-				g_convtab[n].f(ap, t_fl);
-				return (OK);
-			}
-		size = ft_strlen(g_modtab[n].key);
-		if (!ft_strncmp(g_modtab[n].key, &form[*i], size))
-			{
-				(*i) += size;
-				g_modtab[n].f(ap, t_fl, form[*i]);
-				return (OK);
-			}
-		n++;
-	}
-	if (ft_isalpha(form[*i]))
-			return (conv_nothing(t_fl, form[(*i)++]));
-	return (FAIL);
-}
-
-int	found_flags(const char *form, va_list ap, size_t *i)
-{
-	t_flag_list	t_fl;
-	char	ret_end;
-
-	(*i)++;
-	t_fl = init_fl();
-	*i = ft_skip_char(form, *i, ' ', ALL);
-
-	while ((ret_end = do_conv(form, i, t_fl, ap)) != OK && ret_end != FAIL)
-	{
-		SKIP_SPACE
-		ion_ft(form, i, &t_fl);
-		SKIP_SPACE
-		if (ft_isdigit(form[*i]))
-			if ((t_fl.width = ft_atoi(&form[*i])))
-				*i += ft_count_digit(t_fl.width);
-		SKIP_SPACE
-		if (form[*i] == '.')
-		{
-			(*i)++;
-			t_fl.prec = ft_atoi(&form[*i]);
-			*i += ft_count_digit(t_fl.prec);
-		}
-		SKIP_SPACE
-	}
-	if (ret_end == OK)
-		return (OK);
-	return (FAIL);
-}
-
-int	ft_printf(const char *format, ...)
-{
-	va_list		ap;
-	size_t		i;
+	size_t	i;
 
 	i = 0;
-	if (!format)
-		return (FAIL);
+	while (g_flagtab[i].key)
+	{
+		if (g_flagtab[i].key == c)
+		{
+			g_flagtab[i].f(t_fl);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	check_for_pw(const char *form, size_t *y, t_flag_list *t_fl)
+{
+	size_t	i;
+
+	i = *y;
+	if (form[i] == '.')
+	{
+		t_fl->prec = ft_atoi(&form[i + 1]);
+		i += ft_count_digit(t_fl->prec);
+	}
+	if (ft_isdigit(form[i]))
+	{
+		t_fl->width = ft_atoi(&form[i]);
+		i += ft_count_digit(t_fl->width);
+	}
+	*y = i;
+}
+
+int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
+{
+	size_t	y;
+	size_t	size;
+
+	y = 0;
+	while (g_convtab[y].key)
+		if (g_convtab[y].key == form[*i])
+			return (g_convtab[y].f(ap, *t_fl));
+	y = 0;
+	while (g_modtab[y].key)
+	{
+		size = ft_strlen(g_modtab[y].key);
+		if (!(ft_strncmp(g_modtab[y].key, &form[*i], size)))
+			return (g_modtab[y].f(ap, *t_fl, form[*i + size]));
+	}
+	return (0);
+}
+
+int		found_flag(const char *form, va_list ap, size_t *i)
+{
+	char	status;
+	t_flag_list t_fl;
+	int		ret;
+
+	status = GO;
+	t_fl = init_fl();
+	while (status != STOP)
+	{
+		if (ft_isalpha(form[*i]))
+		{
+			if ((ret = do_conv(form, ap, i, &t_fl)))
+				return (ret);
+			status = STOP;
+		}
+		check_for_pw(form, i, &t_fl);
+		*i += check_for_flag(form[*i], &t_fl);
+	}
+	return (conv_nothing(t_fl, form[*i]));
+}
+
+int		ft_printf(const char *format, ...)
+{
+	va_list	ap;
+	size_t	i;
+	int		ret;
+
+	i = 0;
+	ret = 0;
 	va_start(ap, format);
+
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] && format[i + 1] != '%')
+		if (format[i] == '%')
 		{
-			if (found_flags(format, ap, &i) == FAIL)
-			{
-				return (ret_err());
-			}
-		}
-		if (format[i + 1] && format[i + 1] == '%')
 			i++;
+			ret += found_flag(format, ap, &i);
+		}
 		ft_putchar(format[i]);
 		i++;
 	}
 	va_end(ap);
-	return (OK);
+	return (ret + i);
 }

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	conv_unsigned(va_list ap, t_flag_list t_fl)
+int	conv_unsigned(va_list ap, t_flag_list t_fl)
 {
 	unsigned int	nb;
 
@@ -26,9 +26,10 @@ void	conv_unsigned(va_list ap, t_flag_list t_fl)
 	ft_putunbr(ft_abs(nb));
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_space, t_fl.width);
+	return (0);
 }
 
-void	conv_int(va_list ap, t_flag_list t_fl)
+int	conv_int(va_list ap, t_flag_list t_fl)
 {
 	int		nb;
 
@@ -49,9 +50,10 @@ void	conv_int(va_list ap, t_flag_list t_fl)
 	ft_putnbr(ft_abs(nb));
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_space, t_fl.width);
+	return (0);
 }
 
-void	conv_str(va_list ap, t_flag_list t_fl)
+int	conv_str(va_list ap, t_flag_list t_fl)
 {
 	char	*str;
 
@@ -73,19 +75,20 @@ void	conv_str(va_list ap, t_flag_list t_fl)
 
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_space, t_fl.width);
-
+	return (0);
 }
 
-void	conv_char(va_list ap, t_flag_list t_fl)
+int	conv_char(va_list ap, t_flag_list t_fl)
 {
 	unsigned char	c;
 
 	c = (unsigned char)va_arg(ap, int);
 	(void)t_fl;
 	ft_putchar(c);
+	return (0);
 }
 
-void	conv_sizet(va_list ap, t_flag_list t_fl)
+int	conv_sizet(va_list ap, t_flag_list t_fl)
 {
-	
+	return (0);
 }

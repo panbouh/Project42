@@ -1,30 +1,20 @@
 #include "ft_printf.h"
 #include "limits.h"
 
-t_flag_list	init_fl()
-{
-	t_flag_list	new;
 
-	new.sharp = 0;
-	new.zero = 0;
-	new.min = 0;
-	new.plus = 0;
-	new.width = 0;
-	new.prec = 0;
-	new.c_space = ' ';
-	return (new);
-}
 
 int	main(int ac, char **av)
 {
-	const char	*bouh = "<%li>\n";
+	const char	*bouh = "<%40i>\n";
+	int		ret;
+	int		a = 12346;
 
-	int	a = 30098;
 	ft_putstr("Real : ");
-	   printf(bouh, a);
+	ret =    printf(bouh, a);
+	printf("Real ret = %i\n", ret);
 	ft_putstr("Mine : ");
-	ft_printf(bouh, a);
-	// ft_putstr(ft_conv_n_base(bouh, 16));
+	ret = ft_printf(bouh, a);
+	printf("Mine ret = %i\n", ret);
 	return (0);
 }
 

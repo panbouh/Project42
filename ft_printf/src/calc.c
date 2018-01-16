@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-void		calc_wp_num(t_flag_list *t_fl, int size)
+
+void		calc_wp_num(t_flag_list *t_fl, long size)
 {
 	if (t_fl->zero && !t_fl->min && !t_fl->prec)
 		t_fl->c_space = '0';

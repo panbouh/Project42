@@ -16,12 +16,12 @@
 ** hu hi/d
 */
 
-void	conv_ushort(va_list ap, t_flag_list t_fl)
+int	conv_ushort(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_short(va_list ap, t_flag_list t_fl)
+int	conv_short(va_list ap, t_flag_list t_fl)
 {
 
 }
@@ -31,17 +31,17 @@ void	conv_short(va_list ap, t_flag_list t_fl)
 ** llo llx llX
 */
 
-void	conv_ullintocta(va_list ap, t_flag_list t_fl)
+int	conv_ullintocta(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_ullinthexa(va_list ap, t_flag_list t_fl)
+int	conv_ullinthexa(va_list ap, t_flag_list t_fl)
 {
 
 }
 
-void	conv_ullinthexaup(va_list ap, t_flag_list t_fl)
+int	conv_ullinthexaup(va_list ap, t_flag_list t_fl)
 {
 
 }

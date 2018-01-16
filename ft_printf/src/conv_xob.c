@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void		conv_hexa(va_list ap, t_flag_list t_fl)
+int		conv_hexa(va_list ap, t_flag_list t_fl)
 {
 	unsigned int	nb;
 	char			*conv;
@@ -45,7 +45,7 @@ void		conv_hexa(va_list ap, t_flag_list t_fl)
 	ft_strdel(&conv);
 }
 
-void		conv_hexaup(va_list ap, t_flag_list t_fl)
+int		conv_hexaup(va_list ap, t_flag_list t_fl)
 {
 	unsigned int	nb;
 	char			*conv;
@@ -77,7 +77,7 @@ void		conv_hexaup(va_list ap, t_flag_list t_fl)
 	ft_strdel(&conv);
 }
 
-void		conv_octa(va_list ap, t_flag_list t_fl)
+int		conv_octa(va_list ap, t_flag_list t_fl)
 {
 		unsigned int	nb;
 	char			*conv;
@@ -111,7 +111,7 @@ void		conv_octa(va_list ap, t_flag_list t_fl)
 	ft_strdel(&conv);
 }
 
-void		conv_bina(va_list ap, t_flag_list t_fl)
+int		conv_bina(va_list ap, t_flag_list t_fl)
 {
 	unsigned int	nb;
 	char			*conv;

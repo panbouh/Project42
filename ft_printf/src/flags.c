@@ -31,3 +31,8 @@ void	flag_plus(t_flag_list *f_list)
 {
 	f_list->plus = 1;
 }
+
+void	flag_space(t_flag_list *f_list)
+{
+	f_list->space = 1;
+}

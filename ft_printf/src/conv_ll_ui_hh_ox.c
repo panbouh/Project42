@@ -16,7 +16,7 @@
 ** llu lli
 */
 
-void	conv_ullongint(va_list ap, t_flag_list t_fl)
+int	conv_ullongint(va_list ap, t_flag_list t_fl)
 {
 	int i;
 
@@ -26,7 +26,7 @@ void	conv_ullongint(va_list ap, t_flag_list t_fl)
 	printf("%i\n", i);
 }
 
-void	conv_llong(va_list ap, t_flag_list t_fl)
+int	conv_llong(va_list ap, t_flag_list t_fl)
 {
 	int i;
 
@@ -41,7 +41,7 @@ void	conv_llong(va_list ap, t_flag_list t_fl)
 ** hho hhx hhX
 */
 
-void	conv_ucharocta(va_list ap, t_flag_list t_fl)
+int	conv_ucharocta(va_list ap, t_flag_list t_fl)
 {
 	int i;
 
@@ -52,7 +52,7 @@ void	conv_ucharocta(va_list ap, t_flag_list t_fl)
 
 }
 
-void	conv_ucharhexa(va_list ap, t_flag_list t_fl)
+int	conv_ucharhexa(va_list ap, t_flag_list t_fl)
 {
 	int i;
 
@@ -63,7 +63,7 @@ void	conv_ucharhexa(va_list ap, t_flag_list t_fl)
 
 }
 
-void	conv_sucharhexaup(va_list ap, t_flag_list t_fl)
+int	conv_ucharhexaup(va_list ap, t_flag_list t_fl)
 {
 	int i;
 
