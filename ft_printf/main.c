@@ -5,16 +5,19 @@
 
 int	main(int ac, char **av)
 {
-	const char	*bouh = "<%40i>\n";
-	int		ret;
-	int		a = 12346;
+	const char	*bouh = "<%1.3i>\n";
+	int		retr;
+	int		retm;
+	int		a = INT_MAX;
 
 	ft_putstr("Real : ");
-	ret =    printf(bouh, a);
-	printf("Real ret = %i\n", ret);
+	retr =    printf(bouh, a);
+	//-------------------------------//
 	ft_putstr("Mine : ");
-	ret = ft_printf(bouh, a);
-	printf("Mine ret = %i\n", ret);
+	retm = ft_printf(bouh, a);
+	//-------------------------------//
+	printf("Real ret = %i\n", retr);
+	printf("Mine ret = %i\n", retm);
 	return (0);
 }
 

@@ -31,27 +31,40 @@ int	conv_unsigned(va_list ap, t_flag_list t_fl)
 
 int	conv_int(va_list ap, t_flag_list t_fl)
 {
-	int		nb;
+	int			nb;
+	size_t		size;
 
 	nb = va_arg(ap, int);
-	// printf("\n1) w = %i\np = %i\n", t_fl.width, t_fl.prec);
-	calc_wp_num(&t_fl, ft_count_digit(ft_abs(nb)));
-	// printf("\n2) w = %i\np = %i\n", t_fl.width, t_fl.prec);
+	size = ft_count_digit(ft_abs(nb));
+	// printf("\n1) w = %i, p = %i\n", t_fl.width, t_fl.prec);
+	calc_wp_num(&t_fl, size);
+	// printf("\n2) w = %i, p = %i\n", t_fl.width, t_fl.prec);
 
 	if (nb < 0 && !t_fl.plus)
 		t_fl.width--;
+
 	if (!t_fl.min)
 		ft_putnchar(t_fl.c_space, t_fl.width);
+	
 	if (t_fl.plus && nb >= 0)
 		ft_putchar('+');
+	
 	if (nb < 0)
 		ft_putchar('-');
+	if (nb > 0 && t_fl.space && !t_fl.plus)
+		ft_putchar(' ');
 	ft_putnchar('0', t_fl.prec);
+
 	ft_putnbr(ft_abs(nb));
+	
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_space, t_fl.width);
-	return (0);
+	if (nb < 0)
+		size++;
+	return (size + (t_fl.width + t_fl.prec + t_fl.plus + t_fl.space));
 }
+
+// t_fl->width - t_fl->prec - size - t_fl->plus
 
 int	conv_str(va_list ap, t_flag_list t_fl)
 {

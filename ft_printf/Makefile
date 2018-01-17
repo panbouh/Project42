@@ -202,9 +202,12 @@ test		: main.c $(NAME)
 # ## Cleaning Rules ##
 # ####################
 
-clean		:
+clean		:	cleanbin
 			@$(RM) $(OBJ)
 			@echo "\033[0;32mObject File Delete\033[0m"
+
+cleanbin	:
+		$(RM) $(NAME_TEST)
 
 fclean		: clean
 			@$(RM) $(NAME)

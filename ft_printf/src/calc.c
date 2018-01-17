@@ -21,7 +21,8 @@ void		calc_wp_num(t_flag_list *t_fl, long size)
 	if ((t_fl->prec -= size) < 0)
 		 t_fl->prec = 0;
 
-	if ((t_fl->width = t_fl->width - t_fl->prec- size - t_fl->plus) < 0)
+	if ((t_fl->width = t_fl->width - t_fl->prec- size
+		- t_fl->plus - t_fl->space) < 0)
 		t_fl->width = 0;
 }
 

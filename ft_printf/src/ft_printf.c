@@ -65,22 +65,18 @@ int		check_for_flag(char c, t_flag_list *t_fl)
 	return (0);
 }
 
-void	check_for_pw(const char *form, size_t *y, t_flag_list *t_fl)
+void	check_for_pw(const char *form, size_t *i, t_flag_list *t_fl)
 {
-	size_t	i;
-
-	i = *y;
-	if (form[i] == '.')
+	if (form[*i] == '.')
 	{
-		t_fl->prec = ft_atoi(&form[i + 1]);
-		i += ft_count_digit(t_fl->prec);
+		t_fl->prec = ft_atoi(&form[*i + 1]);
+		*i += ft_count_digit(t_fl->prec) + 1;
 	}
-	if (ft_isdigit(form[i]))
+	if (ft_isdigit(form[*i]) && form[*i] != '0')
 	{
-		t_fl->width = ft_atoi(&form[i]);
-		i += ft_count_digit(t_fl->width);
+		t_fl->width = ft_atoi(&form[*i]);
+		*i += ft_count_digit(t_fl->width);
 	}
-	*y = i;
 }
 
 int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
@@ -90,14 +86,18 @@ int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 
 	y = 0;
 	while (g_convtab[y].key)
+	{
 		if (g_convtab[y].key == form[*i])
 			return (g_convtab[y].f(ap, *t_fl));
+		y++;
+	}
 	y = 0;
 	while (g_modtab[y].key)
 	{
 		size = ft_strlen(g_modtab[y].key);
 		if (!(ft_strncmp(g_modtab[y].key, &form[*i], size)))
 			return (g_modtab[y].f(ap, *t_fl, form[*i + size]));
+		y++;
 	}
 	return (0);
 }
@@ -110,6 +110,7 @@ int		found_flag(const char *form, va_list ap, size_t *i)
 
 	status = GO;
 	t_fl = init_fl();
+	(*i)++;
 	while (status != STOP)
 	{
 		if (ft_isalpha(form[*i]))
@@ -128,22 +129,27 @@ int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
 	size_t	i;
+	int		ret_end;
 	int		ret;
+	int		count;
 
 	i = 0;
 	ret = 0;
+	ret_end = 0;
+	count = 0;
 	va_start(ap, format);
-
 	while (format[i])
 	{
 		if (format[i] == '%')
 		{
+			if ((ret = found_flag(format, ap, &i)) == FAIL)
+				return (FAIL);
+			ret_end += ret;
 			i++;
-			ret += found_flag(format, ap, &i);
 		}
-		ft_putchar(format[i]);
-		i++;
+		ft_putchar(format[i++]);
+		count++;
 	}
 	va_end(ap);
-	return (ret + i);
+	return (ret_end + count);
 }
