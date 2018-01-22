@@ -143,6 +143,10 @@ STR_FILE	=	ft_skip_char.c							\
 FILE_FILE	=	get_next_line.c
 
 
+SRC_TEST	=	./test/main.c	\
+				./test/test_d.c
+
+
 ##############
 ## INC FILE ##
 ##############
@@ -164,8 +168,7 @@ OBJ		=	$(SRC:.c=.o)
 CC		=	gcc
 
 CFLAGS	=	-I$(INC_PATH) -I$(INC_PI_PATH)
-#-fsanitize=address 
-#-g
+#-fsanitize=address -g3
 
 #-Wall -Wextra -Werror
 
@@ -192,8 +195,8 @@ $(NAME)		: $(OBJ) $(INC) $(INC_PRINTF)
 			@ranlib $(NAME)
 			@echo "\033[0;32mLibray < $(NAME) > Correctly Build\033[0m"
 
-test		: main.c $(NAME)
-			gcc -o $(NAME_TEST) main.c $(CFLAGS) $(CCLIB)
+test		: $(SRC_TEST) $(NAME)
+			gcc -o $(NAME_TEST) $(SRC_TEST) $(CFLAGS) $(CCLIB)
 
 %.o :%.c
 		gcc $(CFLAGS) -c $< -o $@

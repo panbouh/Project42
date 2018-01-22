@@ -67,10 +67,22 @@ int		check_for_flag(char c, t_flag_list *t_fl)
 
 void	check_for_pw(const char *form, size_t *i, t_flag_list *t_fl)
 {
+	size_t	size;
+
+	size = 1;
 	if (form[*i] == '.')
 	{
 		t_fl->prec = ft_atoi(&form[*i + 1]);
-		*i += ft_count_digit(t_fl->prec) + 1;
+		// printf("i = %zu\n", *i);
+		if (t_fl->prec == 0)
+		{
+			t_fl->prec = -1;
+			size = 1;
+		}
+		else
+			size += ft_count_digit(t_fl->prec);
+		*i += size;
+		// printf("i = %zu\n", *i);sleep(2);
 	}
 	if (ft_isdigit(form[*i]) && form[*i] != '0')
 	{
@@ -111,11 +123,12 @@ int		found_flag(const char *form, va_list ap, size_t *i)
 	status = GO;
 	t_fl = init_fl();
 	(*i)++;
+	ret = 0;//utile?
 	while (status != STOP)
 	{
 		if (ft_isalpha(form[*i]))
 		{
-			if ((ret = do_conv(form, ap, i, &t_fl)))
+			if (((ret = do_conv(form, ap, i, &t_fl)) != FAIL))
 				return (ret);
 			status = STOP;
 		}
@@ -147,8 +160,11 @@ int		ft_printf(const char *format, ...)
 			ret_end += ret;
 			i++;
 		}
-		ft_putchar(format[i++]);
-		count++;
+		else
+		{
+			ft_putchar(format[i++]);
+			count++;
+		}
 	}
 	va_end(ap);
 	return (ret_end + count);

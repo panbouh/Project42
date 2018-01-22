@@ -1,23 +1,30 @@
 #include "ft_printf.h"
 #include "limits.h"
 
-
+void		test_d();
 
 int	main(int ac, char **av)
 {
-	const char	*bouh = "<%1.3i>\n";
+	test_d();
+	printf("\n------------------------\n");
+	//-------------------------------//
+
+	const char	*bouh = "%.d, %.0d";
 	int		retr;
 	int		retm;
-	int		a = INT_MAX;
+	int		a = 0;
 
-	ft_putstr("Real : ");
-	retr =    printf(bouh, a);
+	ft_putstr("Real : <");
+	retr =    printf(bouh, a, a);
+	printf(">\n");
 	//-------------------------------//
-	ft_putstr("Mine : ");
-	retm = ft_printf(bouh, a);
+	ft_putstr("Mine : <");
+	retm = ft_printf(bouh, a, a);
+	printf(">\n");
 	//-------------------------------//
 	printf("Real ret = %i\n", retr);
 	printf("Mine ret = %i\n", retm);
+
 	return (0);
 }
 
@@ -37,4 +44,5 @@ x OK
 X OK
 c OK
 C
+...............T....
 */

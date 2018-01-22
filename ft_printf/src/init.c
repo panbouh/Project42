@@ -23,6 +23,7 @@ t_flag_list	init_fl()
 	new.space = 0;
 	new.width = 0;
 	new.prec = 0;
-	new.c_space = ' ';
+	new.c_width = ' ';
+	new.c_sign = 0;
 	return (new);
 }

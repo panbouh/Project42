@@ -21,7 +21,8 @@
 
 typedef	struct	s_flag_list
 {
-	char		c_space;
+	char		c_width;
+	char		c_sign;
 	char		sharp;
 	char		zero;
 	char		min;

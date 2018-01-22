@@ -34,7 +34,7 @@ int	conv_long(va_list ap, t_flag_list t_fl)
 	if (nb < 0 && !t_fl.plus)
 		t_fl.width--;
 	if (!t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 	if (t_fl.plus && nb >= 0)
 		ft_putchar('+');
 	if (nb < 0)
@@ -42,7 +42,7 @@ int	conv_long(va_list ap, t_flag_list t_fl)
 	ft_putnchar('0', t_fl.prec);
 	ft_putlnbr(ft_abs(nb));
 	if (t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 }
 
 /*

@@ -31,7 +31,7 @@ int		conv_hexa(va_list ap, t_flag_list t_fl)
 			t_fl.width = 0;
 	
 	if (!t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 
 	if (t_fl.sharp)
 		ft_putstr("0x");
@@ -41,7 +41,7 @@ int		conv_hexa(va_list ap, t_flag_list t_fl)
 	ft_putstr(conv);
 
 	if (t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 	ft_strdel(&conv);
 }
 
@@ -63,7 +63,7 @@ int		conv_hexaup(va_list ap, t_flag_list t_fl)
 		if ((t_fl.width -= 2) < 0)
 			t_fl.width = 0;
 	if (!t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 
 	if (t_fl.sharp)
 		ft_putstr("0x");
@@ -73,7 +73,7 @@ int		conv_hexaup(va_list ap, t_flag_list t_fl)
 	ft_putstr(ft_strupper(conv));
 
 	if (t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 	ft_strdel(&conv);
 }
 
@@ -96,7 +96,7 @@ int		conv_octa(va_list ap, t_flag_list t_fl)
 			t_fl.prec = 0;
 
 	if (!t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 
 	if (t_fl.sharp)
 		ft_putchar('0');
@@ -107,7 +107,7 @@ int		conv_octa(va_list ap, t_flag_list t_fl)
 	ft_putstr(conv);
 
 	if (t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 	ft_strdel(&conv);
 }
 
@@ -126,13 +126,13 @@ int		conv_bina(va_list ap, t_flag_list t_fl)
 	// printf("prec  = %i\n", t_fl.prec);
 
 	if (!t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 
 	ft_putnchar('0', t_fl.prec);
 
 	ft_putstr(conv);
 
 	if (t_fl.min)
-		ft_putnchar(t_fl.c_space, t_fl.width);
+		ft_putnchar(t_fl.c_width, t_fl.width);
 	ft_strdel(&conv);
 }

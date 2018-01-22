@@ -71,7 +71,10 @@ size_t				ft_strlen_till(const char *s, char stop);
 size_t				ft_count_digit(long n);
 
 long				ft_power(long nb, long power);
-long				ft_abs(long n);
+unsigned long		ft_abs_l(long n);
+unsigned long long	ft_abs_ll(long long n);
+unsigned int		ft_abs(int n);
+
 
 void				ft_puttab(const char **tab);
 void				ft_putnchar(char c, size_t n);
