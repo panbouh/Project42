@@ -5,11 +5,11 @@ void		test_d();
 
 int	main(int ac, char **av)
 {
-	test_d();
+	//test_d();
 	printf("\n------------------------\n");
 	//-------------------------------//
 
-	const char	*bouh = "%.d, %.0d";
+	const char	*bouh = "%.i, %.0d";
 	int		retr;
 	int		retm;
 	int		a = 0;

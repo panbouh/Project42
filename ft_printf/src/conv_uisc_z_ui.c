@@ -65,7 +65,8 @@ int	conv_int(va_list ap, t_flag_list t_fl)
 		size++;
 		ft_putchar(t_fl.c_sign);
 	}
-	ft_putnchar('0', t_fl.prec);
+	if (t_fl.prec > 0)
+		ft_putnchar('0', t_fl.prec);
 	if (t_fl.prec >= 0)
 		ft_putunbr(ft_abs(nb));
 	if (t_fl.min)
