@@ -64,6 +64,7 @@ typedef struct		s_list
 char				*ft_strrev(char *str);
 char				*ft_conv_nbase(int n, unsigned int base);
 char				*ft_convu_nbase(unsigned int n, unsigned int base);
+char				*ft_convlu_nbase(unsigned long long n, unsigned int base);
 char				*ft_strupper(char *str);
 char				*ft_strsub_to(const char *s, unsigned int start, char stop);
 char				*ft_strtrim_full(const char *);

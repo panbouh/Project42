@@ -84,13 +84,13 @@ int	conv_short(va_list ap, t_flag_list t_fl)
 
 int	conv_ullintocta(va_list ap, t_flag_list t_fl)
 {
-	unsigned long int	nb;
+	unsigned long long	nb;
 	char			*conv;
 	size_t			size;
 
 	//Si nb = 0 ou quon affiche pas la val -> size = 0 (pour le return)
-	nb = va_arg(ap, unsigned int);
-	conv = ft_convu_nbase(nb, 8);
+	nb = va_arg(ap, unsigned long long);
+	conv = ft_convlu_nbase(nb, 8);
 	size = 0;
 	if (t_fl.put_val || nb)
 		size = ft_strlen(conv);
