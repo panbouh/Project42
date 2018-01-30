@@ -52,6 +52,7 @@ LIST_FILE	=	ft_lstnew.c								\
 
 MATH_FILE	=	ft_power.c								\
 				ft_count_digit.c						\
+				ft_count_digit_u.c						\
 				ft_abs.c								\
 				ft_conv_n_base.c
 

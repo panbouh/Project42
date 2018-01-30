@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <wchar.h>
 /*
 **  ls lc lo lx lX
 */
@@ -24,8 +24,23 @@ int	conv_wchat(va_list ap, t_flag_list t_fl)
 
 int	conv_wintt(va_list ap, t_flag_list t_fl)
 {
-	ft_putstr("test lc");
-	return (1);
+	wint_t	c;
+	c = va_arg(ap, wint_t);
+	//calcul width et field
+	if ((t_fl.width -= 1) < 0)
+		t_fl.width = 0;
+	t_fl.field = t_fl.width + 1;
+	if (t_fl.zero)
+		t_fl.c_width = '0';
+	//affichage largeur de champ a gauche (sans -)
+	if (!t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	//affichage valeur
+	ft_putchar(c);
+	//affichage largeur de champ a droite (avec -)
+	if (t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	return (t_fl.field);
 }
 
 int	conv_ulintocta(va_list ap, t_flag_list t_fl)
@@ -112,7 +127,7 @@ int	conv_ulinthexaup(va_list ap, t_flag_list t_fl)
 		t_fl.sharp = 0;
 	//gestion flag #
 	if (t_fl.sharp && (nb || t_fl.put_val))
-		ft_putstr("0x");
+		ft_putstr("0X");
 	//calcul : width, prec, field | Define : c_sign, c_width
 	calc_wp_num_base(&t_fl, size, (t_fl.sharp * 2));
 	//affichage largeur de champ a gauche (sans -)

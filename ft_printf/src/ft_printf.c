@@ -54,7 +54,7 @@ t_mod	g_modtab[] =
 	{"l", &conv_mod_l},
 	{"ll", &conv_mod_ll},
 	{"h", &conv_mod_h},
-	{"hh", &conv_mod_h},
+	{"hh", &conv_mod_hh},
 	{"j", &conv_mod_j},
 	{"z", &conv_mod_z},
 	{NULL, NULL},

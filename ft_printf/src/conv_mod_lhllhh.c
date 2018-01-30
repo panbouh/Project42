@@ -148,7 +148,6 @@ int	conv_mod_hh(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	i = 0;
 	ret = 0;
 
-	// printf("avant : c = %c\n", form[*x]);
 	*x += 2;
 	while (!is_conv(form[*x]))
 	{

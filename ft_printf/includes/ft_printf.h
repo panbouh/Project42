@@ -14,8 +14,8 @@
 # define FT_PRINTF_H
 
 # include "libft.h"
-# include "stdarg.h"
-
+# include <stdarg.h>
+# include <stddef.h>
 
 # define ALL_FLAG	"#0-+ .\0";
 # define NB_FLAG	6

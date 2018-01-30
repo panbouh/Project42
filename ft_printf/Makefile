@@ -74,6 +74,7 @@ LIST_FILE	=	ft_lstnew.c								\
 
 MATH_FILE	=	ft_power.c								\
 				ft_count_digit.c						\
+				ft_count_digit_u.c						\
 				ft_abs.c								\
 				ft_conv_n_base.c
 
@@ -135,8 +136,8 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strsub.c								\
 				ft_strjoin.c							\
 				ft_strtrim.c							\
-				ft_strtrim_full.c						\
 				ft_strsplit.c							\
+				ft_strtrim_full.c							\
 				ft_strmiam.c
 
 FILE_FILE	=	get_next_line.c

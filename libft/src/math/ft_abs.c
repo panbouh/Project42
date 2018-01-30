@@ -36,3 +36,16 @@ unsigned int ft_abs(int n)
 	}
 	return ((unsigned int)n);
 }
+
+
+uintmax_t ft_abs_imax(intmax_t n)
+{
+	uintmax_t	res;
+
+	if (n < 0)
+	{
+		res = -n;
+		return (res);
+	}
+	return ((uintmax_t)n);
+}

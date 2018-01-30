@@ -65,6 +65,8 @@ char				*ft_strrev(char *str);
 char				*ft_conv_nbase(int n, unsigned int base);
 char				*ft_convu_nbase(unsigned int n, unsigned int base);
 char				*ft_convlu_nbase(unsigned long long n, unsigned int base);
+char				*ft_convimax_nbase(intmax_t n, unsigned int base);
+char				*ft_convumax_nbase(uintmax_t n, unsigned int base);
 char				*ft_strupper(char *str);
 char				*ft_strsub_to(const char *s, unsigned int start, char stop);
 char				*ft_strtrim_full(const char *);
@@ -75,13 +77,16 @@ size_t				ft_count_digit(int n);
 size_t				ft_count_ldigit(long n);
 size_t				ft_count_lldigit(long long n);
 size_t				ft_count_udigit(unsigned long n);
+size_t				ft_count_umaxdigit(unsigned long n);
+size_t				ft_count_imaxdigit(intmax_t n);
+uintmax_t			ft_abs_imax(intmax_t n);
 size_t				ft_strlen_till(const char *s, char stop);
 
 long				ft_power(long nb, long power);
 unsigned long		ft_abs_l(long n);
 unsigned long long	ft_abs_ll(long long n);
 unsigned int		ft_abs(int n);
-
+uintmax_t			ft_abs_imax(intmax_t n);
 
 void				ft_puttab(const char **tab);
 void				ft_putnchar(char c, size_t n);
@@ -90,6 +95,10 @@ void				ft_putlnbr_fd(long long nb, int fd);
 void				ft_putlnbr(long long nb);
 void				ft_putunbr_fd(unsigned long long nb, int fd);
 void				ft_putunbr(unsigned long long nb);
+void				ft_putumaxnbr(uintmax_t nb);
+void				ft_putumaxnbr_fd(uintmax_t nb, int fd);
+void				ft_putimaxnbr(intmax_t nb);
+void				ft_putimaxnbr_fd(intmax_t nb, int fd);
 
 
 /*

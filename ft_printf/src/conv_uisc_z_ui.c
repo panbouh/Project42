@@ -131,10 +131,10 @@ int	conv_sizet(va_list ap, t_flag_list t_fl)
 	size_t	size;
 
 	//Si nb = 0 ou quon affiche pas la val -> size = 0 (pour le return)
-	nb = va_arg(ap, unsigned int);
+	nb = va_arg(ap, size_t);
 	size = 0;
 	if (t_fl.put_val || nb)
-		size = ft_count_digit(nb);
+		size = ft_count_udigit(nb);
 	//calcul : width, prec, field | Define : c_sign, c_width
 	calc_wp_num(&t_fl, size, 0);
 	//affichage largeur de champ a gauche (sans -)

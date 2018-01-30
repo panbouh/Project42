@@ -94,7 +94,7 @@ int		conv_hexaup(va_list ap, t_flag_list t_fl)
 		t_fl.sharp = 0;
 	//gestion flag #
 	if (t_fl.sharp && (nb || t_fl.put_val))
-			ft_putstr("0X");
+		ft_putstr("0X");
 	//calcul : width, prec, field | Define : c_sign, c_width
 	calc_wp_num_base(&t_fl, size, (t_fl.sharp * 2));
 	//affichage largeur de champ a gauche (sans -)
