@@ -25,23 +25,32 @@ t_conv	g_l_keytab[] =
 	{0, NULL},
 };
 
-int	conv_mod_l(va_list ap, t_flag_list t_fl, char form)
+int	conv_mod_l(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 {
 	size_t	i;
 	int		ret;
-	i = 0;
 
+	i = 0;
 	ret = 0;
+
+	// printf("avant : c = %c\n", form[*x]);
+	(*x)++;
+	while (!is_conv(form[*x]))
+	{
+		check_for_pw(form, x, &t_fl);
+		*x += check_for_flag(form[*x], &t_fl);
+	}
+	// printf("apres : c = %c\n", form[*x]);
 	while (g_l_keytab[i].key)
 	{
-		if (form == g_l_keytab[i].key)
+		if (form[*x] == g_l_keytab[i].key)
 		{
 			if ((ret = g_l_keytab[i].f(ap, t_fl)))
 				return (ret);
 		}
 		i++;
 	}
-	return (conv_nothing(t_fl, form));
+	return (conv_nothing(t_fl, form[*x]));
 }
 
 t_conv	g_ll_keytab[] =
@@ -55,23 +64,31 @@ t_conv	g_ll_keytab[] =
 	{0, NULL},
 };
 
-int	conv_mod_ll(va_list ap, t_flag_list t_fl, char form)
+int	conv_mod_ll(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 {
 	size_t	i;
 	int		ret;
-	i = 0;
 
+	i = 0;
 	ret = 0;
+
+	*x += 2;
+	while (!is_conv(form[*x]))
+	{
+		check_for_pw(form, x, &t_fl);
+		*x += check_for_flag(form[*x], &t_fl);
+	}
+	// printf("apres : c = %c\n", form[*x]);
 	while (g_ll_keytab[i].key)
 	{
-		if (form == g_ll_keytab[i].key)
+		if (form[*x] == g_ll_keytab[i].key)
 		{
 			if ((ret = g_ll_keytab[i].f(ap, t_fl)))
 				return (ret);
 		}
 		i++;
 	}
-	return (conv_nothing(t_fl, form));
+	return (conv_nothing(t_fl, form[*x]));
 }
 
 t_conv	g_h_keytab[] =
@@ -85,24 +102,32 @@ t_conv	g_h_keytab[] =
 	{0, NULL},
 };
 
-int	conv_mod_h(va_list ap, t_flag_list t_fl, char form)
+int	conv_mod_h(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 {
 	size_t	i;
 	int		ret;
-	i = 0;
 
+	i = 0;
 	ret = 0;
+
+	// printf("avant : c = %c\n", form[*x]);
+	(*x)++;
+	while (!is_conv(form[*x]))
+	{
+		check_for_pw(form, x, &t_fl);
+		*x += check_for_flag(form[*x], &t_fl);
+	}
+	// printf("apres : c = %c\n", form[*x]);
 	while (g_h_keytab[i].key)
 	{
-		if (form == g_h_keytab[i].key)
+		if (form[*x] == g_h_keytab[i].key)
 		{
 			if ((ret = g_h_keytab[i].f(ap, t_fl)))
 				return (ret);
 		}
 		i++;
 	}
-	return (conv_nothing(t_fl, form));
-}
+	return (conv_nothing(t_fl, form[*x]));}
 
 t_conv	g_hh_keytab[] =
 {
@@ -115,21 +140,30 @@ t_conv	g_hh_keytab[] =
 	{0, NULL},
 };
 
-int	conv_mod_hh(va_list ap, t_flag_list t_fl, char form)
+int	conv_mod_hh(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 {
 	size_t	i;
 	int		ret;
-	i = 0;
 
+	i = 0;
 	ret = 0;
+
+	// printf("avant : c = %c\n", form[*x]);
+	*x += 2;
+	while (!is_conv(form[*x]))
+	{
+		check_for_pw(form, x, &t_fl);
+		*x += check_for_flag(form[*x], &t_fl);
+	}
+	// printf("apres : c = %c\n", form[*x]);
 	while (g_hh_keytab[i].key)
 	{
-		if (form == g_hh_keytab[i].key)
+		if (form[*x] == g_hh_keytab[i].key)
 		{
 			if ((ret = g_hh_keytab[i].f(ap, t_fl)))
 				return (ret);
 		}
 		i++;
 	}
-	return (conv_nothing(t_fl, form));
+	return (conv_nothing(t_fl, form[*x]));
 }

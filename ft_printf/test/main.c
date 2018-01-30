@@ -3,23 +3,25 @@
 
 void		test_d();
 
+
+//&((*i)++)
+
 int	main(int ac, char **av)
 {
-	//test_d();
 	printf("\n------------------------\n");
 	//-------------------------------//
 
-	const char	*bouh = "%.i, %.0d";
+	const char	*bouh = "%llu";
 	int		retr;
 	int		retm;
-	int		a = 0;
+	long long		a = ULLONG_MAX;
 
 	ft_putstr("Real : <");
-	retr =    printf(bouh, a, a);
+	retr =    printf(bouh, a);
 	printf(">\n");
 	//-------------------------------//
 	ft_putstr("Mine : <");
-	retm = ft_printf(bouh, a, a);
+	retm = ft_printf(bouh, a);
 	printf(">\n");
 	//-------------------------------//
 	printf("Real ret = %i\n", retr);
@@ -27,7 +29,6 @@ int	main(int ac, char **av)
 
 	return (0);
 }
-
 
 /*
 s OK
@@ -44,5 +45,4 @@ x OK
 X OK
 c OK
 C
-...............T....
 */

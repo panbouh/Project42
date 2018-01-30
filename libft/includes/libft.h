@@ -62,13 +62,19 @@ typedef struct		s_list
 ** ---libperso---
 */
 char				*ft_strrev(char *str);
-char				*ft_conv_n_base(int n, unsigned int base);
+char				*ft_conv_nbase(int n, unsigned int base);
+char				*ft_convu_nbase(unsigned int n, unsigned int base);
 char				*ft_strupper(char *str);
+char				*ft_strsub_to(const char *s, unsigned int start, char stop);
+char				*ft_strtrim_full(const char *);
 
 size_t				ft_skip_char(const char *s, size_t i, char c, int flags);
 size_t				ft_count_word(const char *str, char space);
+size_t				ft_count_digit(int n);
+size_t				ft_count_ldigit(long n);
+size_t				ft_count_lldigit(long long n);
+size_t				ft_count_udigit(unsigned long n);
 size_t				ft_strlen_till(const char *s, char stop);
-size_t				ft_count_digit(long n);
 
 long				ft_power(long nb, long power);
 unsigned long		ft_abs_l(long n);

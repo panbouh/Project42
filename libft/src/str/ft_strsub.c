@@ -22,6 +22,8 @@ char	*ft_strsub(const char *s, unsigned int start, size_t len)
 	i = 0;
 	if (!(tronc = malloc(sizeof(char) * len + 1)))
 		return (NULL);
+	// printf("start = %u, len = %lu\n", start, len);
+
 	while (i < len)
 	{
 		tronc[i] = s[start];

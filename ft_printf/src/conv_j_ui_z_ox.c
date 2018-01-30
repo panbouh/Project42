@@ -19,12 +19,14 @@
 
 int	conv_uintmaxt(va_list ap, t_flag_list t_fl)
 {
-
+	ft_putstr("test ju");
+	return (1);
 }
 
 int	conv_intmaxt(va_list ap, t_flag_list t_fl)
 {
-
+	ft_putstr("test ji/d");
+	return (1);
 }
 
 /*
@@ -33,15 +35,18 @@ int	conv_intmaxt(va_list ap, t_flag_list t_fl)
 
 int	conv_sizethexa(va_list ap, t_flag_list t_fl)
 {
-
+	ft_putstr("test zo");
+	return (1);
 }
 
 int	conv_sizethexaup(va_list ap, t_flag_list t_fl)
 {
-
+	ft_putstr("test zx");
+	return (1);
 }
 
 int	conv_sizetocta(va_list ap, t_flag_list t_fl)
 {
-
+	ft_putstr("test zX");
+	return (1);
 }

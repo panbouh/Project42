@@ -9,7 +9,7 @@ void	ft_putnofstr(const char *str, size_t n)
 	if ((size = ft_strlen(str)) < n)
 		n = size;
 
-	while(i < n)
+	while(str[i] && i < n)
 	{
 		write(1, &str[i], 1);
 		i++;

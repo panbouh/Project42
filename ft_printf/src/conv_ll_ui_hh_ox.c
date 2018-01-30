@@ -18,22 +18,63 @@
 
 int	conv_ullongint(va_list ap, t_flag_list t_fl)
 {
-	int i;
+	unsigned long long	nb;
+	size_t			size;
 
-	i = 0;
-	while (i < 9)
-		i++;
-	printf("%i\n", i);
+	//Si nb = 0 ou quon affiche pas la val -> size = 0 (pour le return)
+	nb = va_arg(ap, unsigned long long);
+	size = 0;
+	if (t_fl.put_val || nb)
+		size = ft_count_udigit(nb);
+	//calcul : width, prec, field | Define : c_sign, c_width
+	calc_wp_num(&t_fl, size, 0);
+	//affichage largeur de champ a gauche (sans -)
+	if (!t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	//affichage de la precision
+	ft_putnchar('0', t_fl.prec);
+	//affichage de la valuer
+	if (t_fl.put_val || nb)
+		ft_putunbr(nb);
+	//affichage largeur de champ a droite (avec -)
+	if (t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	return (t_fl.field);
 }
 
 int	conv_llong(va_list ap, t_flag_list t_fl)
 {
-	int i;
+	long long		nb;
+	size_t			size;
 
-	i = 0;
-	while (i < 9)
-		i++;
-	printf("%i\n", i);
+	nb = va_arg(ap, long long);
+	//Si nb = 0 ou quon affiche pas la val-> size = 0 (pour le return)
+	size = 0;
+	if (t_fl.put_val || nb)
+		size = ft_count_udigit(ft_abs_ll(nb));
+	//Verifier la negativiter
+	if (nb < 0)
+		t_fl.neg = 1;
+	//calcul : width, prec, field | Define : c_sign, c_width
+	calc_wp_num(&t_fl, size, 1);
+	//affichage largeur de champ a gauche (sans -)
+	if (!t_fl.min && !t_fl.zero)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	//affichage du signage
+	if (t_fl.plus || t_fl.space || t_fl.neg)
+		ft_putchar(t_fl.c_sign);
+	//affiche largeur de champ en 0 apres signage si flag 0
+	if (!t_fl.min && t_fl.zero)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	//affichage de la precision
+	ft_putnchar('0', t_fl.prec);
+	//affichage de la valuer
+	if (t_fl.put_val || nb)
+		ft_putunbr(ft_abs_l(nb));
+	//affichage largeur de champ a droite (avec -)
+	if (t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	return (t_fl.field);
 
 }
 
@@ -43,33 +84,18 @@ int	conv_llong(va_list ap, t_flag_list t_fl)
 
 int	conv_ucharocta(va_list ap, t_flag_list t_fl)
 {
-	int i;
-
-	i = 0;
-	while (i < 9)
-		i++;
-	printf("%i\n", i);
-
+	ft_putstr("test hho");
+	return (1);
 }
 
 int	conv_ucharhexa(va_list ap, t_flag_list t_fl)
 {
-	int i;
-
-	i = 0;
-	while (i < 9)
-		i++;
-	printf("%i\n", i);
-
+	ft_putstr("test hhx");
+	return (1);
 }
 
 int	conv_ucharhexaup(va_list ap, t_flag_list t_fl)
 {
-	int i;
-
-	i = 0;
-	while (i < 9)
-		i++;
-	printf("%i\n", i);
-
+	ft_putstr("test hhX");
+	return (1);
 }

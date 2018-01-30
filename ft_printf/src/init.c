@@ -1,5 +1,5 @@
 /* ************************************************************************** */
-/*                                                                            */
+/*                                                         */
 /*                                                        :::      ::::::::   */
 /*   printf.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -21,7 +21,10 @@ t_flag_list	init_fl()
 	new.min = 0;
 	new.plus = 0;
 	new.space = 0;
+	new.neg = 0;
+	new.put_val = 1;
 	new.width = 0;
+	new.field = 0;
 	new.prec = 0;
 	new.c_width = ' ';
 	new.c_sign = 0;

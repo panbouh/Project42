@@ -3,7 +3,7 @@
 
 unsigned long long ft_abs_ll(long long n)
 {
-	unsigned long	res;
+	unsigned long long	res;
 	
 	if (n < 0)
 	{

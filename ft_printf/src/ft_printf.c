@@ -12,6 +12,13 @@
 
 #include "ft_printf.h"
 
+/*
+		[flags]			#0-+
+		[largeur]		N
+		[precision]		.N
+		[conversion]	sSpdDioOuUxXcC (hh h ll l j z)
+*/
+
 t_flag	g_flagtab[] =
 {
 	{'#', &flag_sharp},
@@ -26,13 +33,18 @@ t_conv	g_convtab[] =
 {
 	{'i', &conv_int},
 	{'d', &conv_int},
+	{'D', &conv_long},
 	{'s', &conv_str},
+	{'S', &conv_wchat},
 	{'c', &conv_char},
+	{'C', &conv_wintt},
 	{'u', &conv_unsigned},
+	{'U', &conv_ulongint},
 	{'x', &conv_hexa},
 	{'X', &conv_hexaup},
 	{'b', &conv_bina},
 	{'o', &conv_octa},
+	{'O', &conv_ulintocta},
 	{'p', &conv_hexa},
 	{0, NULL},
 };
@@ -76,7 +88,7 @@ void	check_for_pw(const char *form, size_t *i, t_flag_list *t_fl)
 		// printf("i = %zu\n", *i);
 		if (t_fl->prec == 0)
 		{
-			t_fl->prec = -1;
+			t_fl->put_val = 0;
 			size = 1;
 		}
 		else
@@ -93,10 +105,12 @@ void	check_for_pw(const char *form, size_t *i, t_flag_list *t_fl)
 
 int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 {
+	char	*mod;
 	size_t	y;
-	size_t	size;
+	int		ret;
 
 	y = 0;
+	// printf("forn[i] = %c\n", form[*i]);
 	while (g_convtab[y].key)
 	{
 		if (g_convtab[y].key == form[*i])
@@ -104,14 +118,23 @@ int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 		y++;
 	}
 	y = 0;
+	if (!(mod = get_mod(form, *i)))
+		return (FAIL);
+	// printf("mod = <%s>\n", mod);
 	while (g_modtab[y].key)
 	{
-		size = ft_strlen(g_modtab[y].key);
-		if (!(ft_strncmp(g_modtab[y].key, &form[*i], size)))
-			return (g_modtab[y].f(ap, *t_fl, form[*i + size]));
+		// printf("g_modtab[y].key = %s\n", g_modtab[y].key);
+		if (!(ft_strcmp(g_modtab[y].key, mod)))
+		{
+			ret = g_modtab[y].f(ap, *t_fl, form, i);
+			// printf("apres : form[i] = %c, i = %zu\n", form[*i], *i);
+			ft_strdel(&mod);
+			return (ret);
+		}
 		y++;
 	}
-	return (0);
+	ft_strdel(&mod);
+	return (FAIL);
 }
 
 int		found_flag(const char *form, va_list ap, size_t *i)
@@ -124,10 +147,12 @@ int		found_flag(const char *form, va_list ap, size_t *i)
 	t_fl = init_fl();
 	(*i)++;
 	ret = 0;//utile?
-	while (status != STOP)
+	while (status != STOP && form[*i])
 	{
-		if (ft_isalpha(form[*i]))
+		if (is_conv(form[*i]))
 		{
+			// printf("i = %lu\n", *i);
+			// printf("coucou %c\n", form[*i]);sleep(2);
 			if (((ret = do_conv(form, ap, i, &t_fl)) != FAIL))
 				return (ret);
 			status = STOP;
@@ -135,6 +160,8 @@ int		found_flag(const char *form, va_list ap, size_t *i)
 		check_for_pw(form, i, &t_fl);
 		*i += check_for_flag(form[*i], &t_fl);
 	}
+	if (!form[*i])
+		return (FAIL);
 	return (conv_nothing(t_fl, form[*i]));
 }
 
@@ -156,7 +183,7 @@ int		ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			if ((ret = found_flag(format, ap, &i)) == FAIL)
-				return (FAIL);
+				return (ret_end);		//A revoir le retour d'erreur
 			ret_end += ret;
 			i++;
 		}

@@ -16,3 +16,13 @@ void	ft_putnbr(int nb)
 {
 	ft_putnbr_fd(nb, 1);
 }
+
+void	ft_putunbr(unsigned long long nb)
+{
+	ft_putunbr_fd(nb, 1);
+}
+
+void	ft_putlnbr(long long nb)
+{
+	ft_putlnbr_fd(nb, 1);
+}

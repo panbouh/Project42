@@ -12,27 +12,30 @@
 
 #include "ft_printf.h"
 
-	// printf("\n1) w = %i, p = %i\n", t_fl.width, t_fl.prec);
-	// printf("flag = %i\n", t_fl.space);
-
-
 int	conv_unsigned(va_list ap, t_flag_list t_fl)
 {
 	unsigned int	nb;
 	size_t			size;
 
+	//Si nb = 0 ou quon affiche pas la val -> size = 0 (pour le return)
 	nb = va_arg(ap, unsigned int);
-	size = ft_count_digit(nb);
-	calc_wp_num(&t_fl, size);
-	if (t_fl.zero && !t_fl.min && !t_fl.prec)
-		t_fl.c_width = '0';
+	size = 0;
+	if (t_fl.put_val || nb)
+		size = ft_count_udigit(nb);
+	//calcul : width, prec, field | Define : c_sign, c_width
+	calc_wp_num(&t_fl, size, 0);
+	//affichage largeur de champ a gauche (sans -)
 	if (!t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
+	//affichage de la precision
 	ft_putnchar('0', t_fl.prec);
-	ft_putunbr(nb);
+	//affichage de la valuer
+	if (t_fl.put_val || nb)
+		ft_putunbr(nb);
+	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
-	return (size + (t_fl.width + t_fl.prec));
+	return (t_fl.field);
 }
 
 int	conv_int(va_list ap, t_flag_list t_fl)
@@ -41,37 +44,33 @@ int	conv_int(va_list ap, t_flag_list t_fl)
 	size_t		size;
 
 	nb = va_arg(ap, int);
+	//Si nb = 0 ou quon affiche pas la val-> size = 0 (pour le return)
 	size = 0;
-	if (nb)
-		size = ft_count_digit(ft_abs(nb));
-	calc_wp_num(&t_fl, size);
+	if (t_fl.put_val || nb)
+		size = ft_count_udigit(ft_abs(nb));
+	//Verifier la negativiter
 	if (nb < 0)
-	{
-		t_fl.c_sign = '-';
-		t_fl.plus = 0;
-	}
-	else if (t_fl.space && !t_fl.plus)
-		t_fl.c_sign = ' ';
-	else
-		t_fl.c_sign = '+';
-	if (t_fl.zero && !t_fl.min && !t_fl.prec)
-		t_fl.c_width = '0';
-	if (t_fl.width > 0 && (t_fl.plus || t_fl.space || nb < 0))
-		t_fl.width--;
-	if (!t_fl.min)
+		t_fl.neg = 1;
+	//calcul : width, prec, field | Define : c_sign, c_width
+	calc_wp_num(&t_fl, size, 1);
+	//affichage largeur de champ a gauche (sans -)
+	if (!t_fl.min && !t_fl.zero)
 		ft_putnchar(t_fl.c_width, t_fl.width);
-	if (t_fl.plus || t_fl.space || nb < 0)
-	{
-		size++;
+	//affichage du signage
+	if (t_fl.plus || t_fl.space || t_fl.neg)
 		ft_putchar(t_fl.c_sign);
-	}
-	if (t_fl.prec > 0)
-		ft_putnchar('0', t_fl.prec);
-	if (t_fl.prec >= 0)
+	//affiche largeur de champ en 0 apres signage si flag 0
+	if (!t_fl.min && t_fl.zero)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	//affichage de la precision
+	ft_putnchar('0', t_fl.prec);
+	//affichage de la valuer
+	if (t_fl.put_val || nb)
 		ft_putunbr(ft_abs(nb));
+	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
-	return (size + (t_fl.width + t_fl.prec));
+	return (t_fl.field);
 }
 
 // t_fl->width - t_fl->prec - size - t_fl->plus
@@ -82,45 +81,72 @@ int	conv_str(va_list ap, t_flag_list t_fl)
 	size_t	size;
 
 	str = va_arg(ap, char *);
+	if (!str)
+	{
+		t_fl.neg = 1;
+		str = ft_strdup("(null)");
+	}
 	size = ft_strlen(str);
-	// printf("\nwitdh = %i\n", t_fl.width);
-	// printf("prec  = %i\n", t_fl.prec);
-
 	calc_wp_str(&t_fl, size);
-
-	// printf("min = %i\n", t_fl.min);
-	// printf("witdh = %i\n", t_fl.width);
-	// printf("prec  = %i\n", t_fl.prec);
-
+	//affichage largeur de champ a gauche (sans -)
 	if (!t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
-
-	if (str)
+	//print prec of str sinon (null)
+	if (str && t_fl.put_val)
 		ft_putnofstr(str, t_fl.prec);
-	else
-	{
-		t_fl.prec = 6;
+	else if(!str)
 		ft_putstr("(null)");
-	}
-
-
+	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
-	// printf("ret 2= %i\n", t_fl.width + t_fl.prec);
-	return (t_fl.width + t_fl.prec);
+	if (t_fl.neg)
+		ft_strdel(&str);
+	return (t_fl.field);
 }
 
 int	conv_char(va_list ap, t_flag_list t_fl)
 {
 	unsigned char	c;
-
 	c = (unsigned char)va_arg(ap, int);
-	(void)t_fl;
+	//calcul width et field
+	if ((t_fl.width -= 1) < 0)
+		t_fl.width = 0;
+	t_fl.field = t_fl.width + 1;
+	if (t_fl.zero)
+		t_fl.c_width = '0';
+	//affichage largeur de champ a gauche (sans -)
+	if (!t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	//affichage valeur
 	ft_putchar(c);
-	return (1);
+	//affichage largeur de champ a droite (avec -)
+	if (t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	return (t_fl.field);
 }
 
 int	conv_sizet(va_list ap, t_flag_list t_fl)
 {
-	return (0);
+	size_t	nb;
+	size_t	size;
+
+	//Si nb = 0 ou quon affiche pas la val -> size = 0 (pour le return)
+	nb = va_arg(ap, unsigned int);
+	size = 0;
+	if (t_fl.put_val || nb)
+		size = ft_count_digit(nb);
+	//calcul : width, prec, field | Define : c_sign, c_width
+	calc_wp_num(&t_fl, size, 0);
+	//affichage largeur de champ a gauche (sans -)
+	if (!t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	//affichage de la precision
+	ft_putnchar('0', t_fl.prec);
+	//affichage de la valuer
+	if (t_fl.put_val || nb)
+		ft_putunbr(nb);
+	//affichage largeur de champ a droite (avec -)
+	if (t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	return (t_fl.field);
 }

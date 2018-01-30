@@ -82,11 +82,7 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_puttab.c								\
 				ft_putnchar.c							\
 				ft_putnofstr.c							\
-				ft_putlnbr_fd.c							\
-				ft_putlnbr.c							\
-				ft_putunbr_fd.c							\
-				ft_putunbr.c							\
-				ft_putlnbr.c
+
 
 STR_FILE	=	ft_skip_char.c							\
 				ft_count_word.c							\
@@ -118,6 +114,7 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strjoin.c							\
 				ft_strtrim.c							\
 				ft_strsplit.c							\
+				ft_strtrim_full.c							\
 				ft_strmiam.c
 
 FILE_FILE	=	get_next_line.c
