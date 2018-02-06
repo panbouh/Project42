@@ -24,21 +24,21 @@ int	main(int ac, char **av)
 	//-------------------------------//
 //%hhi\n%hhu\n%hho\n%hhx\n%hhX\n
 setlocale(LC_ALL, "");
-	const char	*bouh = "%C";
+	const char	*bouh = "%10ls";
 	int		retr;
 	int		retm;
 	long long	a = LLONG_MAX;
 
 	ft_putstr("Real : <");
-	retr =    printf(bouh, L'猫');
+	retr =    printf(bouh, NULL);
 	printf(">\n");
 	//-------------------------------//
 	ft_putstr("Mine : <");
-	retm = ft_printf(bouh, L'猫');
+	retm = ft_printf(bouh, NULL);
 	printf(">\n");
 	//-------------------------------//
 	printf("Real ret = %i\n", retr);
-	printf("Mine ret = %i\n", retm);
+	// printf("Mine ret = %i\n", retm);
 
 	return (0);
 }

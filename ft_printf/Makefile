@@ -21,6 +21,7 @@ SRC_MEM		=	$(addprefix $(SRC_PATH),memory/)
 SRC_MORPH	=	$(addprefix $(SRC_PATH),morphing/)
 SRC_PRINT	=	$(addprefix $(SRC_PATH),print/)
 SRC_STR		=	$(addprefix $(SRC_PATH),str/)
+SRC_WSTR	=	$(addprefix $(SRC_PATH),wstr/)
 SRC_FILE	=	$(addprefix $(SRC_PATH),file/)
 
 #PATH MIXED
@@ -31,6 +32,7 @@ SRC			=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
 				$(addprefix $(SRC_MORPH),$(MORPH_FILE))		\
 				$(addprefix $(SRC_PRINT),$(PRINT_FILE))		\
 				$(addprefix $(SRC_STR),$(STR_FILE))			\
+				$(addprefix $(SRC_WSTR),$(WSTR_FILE))		\
 				$(addprefix $(SRC_FILE),$(FILE_FILE))		\
 				$(addprefix $(SRC_PS_PATH), $(PRINTF_FILE))
 
@@ -58,7 +60,6 @@ PRINTF_FILE	=	ft_printf.c				\
 				conv_mod_jz.c			\
 				conv_mod_lhllhh.c
 
-
 CHECK_FILE	=	ft_isalpha.c							\
 				ft_isdigit.c							\
 				ft_isalnum.c							\
@@ -76,7 +77,9 @@ MATH_FILE	=	ft_power.c								\
 				ft_count_digit.c						\
 				ft_count_digit_u.c						\
 				ft_abs.c								\
-				ft_conv_n_base.c
+				ft_conv_nbase.c							\
+				ft_conv_fbase.c							\
+				ft_addbit.c
 
 MEM_FILE	=	ft_memset.c								\
 				ft_bzero.c								\
@@ -105,6 +108,9 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_puttab.c								\
 				ft_putnchar.c							\
 				ft_putnofstr.c							\
+				ft_putnofwstr.c							\
+				ft_putwchar.c							\
+				ft_putwstr.c
 
 
 STR_FILE	=	ft_skip_char.c							\
@@ -137,14 +143,19 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strjoin.c							\
 				ft_strtrim.c							\
 				ft_strsplit.c							\
-				ft_strtrim_full.c							\
+				ft_strtrim_full.c						\
 				ft_strmiam.c
+
+WSTR_FILE	=	ft_wstrlen.c							\
+				ft_wcharlen.c							\
+				ft_wstrdup.c							\
+				ft_wstrdel.c
 
 FILE_FILE	=	get_next_line.c
 
 
-SRC_TEST	=	./test/main.c	\
-				./test/test_d.c	\
+SRC_TEST	=	./test/main.c		\
+				./test/test_d.c		\
 				./test/testing.c
 
 
@@ -160,7 +171,7 @@ HEAD_P		=	ft_printf.h
 # ## Conversion ##
 # ################
 
-OBJ		=	$(SRC:.c=.o)
+OBJ			=	$(SRC:.c=.o)
 
 # ###########################
 # ## Random Initialisation ##

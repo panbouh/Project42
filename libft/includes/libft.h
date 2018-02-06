@@ -18,6 +18,7 @@
 ** #  INCLUDE  #
 ** #############
 */
+
 # include <stdlib.h>
 # include <string.h>
 # include <stdio.h>
@@ -70,6 +71,7 @@ char				*ft_convumax_nbase(uintmax_t n, unsigned int base);
 char				*ft_strupper(char *str);
 char				*ft_strsub_to(const char *s, unsigned int start, char stop);
 char				*ft_strtrim_full(const char *);
+char				*ft_addbit(char *bin);
 
 size_t				ft_skip_char(const char *s, size_t i, char c, int flags);
 size_t				ft_count_word(const char *str, char space);
@@ -87,6 +89,7 @@ unsigned long		ft_abs_l(long n);
 unsigned long long	ft_abs_ll(long long n);
 unsigned int		ft_abs(int n);
 uintmax_t			ft_abs_imax(intmax_t n);
+unsigned int		ft_conv_fbase(char *nb, int base);
 
 void				ft_puttab(const char **tab);
 void				ft_putnchar(char c, size_t n);

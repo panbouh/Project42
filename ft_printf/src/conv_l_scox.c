@@ -12,14 +12,38 @@
 
 #include "ft_printf.h"
 #include <wchar.h>
+#include "ft_wuni.h"
 /*
 **  ls lc lo lx lX
 */
 
 int	conv_wchat(va_list ap, t_flag_list t_fl)
 {
-	ft_putstr("test ls");
-	return (1);
+	wchar_t	*wstr;
+	size_t	size;
+
+	wstr = va_arg(ap, wchar_t *);
+	if (!wstr)
+	{
+		t_fl.neg = 1;
+		wstr = ft_wstrdup("(null)");
+	}
+	size = ft_wstrlen(wstr);
+	calc_wp_str(&t_fl, size);
+	//affichage largeur de champ a gauche (sans -)
+	if (!t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	//print prec of str sinon (null)
+	if (wstr && t_fl.put_val)
+		ft_putnofwstr(wstr, t_fl.prec);
+	else if(!wstr)
+		ft_putstr("(null)");
+	//affichage largeur de champ a droite (avec -)
+	if (t_fl.min)
+		ft_putnchar(t_fl.c_width, t_fl.width);
+	if (t_fl.neg)
+		ft_wstrdel(&wstr);
+	return (t_fl.field);
 }
 
 int	conv_wintt(va_list ap, t_flag_list t_fl)
@@ -36,7 +60,7 @@ int	conv_wintt(va_list ap, t_flag_list t_fl)
 	if (!t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
 	//affichage valeur
-	ft_putchar(c);
+	ft_putwchar(c);
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
