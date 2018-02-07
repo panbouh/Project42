@@ -17,7 +17,7 @@
 ** ju ji/d
 */
 
-int	conv_uintmaxt(va_list ap, t_flag_list t_fl)
+int	conv_ju(va_list ap, t_flag_list t_fl)
 {
 	uintmax_t	nb;
 	size_t		size;
@@ -43,7 +43,7 @@ int	conv_uintmaxt(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_intmaxt(va_list ap, t_flag_list t_fl)
+int	conv_jid(va_list ap, t_flag_list t_fl)
 {
 	intmax_t	nb;
 	size_t		size;
@@ -82,7 +82,7 @@ int	conv_intmaxt(va_list ap, t_flag_list t_fl)
 ** zo zx zX
 */
 
-int	conv_sizetocta(va_list ap, t_flag_list t_fl)
+int	conv_zo(va_list ap, t_flag_list t_fl)
 {
 	ptrdiff_t	nb;
 	char		*conv;
@@ -115,7 +115,7 @@ int	conv_sizetocta(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_sizethexa(va_list ap, t_flag_list t_fl)
+int	conv_zx(va_list ap, t_flag_list t_fl)
 {
 	ptrdiff_t	nb;
 	char		*conv;
@@ -148,7 +148,7 @@ int	conv_sizethexa(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_sizethexaup(va_list ap, t_flag_list t_fl)
+int	conv_zxm(va_list ap, t_flag_list t_fl)
 {
 	ptrdiff_t	nb;
 	char		*conv;

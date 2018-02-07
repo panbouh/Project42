@@ -14,34 +14,42 @@ void	print_allconv()
 		// ft_printf("%zo\n%zx\n%zX\n");
 }
 
+void	test_mine(const char *bouh);
+void	test_real(const char *bouh);
+void	test_all(const char *bouh);
+
+void	ft_testmain(int check, const char *bouh)
+{
+	if (check == 1)
+		test_mine(bouh);
+	else if (check == 2)
+		test_real(bouh);
+	else
+		test_all(bouh);
+}
+
 
 //&((*i)++)
 #include <locale.h>
 int	main(int ac, char **av)
 {
 	// print_allconv();
-	printf("\n------------------------\n");
+	// printf("\n------------------------\n");
 	//-------------------------------//
 //%hhi\n%hhu\n%hho\n%hhx\n%hhX\n
 setlocale(LC_ALL, "");
-	const char	*bouh = "%10ls";
-	int		retr;
-	int		retm;
-	long long	a = LLONG_MAX;
 
-	ft_putstr("Real : <");
-	retr =    printf(bouh, NULL);
-	printf(">\n");
-	//-------------------------------//
-	ft_putstr("Mine : <");
-	retm = ft_printf(bouh, NULL);
-	printf(">\n");
-	//-------------------------------//
-	printf("Real ret = %i\n", retr);
-	// printf("Mine ret = %i\n", retm);
+	int a = 0;
+	const char	*bouh = "%p";
 
+	if (av[1])
+		a = atoi(av[1]);
+	ft_testmain(a, bouh);
 	return (0);
 }
+
+// "我是一只猫。";
+
 
 /*
 s OK

@@ -11,13 +11,12 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <wchar.h>
 #include "ft_wuni.h"
 /*
 **  ls lc lo lx lX
 */
 
-int	conv_wchat(va_list ap, t_flag_list t_fl)
+int	conv_ls(va_list ap, t_flag_list t_fl)
 {
 	wchar_t	*wstr;
 	size_t	size;
@@ -26,17 +25,17 @@ int	conv_wchat(va_list ap, t_flag_list t_fl)
 	if (!wstr)
 	{
 		t_fl.neg = 1;
-		wstr = ft_wstrdup("(null)");
+		wstr = ft_wstrdup(L"(null)");
 	}
-	size = ft_wstrlen(wstr);
+	size = nb_bit_print(wstr, t_fl.prec);
 	calc_wp_str(&t_fl, size);
 	//affichage largeur de champ a gauche (sans -)
 	if (!t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
 	//print prec of str sinon (null)
 	if (wstr && t_fl.put_val)
-		ft_putnofwstr(wstr, t_fl.prec);
-	else if(!wstr)
+		ft_putnbyte(wstr, t_fl.prec);
+	else if(t_fl.neg)
 		ft_putstr("(null)");
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
@@ -46,14 +45,19 @@ int	conv_wchat(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_wintt(va_list ap, t_flag_list t_fl)
+int	conv_lc(va_list ap, t_flag_list t_fl)
 {
 	wint_t	c;
+	size_t	size;
+
 	c = va_arg(ap, wint_t);
+	if (!(size = ft_wcharlen(c)))
+		size = 1;
+	// printf("size =%lu\n", size);
 	//calcul width et field
-	if ((t_fl.width -= 1) < 0)
+	if ((t_fl.width -= size) < 0)
 		t_fl.width = 0;
-	t_fl.field = t_fl.width + 1;
+	t_fl.field = t_fl.width + size;
 	if (t_fl.zero)
 		t_fl.c_width = '0';
 	//affichage largeur de champ a gauche (sans -)
@@ -67,7 +71,7 @@ int	conv_wintt(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_ulintocta(va_list ap, t_flag_list t_fl)
+int	conv_lo(va_list ap, t_flag_list t_fl)
 {
 	unsigned long	nb;
 	char			*conv;
@@ -101,7 +105,7 @@ int	conv_ulintocta(va_list ap, t_flag_list t_fl)
 }
 
 
-int	conv_ulinthexa(va_list ap, t_flag_list t_fl)
+int	conv_lx(va_list ap, t_flag_list t_fl)
 {
 	unsigned long	nb;
 	char			*conv;
@@ -135,7 +139,7 @@ int	conv_ulinthexa(va_list ap, t_flag_list t_fl)
 }
 
 
-int	conv_ulinthexaup(va_list ap, t_flag_list t_fl)
+int	conv_lxm(va_list ap, t_flag_list t_fl)
 {
 	unsigned long	nb;
 	char			*conv;

@@ -16,7 +16,7 @@
 ** llu lli
 */
 
-int	conv_ullongint(va_list ap, t_flag_list t_fl)
+int	conv_llu(va_list ap, t_flag_list t_fl)
 {
 	unsigned long long	nb;
 	size_t			size;
@@ -42,7 +42,7 @@ int	conv_ullongint(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_llong(va_list ap, t_flag_list t_fl)
+int	conv_llid(va_list ap, t_flag_list t_fl)
 {
 	long long		nb;
 	size_t			size;
@@ -75,14 +75,13 @@ int	conv_llong(va_list ap, t_flag_list t_fl)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
 	return (t_fl.field);
-
 }
 
 /*
 ** hho hhx hhX
 */
 
-int	conv_ucharocta(va_list ap, t_flag_list t_fl)
+int	conv_hho(va_list ap, t_flag_list t_fl)
 {
 	unsigned char	nb;
 	char			*conv;
@@ -115,7 +114,7 @@ int	conv_ucharocta(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_ucharhexa(va_list ap, t_flag_list t_fl)
+int	conv_hhx(va_list ap, t_flag_list t_fl)
 {
 	unsigned char	nb;
 	char			*conv;
@@ -148,7 +147,7 @@ int	conv_ucharhexa(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_ucharhexaup(va_list ap, t_flag_list t_fl)
+int	conv_hhxm(va_list ap, t_flag_list t_fl)
 {
 	unsigned char	nb;
 	char			*conv;

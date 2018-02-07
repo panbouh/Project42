@@ -127,6 +127,7 @@ STR_FILE	=	ft_skip_char.c							\
 
 WSTR_FILE	=	ft_wstrlen.c							\
 				ft_wcharlen.c							\
+				ft_putnbyte.c							\
 				ft_wstrdup.c							\
 				ft_wstrdel.c
 

@@ -31,21 +31,21 @@ t_flag	g_flagtab[] =
 
 t_conv	g_convtab[] =
 {
-	{'i', &conv_int},
-	{'d', &conv_int},
-	{'D', &conv_long},
-	{'s', &conv_str},
-	{'S', &conv_wchat},
-	{'c', &conv_char},
-	{'C', &conv_wintt},
-	{'u', &conv_unsigned},
-	{'U', &conv_ulongint},
-	{'x', &conv_hexa},
-	{'X', &conv_hexaup},
-	{'b', &conv_bina},
-	{'o', &conv_octa},
-	{'O', &conv_ulintocta},
-	{'p', &conv_hexa},
+	{'i', &conv_id},
+	{'d', &conv_id},
+	{'D', &conv_lid},
+	{'s', &conv_s},
+	{'S', &conv_ls},
+	{'c', &conv_c},
+	{'C', &conv_lc},
+	{'u', &conv_u},
+	{'U', &conv_lu},
+	{'x', &conv_x},
+	{'X', &conv_xm},
+	{'b', &conv_b},
+	{'o', &conv_o},
+	{'O', &conv_lo},
+	{'p', &conv_x},
 	{0, NULL},
 };
 
@@ -155,6 +155,7 @@ int		found_flag(const char *form, va_list ap, size_t *i)
 			// printf("coucou %c\n", form[*i]);sleep(2);
 			if (((ret = do_conv(form, ap, i, &t_fl)) != FAIL))
 				return (ret);
+			// printf("ret = %i\n", ret);
 			status = STOP;
 		}
 		check_for_pw(form, i, &t_fl);

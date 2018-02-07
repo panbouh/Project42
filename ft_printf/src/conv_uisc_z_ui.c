@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	conv_unsigned(va_list ap, t_flag_list t_fl)
+int	conv_u(va_list ap, t_flag_list t_fl)
 {
 	unsigned int	nb;
 	size_t			size;
@@ -38,7 +38,7 @@ int	conv_unsigned(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_int(va_list ap, t_flag_list t_fl)
+int	conv_id(va_list ap, t_flag_list t_fl)
 {
 	int			nb;
 	size_t		size;
@@ -75,7 +75,7 @@ int	conv_int(va_list ap, t_flag_list t_fl)
 
 // t_fl->width - t_fl->prec - size - t_fl->plus
 
-int	conv_str(va_list ap, t_flag_list t_fl)
+int	conv_s(va_list ap, t_flag_list t_fl)
 {
 	char	*str;
 	size_t	size;
@@ -104,7 +104,7 @@ int	conv_str(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_char(va_list ap, t_flag_list t_fl)
+int	conv_c(va_list ap, t_flag_list t_fl)
 {
 	unsigned char	c;
 	c = (unsigned char)va_arg(ap, int);
@@ -125,7 +125,7 @@ int	conv_char(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_sizet(va_list ap, t_flag_list t_fl)
+int	conv_zu(va_list ap, t_flag_list t_fl)
 {
 	size_t	nb;
 	size_t	size;

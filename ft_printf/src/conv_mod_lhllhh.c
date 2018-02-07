@@ -14,14 +14,19 @@
 
 t_conv	g_l_keytab[] =
 {
-	{'i', &conv_long},
-	{'d', &conv_long},
-	{'s', &conv_wchat},
-	{'c', &conv_wintt},
-	{'u', &conv_ulongint},
-	{'x', &conv_ulinthexa},
-	{'X', &conv_ulinthexaup},
-	{'o', &conv_ulintocta},
+	{'i', &conv_lid},
+	{'d', &conv_lid},
+	{'s', &conv_ls},
+	{'c', &conv_lc},
+	{'u', &conv_lu},
+	{'x', &conv_lx},
+	{'X', &conv_lxm},
+	{'o', &conv_lo},
+	{'D', &conv_lid},
+	{'O', &conv_lo},
+	{'U', &conv_lu},
+	{'S', &conv_ls},
+	{'C', &conv_lc},
 	{0, NULL},
 };
 
@@ -45,7 +50,7 @@ int	conv_mod_l(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	{
 		if (form[*x] == g_l_keytab[i].key)
 		{
-			if ((ret = g_l_keytab[i].f(ap, t_fl)))
+			if ((ret = g_l_keytab[i].f(ap, t_fl)) != FAIL)
 				return (ret);
 		}
 		i++;
@@ -55,12 +60,17 @@ int	conv_mod_l(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 
 t_conv	g_ll_keytab[] =
 {
-	{'i', &conv_llong},
-	{'d', &conv_llong},
-	{'u', &conv_ullongint},
-	{'x', &conv_ullinthexa},
-	{'X', &conv_ullinthexaup},
-	{'o', &conv_ullintocta},
+	{'i', &conv_llid},
+	{'d', &conv_llid},
+	{'u', &conv_llu},
+	{'x', &conv_llx},
+	{'X', &conv_llxm},
+	{'o', &conv_llo},
+	{'D', &conv_lid},
+	{'O', &conv_lo},
+	{'U', &conv_lu},
+	{'S', &conv_ls},
+	{'C', &conv_lc},
 	{0, NULL},
 };
 
@@ -83,7 +93,7 @@ int	conv_mod_ll(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	{
 		if (form[*x] == g_ll_keytab[i].key)
 		{
-			if ((ret = g_ll_keytab[i].f(ap, t_fl)))
+			if ((ret = g_ll_keytab[i].f(ap, t_fl)) != FAIL)
 				return (ret);
 		}
 		i++;
@@ -93,12 +103,17 @@ int	conv_mod_ll(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 
 t_conv	g_h_keytab[] =
 {
-	{'i', &conv_short},
-	{'d', &conv_short},
-	{'u', &conv_ushort},
-	{'x', &conv_ushorthexa},
-	{'X', &conv_ushorthexaup},
-	{'o', &conv_ushortocta},
+	{'i', &conv_hid},
+	{'d', &conv_hid},
+	{'u', &conv_hu},
+	{'x', &conv_hx},
+	{'X', &conv_hxm},
+	{'o', &conv_ho},
+	{'D', &conv_lid},
+	{'O', &conv_lo},
+	{'U', &conv_lu},
+	{'S', &conv_ls},
+	{'C', &conv_lc},
 	{0, NULL},
 };
 
@@ -122,7 +137,7 @@ int	conv_mod_h(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	{
 		if (form[*x] == g_h_keytab[i].key)
 		{
-			if ((ret = g_h_keytab[i].f(ap, t_fl)))
+			if ((ret = g_h_keytab[i].f(ap, t_fl)) != FAIL)
 				return (ret);
 		}
 		i++;
@@ -131,12 +146,17 @@ int	conv_mod_h(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 
 t_conv	g_hh_keytab[] =
 {
-	{'i', &conv_schar},
-	{'d', &conv_schar},
-	{'u', &conv_uchar},
-	{'x', &conv_ucharhexa},
-	{'X', &conv_ucharhexaup},
-	{'o', &conv_ucharocta},
+	{'i', &conv_hhid},
+	{'d', &conv_hhid},
+	{'u', &conv_hhu},
+	{'x', &conv_hhx},
+	{'X', &conv_hhxm},
+	{'o', &conv_hho},
+	{'D', &conv_lid},
+	{'O', &conv_lo},
+	{'U', &conv_lu},
+	{'S', &conv_ls},
+	{'C', &conv_lc},
 	{0, NULL},
 };
 
@@ -159,7 +179,7 @@ int	conv_mod_hh(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	{
 		if (form[*x] == g_hh_keytab[i].key)
 		{
-			if ((ret = g_hh_keytab[i].f(ap, t_fl)))
+			if ((ret = g_hh_keytab[i].f(ap, t_fl)) != FAIL)
 				return (ret);
 		}
 		i++;

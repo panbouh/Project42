@@ -14,12 +14,17 @@
 
 t_conv	g_j_keytab[] =
 {
-	{'i', &conv_intmaxt},
-	{'d', &conv_intmaxt},
-	{'u', &conv_uintmaxt},
-	{'x', &conv_uintmaxthexa},
-	{'X', &conv_uintmaxthexaup},
-	{'o', &conv_uintmaxtocta},
+	{'i', &conv_jid},
+	{'d', &conv_jid},
+	{'u', &conv_ju},
+	{'x', &conv_jx},
+	{'X', &conv_jxm},
+	{'o', &conv_jo},
+	{'D', &conv_lid},
+	{'O', &conv_lo},
+	{'U', &conv_lu},
+	{'S', &conv_ls},
+	{'C', &conv_lc},
 	{0, NULL},
 };
 
@@ -43,7 +48,7 @@ int		conv_mod_j(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	{
 		if (form[*x] == g_j_keytab[i].key)
 		{
-			if ((ret = g_j_keytab[i].f(ap, t_fl)))
+			if ((ret = g_j_keytab[i].f(ap, t_fl)) != FAIL)
 				return (ret);
 		}
 		i++;
@@ -52,12 +57,17 @@ int		conv_mod_j(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 }
 
 t_conv	g_z_keytab[] = {
-	{'i', &conv_sizet},
-	{'d', &conv_sizet},
-	{'u', &conv_sizet},
-	{'x', &conv_sizethexa},
-	{'X', &conv_sizethexaup},
-	{'o', &conv_sizetocta},
+	{'i', &conv_zid},
+	{'d', &conv_zid},
+	{'u', &conv_zu},
+	{'x', &conv_zx},
+	{'X', &conv_zxm},
+	{'o', &conv_zo},
+	{'D', &conv_lid},
+	{'O', &conv_lo},
+	{'U', &conv_lu},
+	{'S', &conv_ls},
+	{'C', &conv_lc},
 	{0, NULL},
 };
 
@@ -81,7 +91,7 @@ int		conv_mod_z(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	{
 		if (form[*x] == g_z_keytab[i].key)
 		{
-			if ((ret = g_z_keytab[i].f(ap, t_fl)))
+			if ((ret = g_z_keytab[i].f(ap, t_fl)) != FAIL)
 				return (ret);
 		}
 		i++;

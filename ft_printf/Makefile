@@ -50,7 +50,7 @@ PRINTF_FILE	=	ft_printf.c				\
 				err.c					\
 				utils.c					\
 				conv_uisc_z_ui.c		\
-				conv_xob.c				\
+				conv_xob_z_id.c				\
 				conv_l_scox.c			\
 				conv_l_ui_h_ox.c		\
 				conv_h_ui_ll_ox.c		\
@@ -148,6 +148,7 @@ STR_FILE	=	ft_skip_char.c							\
 
 WSTR_FILE	=	ft_wstrlen.c							\
 				ft_wcharlen.c							\
+				ft_putnbyte.c							\
 				ft_wstrdup.c							\
 				ft_wstrdel.c
 

@@ -16,12 +16,10 @@ size_t	ft_wcharlen(const wchar_t c)
 	size_t	size;
 	size_t	i;
 
-	if (!c)
-		return (c);
 	conv = ft_conv_nbase(c, 2);
-	size = (ft_strlen(conv));
+	size = ft_strlen(conv);
 	i = 0;
-	while (g_masktab_len[i].size < size)
+	while (size > g_masktab_len[i].size)
 		i++;
 	ft_strdel(&conv);
 	return (i + 1);

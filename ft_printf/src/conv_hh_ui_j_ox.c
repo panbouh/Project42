@@ -16,7 +16,7 @@
 ** hhu hhi/d
 */
 
-int	conv_uchar(va_list ap, t_flag_list t_fl)
+int	conv_hhu(va_list ap, t_flag_list t_fl)
 {
 	unsigned char	nb;
 	size_t			size;
@@ -42,7 +42,7 @@ int	conv_uchar(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_schar(va_list ap, t_flag_list t_fl)
+int	conv_hhid(va_list ap, t_flag_list t_fl)
 {
 	char	nb;
 	size_t	size;
@@ -81,7 +81,7 @@ int	conv_schar(va_list ap, t_flag_list t_fl)
 ** jo jx jX
 */
 
-int	conv_uintmaxtocta(va_list ap, t_flag_list t_fl)
+int	conv_jo(va_list ap, t_flag_list t_fl)
 {
 	uintmax_t	nb;
 	char		*conv;
@@ -114,7 +114,7 @@ int	conv_uintmaxtocta(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_uintmaxthexa(va_list ap, t_flag_list t_fl)
+int	conv_jx(va_list ap, t_flag_list t_fl)
 {
 	uintmax_t	nb;
 	char			*conv;
@@ -147,7 +147,7 @@ int	conv_uintmaxthexa(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_uintmaxthexaup(va_list ap, t_flag_list t_fl)
+int	conv_jxm(va_list ap, t_flag_list t_fl)
 {
 	uintmax_t	nb;
 	char		*conv;

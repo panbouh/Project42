@@ -1,5 +1,30 @@
 #include "ft_printf.h"
+#include "ft_wuni.h"
 
+int		nb_bit_print(const wchar_t *wstr, size_t n)
+{
+	size_t	i;
+	size_t	size;
+	int		ret;
+	int		stop;
+
+	i = 0;
+	ret = 0;
+	stop = 0;
+	size = ft_wstrlen(wstr);
+	if (!n)
+		return (size);
+	if (n > size)
+		n = size;
+	while(wstr[i])
+	{
+		if ((stop += ft_wcharlen(wstr[i])) > n)
+			return (ret);
+		ret += stop;
+		i++;
+	}
+	return (ret);
+}
 
 int		is_conv(char c)
 {

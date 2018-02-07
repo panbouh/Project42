@@ -25,7 +25,8 @@ typedef struct	s_mask_uni
 */
 void				ft_putwstr(const wchar_t *wstr);
 void				ft_putnofwstr(const wchar_t *wstr, size_t n);
-void				ft_putwchar(const wchar_t c);
+int					ft_putnbyte(const wchar_t *wstr, size_t n);
+int					ft_putwchar(const wchar_t c);
 
 /*
 **	Alloc

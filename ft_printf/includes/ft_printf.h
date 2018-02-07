@@ -71,76 +71,77 @@ int			conv_mod_z(va_list ap, t_flag_list t_fl, const char *form, size_t *x);
 /*
 ** conv_uisc_z_ui.c
 */
-int			conv_unsigned(va_list ap, t_flag_list t_fl);
-int			conv_int(va_list ap, t_flag_list t_fl);
-int			conv_str(va_list ap, t_flag_list t_fl);
-int			conv_char(va_list ap, t_flag_list t_fl);
-int			conv_sizet(va_list ap, t_flag_list t_fl);
+int			conv_u(va_list ap, t_flag_list t_fl);
+int			conv_id(va_list ap, t_flag_list t_fl);
+int			conv_s(va_list ap, t_flag_list t_fl);
+int			conv_c(va_list ap, t_flag_list t_fl);
+int			conv_zu(va_list ap, t_flag_list t_fl);
 
 
 /*
-** conv_xob.c
+** conv_xob_z_id.c
 */
 
-int			conv_hexa(va_list ap, t_flag_list t_fl);
-int			conv_hexaup(va_list ap, t_flag_list t_fl);
-int			conv_octa(va_list ap, t_flag_list t_fl);
-int			conv_bina(va_list ap, t_flag_list t_fl);
+int			conv_o(va_list ap, t_flag_list t_fl);
+int			conv_x(va_list ap, t_flag_list t_fl);
+int			conv_xm(va_list ap, t_flag_list t_fl);
+int			conv_b(va_list ap, t_flag_list t_fl);
+int			conv_zid(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_l_scox.c 
 */
-int			conv_wchat(va_list ap, t_flag_list t_fl);
-int			conv_wintt(va_list ap, t_flag_list t_fl);
-int			conv_ulintocta(va_list ap, t_flag_list t_fl);
-int			conv_ulinthexa(va_list ap, t_flag_list t_fl);
-int			conv_ulinthexaup(va_list ap, t_flag_list t_fl);
+int			conv_ls(va_list ap, t_flag_list t_fl);
+int			conv_lc(va_list ap, t_flag_list t_fl);
+int			conv_lo(va_list ap, t_flag_list t_fl);
+int			conv_lx(va_list ap, t_flag_list t_fl);
+int			conv_lxm(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_l_ui_hox.c
 */
-int			conv_ulongint(va_list ap, t_flag_list t_fl);
-int			conv_long(va_list ap, t_flag_list t_fl);
-int			conv_ushortocta(va_list ap, t_flag_list t_fl);
-int			conv_ushorthexa(va_list ap, t_flag_list t_fl);
-int			conv_ushorthexaup(va_list ap, t_flag_list t_fl);
+int			conv_lu(va_list ap, t_flag_list t_fl);
+int			conv_lid(va_list ap, t_flag_list t_fl);
+int			conv_ho(va_list ap, t_flag_list t_fl);
+int			conv_hx(va_list ap, t_flag_list t_fl);
+int			conv_hxm(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_h_ui_ll_ox.c
 */
-int			conv_ushort(va_list ap, t_flag_list t_fl);
-int			conv_short(va_list ap, t_flag_list t_fl);
-int			conv_ullintocta(va_list ap, t_flag_list t_fl);
-int			conv_ullinthexa(va_list ap, t_flag_list t_fl);
-int			conv_ullinthexaup(va_list ap, t_flag_list t_fl);
+int			conv_hu(va_list ap, t_flag_list t_fl);
+int			conv_hid(va_list ap, t_flag_list t_fl);
+int			conv_llo(va_list ap, t_flag_list t_fl);
+int			conv_llx(va_list ap, t_flag_list t_fl);
+int			conv_llxm(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_ll_ui_hh_ox.c
 */
 
-int			conv_ullongint(va_list ap, t_flag_list t_fl);
-int			conv_llong(va_list ap, t_flag_list t_fl);
-int			conv_ucharocta(va_list ap, t_flag_list t_fl);
-int			conv_ucharhexa(va_list ap, t_flag_list t_fl);
-int			conv_ucharhexaup(va_list ap, t_flag_list t_fl);
+int			conv_llu(va_list ap, t_flag_list t_fl);
+int			conv_llid(va_list ap, t_flag_list t_fl);
+int			conv_hho(va_list ap, t_flag_list t_fl);
+int			conv_hhx(va_list ap, t_flag_list t_fl);
+int			conv_hhxm(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_hh_ui_j_ox.c
 */
-int			conv_schar(va_list ap, t_flag_list t_fl);
-int			conv_uchar(va_list ap, t_flag_list t_fl);
-int			conv_uintmaxtocta(va_list ap, t_flag_list t_fl);
-int			conv_uintmaxthexa(va_list ap, t_flag_list t_fl);
-int			conv_uintmaxthexaup(va_list ap, t_flag_list t_fl);
+int			conv_hhu(va_list ap, t_flag_list t_fl);
+int			conv_hhid(va_list ap, t_flag_list t_fl);
+int			conv_jo(va_list ap, t_flag_list t_fl);
+int			conv_jx(va_list ap, t_flag_list t_fl);
+int			conv_jxm(va_list ap, t_flag_list t_fl);
 
 /*
 ** conv_j_ui_z_ox.c
 */
-int			conv_uintmaxt(va_list ap, t_flag_list t_fl);
-int			conv_intmaxt(va_list ap, t_flag_list t_fl);
-int			conv_sizethexa(va_list ap, t_flag_list t_fl);
-int			conv_sizethexaup(va_list ap, t_flag_list t_fl);
-int			conv_sizetocta(va_list ap, t_flag_list t_fl);
+int			conv_ju(va_list ap, t_flag_list t_fl);
+int			conv_jid(va_list ap, t_flag_list t_fl);
+int			conv_zo(va_list ap, t_flag_list t_fl);
+int			conv_zx(va_list ap, t_flag_list t_fl);
+int			conv_zxm(va_list ap, t_flag_list t_fl);
 
 
 
@@ -178,6 +179,7 @@ int			found_flag(const char *form, va_list ap, size_t *i);
 void		calc_wp_num(t_flag_list *t_fl, long size, int is_sign);
 void		calc_wp_str(t_flag_list *t_fl, int size);
 void		calc_wp_num_base(t_flag_list *t_fl, long size, int sharp);
+// void		calc_wp_wstr(t_flag_list *t_fl, int size, int size_fc);
 
 /*
 ** init.c
@@ -188,6 +190,7 @@ t_flag_list	init_fl();
 ** utils.c
 */
 int			is_conv(char c);
+int			nb_bit_print(const wchar_t *wstr, size_t n);
 char		*get_mod(const char *str, size_t i);
 
 //testing

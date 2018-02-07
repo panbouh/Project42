@@ -16,7 +16,7 @@
 ** hu hi/d
 */
 
-int	conv_ushort(va_list ap, t_flag_list t_fl)
+int	conv_hu(va_list ap, t_flag_list t_fl)
 {
 	unsigned short	nb;
 	size_t			size;
@@ -42,7 +42,7 @@ int	conv_ushort(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_short(va_list ap, t_flag_list t_fl)
+int	conv_hid(va_list ap, t_flag_list t_fl)
 {
 	short		nb;
 	size_t		size;
@@ -82,7 +82,7 @@ int	conv_short(va_list ap, t_flag_list t_fl)
 ** llo llx llX
 */
 
-int	conv_ullintocta(va_list ap, t_flag_list t_fl)
+int	conv_llo(va_list ap, t_flag_list t_fl)
 {
 	unsigned long long	nb;
 	char			*conv;
@@ -115,7 +115,7 @@ int	conv_ullintocta(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_ullinthexa(va_list ap, t_flag_list t_fl)
+int	conv_llx(va_list ap, t_flag_list t_fl)
 {
 	unsigned long long	nb;
 	char				*conv;
@@ -148,7 +148,7 @@ int	conv_ullinthexa(va_list ap, t_flag_list t_fl)
 	return (t_fl.field);
 }
 
-int	conv_ullinthexaup(va_list ap, t_flag_list t_fl)
+int	conv_llxm(va_list ap, t_flag_list t_fl)
 {
 	unsigned long	nb;
 	char			*conv;

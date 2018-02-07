@@ -52,18 +52,24 @@ static unsigned int	get_byte(char *bin, size_t i)
 	return (n);
 }
 
-void	ft_putwchar(const wchar_t c)
+int	ft_putwchar(const wchar_t c)
 {
-	char				*conv;
-	size_t				i;
-	size_t				size;
-	unsigned int		byte;
+	char			*conv;
+	size_t			i;
+	size_t			size;
+	int				ret;
+	unsigned int	byte;
 
 	conv = ft_conv_nbase(c, 2);
-	size = ft_wcharlen(c);
+	if ((size = ft_wcharlen(c)) == 1)
+		{
+			ft_putchar(c);
+			ft_strdel(&conv);
+			return (size);
+		}
 	conv = add_mask(conv, size - 1);
 	i = 0;
-	size++;
+	ret = size;
 	while (size != 0)
 	{
 		byte = get_byte(conv, i);
@@ -72,6 +78,7 @@ void	ft_putwchar(const wchar_t c)
 		size--;
 	}
 	ft_strdel(&conv);
+	return (ret);
 }
 
 
