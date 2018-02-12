@@ -50,13 +50,14 @@ PRINTF_FILE	=	ft_printf.c				\
 				err.c					\
 				utils.c					\
 				conv_uisc_z_ui.c		\
-				conv_xob_z_id.c				\
+				conv_xop_z_id.c			\
 				conv_l_scox.c			\
 				conv_l_ui_h_ox.c		\
 				conv_h_ui_ll_ox.c		\
 				conv_ll_ui_hh_ox.c		\
 				conv_hh_ui_j_ox.c		\
 				conv_j_ui_z_ox.c		\
+				conv_bonus_b.c			\
 				conv_mod_jz.c			\
 				conv_mod_lhllhh.c
 

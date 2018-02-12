@@ -102,6 +102,7 @@ void				ft_putumaxnbr(uintmax_t nb);
 void				ft_putumaxnbr_fd(uintmax_t nb, int fd);
 void				ft_putimaxnbr(intmax_t nb);
 void				ft_putimaxnbr_fd(intmax_t nb, int fd);
+void				ft_putnchar_fd(char c, size_t n, int fd);
 
 
 /*

@@ -16,7 +16,7 @@ void	test_mine(const char *bouh)
 {
 	int		retm;
 	ft_putstr("Mine : <");
-	retm = ft_printf(bouh, &a);
+	retm = ft_printf(bouh, 42);
 	printf(">\n");
 	printf("Mine ret = %i\n", retm);
 }
@@ -25,7 +25,7 @@ void	test_real(const char *bouh)
 {
 	int		retr;
 	ft_putstr("Real : <");
-	retr =    printf(bouh, &a);
+	retr =    printf(bouh, 42);
 	printf(">\n");
 	printf("Real ret = %i\n", retr);
 }
@@ -35,11 +35,11 @@ void	test_all(const char *bouh)
 	int		retm;
 	int		retr;
 	ft_putstr("Mine : <");
-	retm = ft_printf(bouh, &a);
+	retm = ft_printf(bouh, 42);
 	printf(">\n");
 	//-------------------------------//
 		ft_putstr("Real : <");
-	retr =    printf(bouh, &a);
+	retr =    printf(bouh, 42);
 	printf(">\n");
 	//-------------------------------//
 	printf("Real ret = %i\n", retr);

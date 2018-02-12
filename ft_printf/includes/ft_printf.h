@@ -57,16 +57,22 @@ typedef	struct	s_flag
 /*
 ** conv_mod_lhllhh
 */
-int			conv_mod_l(va_list ap, t_flag_list t_fl, const char *form, size_t *x);
-int			conv_mod_ll(va_list ap, t_flag_list t_fl, const char *form, size_t *x);
-int			conv_mod_h(va_list ap, t_flag_list t_fl, const char *form, size_t *x);
-int			conv_mod_hh(va_list ap, t_flag_list t_fl, const char *form, size_t *x);
+int			conv_mod_l(va_list ap, t_flag_list t_fl,
+						const char *form, size_t *x);
+int			conv_mod_ll(va_list ap, t_flag_list t_fl,
+						const char *form, size_t *x);
+int			conv_mod_h(va_list ap, t_flag_list t_fl, 
+						const char *form, size_t *x);
+int			conv_mod_hh(va_list ap, t_flag_list t_fl,
+						const char *form, size_t *x);
 
 /*
 ** conv_mod_jz
 */
-int			conv_mod_j(va_list ap, t_flag_list t_fl, const char *form, size_t *x);
-int			conv_mod_z(va_list ap, t_flag_list t_fl, const char *form, size_t *x);
+int			conv_mod_j(va_list ap, t_flag_list t_fl,
+						const char *form, size_t *x);
+int			conv_mod_z(va_list ap, t_flag_list t_fl,
+						const char *form, size_t *x);
 
 /*
 ** conv_uisc_z_ui.c
@@ -79,13 +85,13 @@ int			conv_zu(va_list ap, t_flag_list t_fl);
 
 
 /*
-** conv_xob_z_id.c
+** conv_xop_z_id.c
 */
 
 int			conv_o(va_list ap, t_flag_list t_fl);
 int			conv_x(va_list ap, t_flag_list t_fl);
 int			conv_xm(va_list ap, t_flag_list t_fl);
-int			conv_b(va_list ap, t_flag_list t_fl);
+int			conv_p(va_list ap, t_flag_list t_fl);
 int			conv_zid(va_list ap, t_flag_list t_fl);
 
 /*
@@ -143,6 +149,11 @@ int			conv_zo(va_list ap, t_flag_list t_fl);
 int			conv_zx(va_list ap, t_flag_list t_fl);
 int			conv_zxm(va_list ap, t_flag_list t_fl);
 
+/*
+** conv_bonus_b.c
+*/
+
+int			conv_b(va_list ap, t_flag_list t_fl);
 
 
 /*
@@ -179,7 +190,6 @@ int			found_flag(const char *form, va_list ap, size_t *i);
 void		calc_wp_num(t_flag_list *t_fl, long size, int is_sign);
 void		calc_wp_str(t_flag_list *t_fl, int size);
 void		calc_wp_num_base(t_flag_list *t_fl, long size, int sharp);
-// void		calc_wp_wstr(t_flag_list *t_fl, int size, int size_fc);
 
 /*
 ** init.c

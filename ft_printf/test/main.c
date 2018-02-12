@@ -39,8 +39,10 @@ int	main(int ac, char **av)
 //%hhi\n%hhu\n%hho\n%hhx\n%hhX\n
 setlocale(LC_ALL, "");
 
+	int fd = open("test", O_RDWR);
+	
 	int a = 0;
-	const char	*bouh = "%p";
+	const char	*bouh = "%i";
 
 	if (av[1])
 		a = atoi(av[1]);

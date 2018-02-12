@@ -80,11 +80,13 @@ void		calc_wp_num_base(t_flag_list *t_fl, long size, int sharp)
 		t_fl->c_width = '0';
 	//--------------------------------------
 	// print_tfl(*t_fl);
+	// printf("size = %li\n", size);
+	// printf("size = %li\n", size + t_fl->prec);
 	//---------define prec----------
 	if ((t_fl->prec -= size) < 0)
 		t_fl->prec = 0;
 	//---------define width----------
-	if ((t_fl->width -= (t_fl->prec + size)) < 0)
+	if ((t_fl->width -= (t_fl->prec + size + sharp)) < 0)
 		t_fl->width = 0;
 	//---------define field----------
 	t_fl->field = t_fl->width + t_fl->prec + size + sharp;

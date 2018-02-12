@@ -45,7 +45,7 @@ t_conv	g_convtab[] =
 	{'b', &conv_b},
 	{'o', &conv_o},
 	{'O', &conv_lo},
-	{'p', &conv_x},
+	{'p', &conv_p},
 	{0, NULL},
 };
 
