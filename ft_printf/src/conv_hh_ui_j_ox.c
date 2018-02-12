@@ -111,6 +111,7 @@ int	conv_jo(va_list ap, t_flag_list t_fl)
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
+	ft_strdel(&conv);
 	return (t_fl.field);
 }
 
@@ -144,6 +145,7 @@ int	conv_jx(va_list ap, t_flag_list t_fl)
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
+	ft_strdel(&conv);
 	return (t_fl.field);
 }
 
@@ -177,5 +179,6 @@ int	conv_jxm(va_list ap, t_flag_list t_fl)
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
+	ft_strdel(&conv);
 	return (t_fl.field);
 }

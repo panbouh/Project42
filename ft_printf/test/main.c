@@ -42,7 +42,8 @@ setlocale(LC_ALL, "");
 	int fd = open("test", O_RDWR);
 	
 	int a = 0;
-	const char	*bouh = "%i";
+	const char	*bouh = "% l";
+	// const char	*bouh = "%#-08x";
 
 	if (av[1])
 		a = atoi(av[1]);

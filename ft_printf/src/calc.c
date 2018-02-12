@@ -30,7 +30,7 @@ void		calc_wp_num(t_flag_list *t_fl, long size, int is_sign)
 	}
 	//--------------------------------------
 	//---------------define c_width---------
-	if (t_fl->zero && !t_fl->min && !t_fl->prec)
+	if (t_fl->zero && !t_fl->min && !t_fl->prec && t_fl->put_val)
 		t_fl->c_width = '0';
 	//--------------------------------------
 	// print_tfl(*t_fl);
@@ -76,7 +76,7 @@ void		calc_wp_num_base(t_flag_list *t_fl, long size, int sharp)
 {
 	//--------------------------------------
 	//---------------define c_width---------
-	if (t_fl->zero && !t_fl->min && !t_fl->prec)
+	if (t_fl->zero && !t_fl->min && !t_fl->prec && t_fl->put_val)
 		t_fl->c_width = '0';
 	//--------------------------------------
 	// print_tfl(*t_fl);
@@ -91,4 +91,11 @@ void		calc_wp_num_base(t_flag_list *t_fl, long size, int sharp)
 	//---------define field----------
 	t_fl->field = t_fl->width + t_fl->prec + size + sharp;
 	// print_tfl(*t_fl);
+		//gestion du flag 0 specifique
+	if (t_fl->zero && !t_fl->min)
+	{
+		// printf("coucou je suis un fd\n");
+		t_fl->prec += t_fl->width;
+		t_fl->width = 0;
+	}
 }

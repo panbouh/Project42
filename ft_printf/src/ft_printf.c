@@ -85,16 +85,19 @@ void	check_for_pw(const char *form, size_t *i, t_flag_list *t_fl)
 	if (form[*i] == '.')
 	{
 		t_fl->prec = ft_atoi(&form[*i + 1]);
-		// printf("i = %zu\n", *i);
+		// printf("i = %zu\n", *i);sleep(2);
+		// printf("size = %i\n", t_fl->prec);
+
 		if (t_fl->prec == 0)
 		{
 			t_fl->put_val = 0;
-			size = 1;
+			if (form[*i  + 1] == '0')
+				size++;
 		}
 		else
 			size += ft_count_digit(t_fl->prec);
 		*i += size;
-		// printf("i = %zu\n", *i);sleep(2);
+		// printf("form[i] = %c\n", form[*i]);
 	}
 	if (ft_isdigit(form[*i]) && form[*i] != '0')
 	{
@@ -118,6 +121,7 @@ int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 		y++;
 	}
 	y = 0;
+	// printf("forn[i] = %c\n", form[*i]);
 	if (!(mod = get_mod(form, *i)))
 		return (FAIL);
 	// printf("mod = <%s>\n", mod);
@@ -139,9 +143,9 @@ int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 
 int		found_flag(const char *form, va_list ap, size_t *i)
 {
-	char	status;
-	t_flag_list t_fl;
-	int		ret;
+	char		status;
+	t_flag_list	t_fl;
+	int			ret;
 
 	status = GO;
 	t_fl = init_fl();
@@ -183,8 +187,8 @@ int		ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if ((ret = found_flag(format, ap, &i)) == FAIL)
-				return (ret_end);		//A revoir le retour d'erreur
+			if ((ret = found_flag(format, ap, &i)) == FAIL || !format[i])
+				return (ret_end + count);		//A revoir le retour d'erreur
 			ret_end += ret;
 			i++;
 		}

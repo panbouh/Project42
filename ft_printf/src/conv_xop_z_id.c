@@ -42,6 +42,7 @@ int		conv_o(va_list ap, t_flag_list t_fl)
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
+	ft_strdel(&conv);
 	return (t_fl.field);
 }
 
@@ -68,13 +69,15 @@ int		conv_x(va_list ap, t_flag_list t_fl)
 	if (t_fl.sharp && (nb || t_fl.put_val))
 		ft_putstr("0x");
 	//affichage de la precision
-	ft_putnchar('0', t_fl.prec);
+	if(t_fl.put_val)
+		ft_putnchar('0', t_fl.prec);
 	//affichage de la valuer
 	if (t_fl.put_val || nb)
 		ft_putstr(conv);
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
+	ft_strdel(&conv);
 	return (t_fl.field);
 }
 
@@ -108,6 +111,7 @@ int		conv_xm(va_list ap, t_flag_list t_fl)
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
+	ft_strdel(&conv);
 	return (t_fl.field);
 }
 
@@ -126,12 +130,6 @@ int	conv_p(va_list ap, t_flag_list t_fl)
 		size = ft_strlen(conv);
 	//calcul : width, prec, field | Define : c_sign, c_width
 	calc_wp_num_base(&t_fl, size /*+ 2*/, 2);
-	//gestion du flag 0 specifique
-	if (t_fl.zero)
-	{
-		t_fl.prec += t_fl.width;
-		t_fl.width = 0;
-	}
 	//affichage largeur de champ a gauche (sans -)
 	if (!t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
@@ -144,6 +142,7 @@ int	conv_p(va_list ap, t_flag_list t_fl)
 	//affichage largeur de champ a droite (avec -)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
+	ft_strdel(&conv);
 	return (t_fl.field);
 }
 

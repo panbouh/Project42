@@ -41,13 +41,12 @@ int	conv_mod_l(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 
 	// printf("avant : c = %c\n", form[*x]);
 	(*x)++;
-	while (!is_conv(form[*x]))
+	while (form[*x] && !is_conv(form[*x]))
 	{
 		check_for_pw(form, x, &t_fl);
 		*x += check_for_flag(form[*x], &t_fl);
 	}
-	// printf("apres : c = %c\n", form[*x]);
-	while (g_l_keytab[i].key)
+	while (form[*x] && g_l_keytab[i].key)
 	{
 		if (form[*x] == g_l_keytab[i].key)
 		{
@@ -83,7 +82,6 @@ int	conv_mod_ll(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 
 	i = 0;
 	ret = 0;
-
 	*x += 2;
 	while (!is_conv(form[*x]))
 	{

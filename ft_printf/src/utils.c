@@ -29,7 +29,7 @@ int		nb_bit_print(const wchar_t *wstr, size_t n)
 int		is_conv(char c)
 {
 	int		i;
-	char	exeptab[NB_FLAG + 1] = ALL_FLAG;
+	char	exeptab[NB_FLAG + 1] = ALL_FLAG; //lol
 
 	i = 0;
 	if (ft_isalpha(c))
@@ -39,6 +39,13 @@ int		is_conv(char c)
 		if (ft_isdigit(c) || c == exeptab[i++])
 			return (0);
 	return (1);
+}
+
+static int		is_mod(char c)
+{
+	if (c == 'l' || c == 'h' || c == 'z' || c == 'j')
+		return (1);
+	return (0);
 }
 
 char	*get_mod(const char *str, size_t i)
@@ -53,8 +60,7 @@ char	*get_mod(const char *str, size_t i)
 	// printf("tmp = <%c>\n", str[i]);
 	// printf("i = <%lu>\n", i);
 
-	while (!is_conv(str[i]) || str[i] == 'l' || str[i] == 'h' ||
-		str[i] == 'z' || str[i] == 'j')
+	while (str[i] && (is_mod(str[i])))
 		(i)++;
 	// printf("i = <%lu>\n", i);
 	// printf("tmp = <%c>\n", str[i - 1]);
