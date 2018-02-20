@@ -19,6 +19,7 @@ SRC_MORPH	=	$(addprefix $(SRC_PATH),morphing/)
 SRC_PRINT	=	$(addprefix $(SRC_PATH),print/)
 SRC_STR		=	$(addprefix $(SRC_PATH),str/)
 SRC_FILE	=	$(addprefix $(SRC_PATH),file/)
+SRC_PRINTF	=	$(addprefix $(SRC_PATH),printf/)
 SRC_WSTR	=	$(addprefix $(SRC_PATH),wstr/)
 
 #PATH MIXED
@@ -30,6 +31,7 @@ SRC		=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
 			$(addprefix $(SRC_PRINT),$(PRINT_FILE))		\
 			$(addprefix $(SRC_STR),$(STR_FILE))			\
 			$(addprefix $(SRC_FILE),$(FILE_FILE))		\
+			$(addprefix $(SRC_PRINTF),$(PRINTF_FILE))	\
 			$(addprefix $(SRC_WSTR),$(WSTR_FILE))
 
 
@@ -133,6 +135,23 @@ WSTR_FILE	=	ft_wstrlen.c							\
 
 FILE_FILE	=	get_next_line.c
 
+PRINTF_FILE	=	ft_printf.c				\
+				init.c					\
+				flags.c					\
+				calc.c					\
+				err.c					\
+				utils.c					\
+				conv_uisc_z_ui.c		\
+				conv_xop_z_id.c			\
+				conv_l_scox.c			\
+				conv_l_ui_h_ox.c		\
+				conv_h_ui_ll_ox.c		\
+				conv_ll_ui_hh_ox.c		\
+				conv_hh_ui_j_ox.c		\
+				conv_j_ui_z_ox.c		\
+				conv_bonus_b.c			\
+				conv_mod_jz.c			\
+				conv_mod_lhllhh.c
 
 ##############
 ## INC FILE ##
