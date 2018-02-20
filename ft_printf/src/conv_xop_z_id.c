@@ -48,6 +48,7 @@ int		conv_o(va_list ap, t_flag_list t_fl)
 
 int		conv_x(va_list ap, t_flag_list t_fl)
 {
+	// ft_putchar('(');
 	unsigned int	nb;
 	char			*conv;
 	size_t			size;
@@ -78,6 +79,7 @@ int		conv_x(va_list ap, t_flag_list t_fl)
 	if (t_fl.min)
 		ft_putnchar(t_fl.c_width, t_fl.width);
 	ft_strdel(&conv);
+	// ft_putchar(')');
 	return (t_fl.field);
 }
 

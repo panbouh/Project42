@@ -36,6 +36,14 @@ typedef	struct	s_flag_list
 	int			field;
 }				t_flag_list;
 
+typedef	struct	s_index
+{
+	size_t	i;
+	int		ret_end;
+	int		count;
+	int		ret;
+}				t_index;
+
 typedef	struct	s_conv
 {
 	char		key;
@@ -194,6 +202,7 @@ void		calc_wp_num_base(t_flag_list *t_fl, long size, int sharp);
 /*
 ** init.c
 */
+t_index		init_id()
 t_flag_list	init_fl();
 
 /*

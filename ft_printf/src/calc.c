@@ -92,7 +92,7 @@ void		calc_wp_num_base(t_flag_list *t_fl, long size, int sharp)
 	t_fl->field = t_fl->width + t_fl->prec + size + sharp;
 	// print_tfl(*t_fl);
 		//gestion du flag 0 specifique
-	if (t_fl->zero && !t_fl->min)
+	if (t_fl->zero && !t_fl->min && t_fl->put_val)
 	{
 		// printf("coucou je suis un fd\n");
 		t_fl->prec += t_fl->width;

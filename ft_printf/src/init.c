@@ -30,3 +30,14 @@ t_flag_list	init_fl()
 	new.c_sign = 0;
 	return (new);
 }
+
+t_index		init_id()
+{
+	t_index	mew;
+
+	new.i = 0;
+	new.ret = 0;
+	new.ret_end = 0;
+	new.count = 0;
+	return (new);
+}

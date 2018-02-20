@@ -137,6 +137,7 @@ int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 		}
 		y++;
 	}
+	*i += ft_strlen(mod);
 	ft_strdel(&mod);
 	return (FAIL);
 }
@@ -173,15 +174,9 @@ int		found_flag(const char *form, va_list ap, size_t *i)
 int		ft_printf(const char *format, ...)
 {
 	va_list	ap;
-	size_t	i;
-	int		ret_end;
-	int		ret;
-	int		count;
+	t_index	id;
 
-	i = 0;
-	ret = 0;
-	ret_end = 0;
-	count = 0;
+	id = init_id();
 	va_start(ap, format);
 	while (format[i])
 	{

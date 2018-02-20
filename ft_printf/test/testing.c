@@ -16,7 +16,7 @@ void	test_mine(const char *bouh)
 {
 	int		retm;
 	ft_putstr("Mine : <");
-	retm = ft_printf("%05.o, %.0o, %05.x, %.0x", 0, 0, 0, 0); //"%.d, %.0d", 0, 0 // "%01.i\n"
+	retm = ft_printf("%zhd", 4294967296); //"%.d, %.0d", 0, 0 // "%01.i\n"
 	printf(">\n");
 	printf("Mine ret = %i\n", retm);
 }
@@ -25,7 +25,7 @@ void	test_real(const char *bouh)
 {
 	int		retr;
 	ft_putstr("Real : <");
-	retr =    printf("%05.o, %.0o, %05.x, %.0x", 0, 0, 0, 0); //"%.d, %.0d", 0, 0 // "%01.i\n"
+	retr =    printf("%zhd", 4294967296); //"%.d, %.0d", 0, 0 // "%01.i\n"
 	printf(">\n");
 	printf("Real ret = %i\n", retr);
 }
@@ -35,11 +35,11 @@ void	test_all(const char *bouh)
 	int		retm;
 	int		retr;
 	ft_putstr("Mine : <");
-	retm = ft_printf("%05.o, %.0o, %05.x, %.0x", 0, 0, 0, 0); //"%.d, %.0d", 0, 0 // "%01.i\n"
+	retm = ft_printf("%zhd", 4294967296); //"%.d, %.0d", 0, 0 // "%01.i\n"
 	printf(">\n");
 	//-------------------------------//
 		ft_putstr("Real : <");
-	retr =    printf("%05.o, %.0o, %05.x, %.0x", 0, 0, 0, 0); //"%.d, %.0d", 0, 0 // "%01.i\n"
+	retr =    printf("%zhd", 4294967296); //"%.d, %.0d", 0, 0 // "%01.i\n"
 	printf(">\n");
 	//-------------------------------//
 	printf("Real ret = %i\n", retr);

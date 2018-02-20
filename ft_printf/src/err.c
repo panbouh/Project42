@@ -20,7 +20,8 @@ int	ret_err()
 
 int	conv_nothing(t_flag_list t_fl, char c)
 {
-	//calcul width et field
+	// printf("c = %c\n", c);
+		//calcul width et field
 	if (!c)
 		return (0);
 	if ((t_fl.width -= 1) < 0)
