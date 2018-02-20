@@ -109,6 +109,7 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_puttab.c								\
 				ft_putnchar.c							\
 				ft_putnofstr.c							\
+				ft_putnofstr_fd.c						\
 				ft_putnofwstr.c							\
 				ft_putwchar.c							\
 				ft_putwstr.c
@@ -194,7 +195,7 @@ RM		=	rm -rf
 # ## Compilatin Rules ##
 # ######################
 
-all		: $(NAME) test
+all		: $(NAME)
 
 color	: 
 	@echo "\033[0;33mTest Colorlolol\033[0m"
@@ -208,9 +209,6 @@ $(NAME)		: $(OBJ) $(INC) $(INC_PRINTF)
 			@ar rc $(NAME) $(OBJ)
 			@ranlib $(NAME)
 			@echo "\033[0;32mLibray < $(NAME) > Correctly Build\033[0m"
-
-test		: $(SRC_TEST) $(NAME)
-			gcc -o $(NAME_TEST) $(SRC_TEST) $(CFLAGS) $(CCLIB)
 
 %.o :%.c
 		gcc $(CFLAGS) -c $< -o $@

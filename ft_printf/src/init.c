@@ -33,7 +33,7 @@ t_flag_list	init_fl()
 
 t_index		init_id()
 {
-	t_index	mew;
+	t_index	new;
 
 	new.i = 0;
 	new.ret = 0;

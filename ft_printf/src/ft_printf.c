@@ -19,16 +19,6 @@
 		[conversion]	sSpdDioOuUxXcC (hh h ll l j z)
 */
 
-t_flag	g_flagtab[] =
-{
-	{'#', &flag_sharp},
-	{'0', &flag_zero},
-	{'-', &flag_min},
-	{'+', &flag_plus},
-	{' ', &flag_space},
-	{0, NULL},
-};
-
 t_conv	g_convtab[] =
 {
 	{'i', &conv_id},
@@ -49,15 +39,14 @@ t_conv	g_convtab[] =
 	{0, NULL},
 };
 
-t_mod	g_modtab[] =
+t_flag	g_flagtab[] =
 {
-	{"l", &conv_mod_l},
-	{"ll", &conv_mod_ll},
-	{"h", &conv_mod_h},
-	{"hh", &conv_mod_hh},
-	{"j", &conv_mod_j},
-	{"z", &conv_mod_z},
-	{NULL, NULL},
+	{'#', &flag_sharp},
+	{'0', &flag_zero},
+	{'-', &flag_min},
+	{'+', &flag_plus},
+	{' ', &flag_space},
+	{0, NULL},
 };
 
 int		check_for_flag(char c, t_flag_list *t_fl)
@@ -108,7 +97,6 @@ void	check_for_pw(const char *form, size_t *i, t_flag_list *t_fl)
 
 int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 {
-	char	*mod;
 	size_t	y;
 	int		ret;
 
@@ -120,26 +108,8 @@ int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 			return (g_convtab[y].f(ap, *t_fl));
 		y++;
 	}
-	y = 0;
 	// printf("forn[i] = %c\n", form[*i]);
-	if (!(mod = get_mod(form, *i)))
-		return (FAIL);
-	// printf("mod = <%s>\n", mod);
-	while (g_modtab[y].key)
-	{
-		// printf("g_modtab[y].key = %s\n", g_modtab[y].key);
-		if (!(ft_strcmp(g_modtab[y].key, mod)))
-		{
-			ret = g_modtab[y].f(ap, *t_fl, form, i);
-			// printf("apres : form[i] = %c, i = %zu\n", form[*i], *i);
-			ft_strdel(&mod);
-			return (ret);
-		}
-		y++;
-	}
-	*i += ft_strlen(mod);
-	ft_strdel(&mod);
-	return (FAIL);
+	return (ntmnorm(form, ap, i, t_fl));
 }
 
 int		found_flag(const char *form, va_list ap, size_t *i)
@@ -178,21 +148,21 @@ int		ft_printf(const char *format, ...)
 
 	id = init_id();
 	va_start(ap, format);
-	while (format[i])
+	while (format[id.i])
 	{
-		if (format[i] == '%')
+		if (format[id.i] == '%')
 		{
-			if ((ret = found_flag(format, ap, &i)) == FAIL || !format[i])
-				return (ret_end + count);		//A revoir le retour d'erreur
-			ret_end += ret;
-			i++;
+			if ((id.ret = found_flag(format, ap, &id.i)) == FAIL || !format[id.i])
+				return (id.ret_end + id.count);		//A revoir le retour d'erreur
+			id.ret_end += id.ret;
+			id.i++;
 		}
 		else
 		{
-			ft_putchar(format[i++]);
-			count++;
+			ft_putchar(format[id.i++]);
+			id.count++;
 		}
 	}
 	va_end(ap);
-	return (ret_end + count);
+	return (id.ret_end + id.count);
 }

@@ -1,6 +1,44 @@
 #include "ft_printf.h"
 #include "ft_wuni.h"
 
+t_mod	g_modtab[] =
+{
+	{"l", &conv_mod_l},
+	{"ll", &conv_mod_ll},
+	{"h", &conv_mod_h},
+	{"hh", &conv_mod_hh},
+	{"j", &conv_mod_j},
+	{"z", &conv_mod_z},
+	{NULL, NULL},
+};
+
+int	ntmnorm(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
+{
+	char	*mod;
+	size_t	y;
+	int		ret;
+
+	y = 0;
+	if (!(mod = get_mod(form, *i)))
+		return (FAIL);
+	// printf("mod = <%s>\n", mod);
+	while (g_modtab[y].key)
+	{
+		// printf("g_modtab[y].key = %s\n", g_modtab[y].key);
+		if (!(ft_strcmp(g_modtab[y].key, mod)))
+		{
+			ret = g_modtab[y].f(ap, *t_fl, form, i);
+			// printf("apres : form[i] = %c, i = %zu\n", form[*i], *i);
+			ft_strdel(&mod);
+			return (ret);
+		}
+		y++;
+	}
+	*i += ft_strlen(mod);
+	ft_strdel(&mod);
+	return (FAIL);
+}
+
 int		nb_bit_print(const wchar_t *wstr, size_t n)
 {
 	size_t	i;
@@ -29,17 +67,31 @@ int		nb_bit_print(const wchar_t *wstr, size_t n)
 int		is_conv(char c)
 {
 	int		i;
-	char	exeptab[NB_FLAG + 1] = ALL_FLAG; //lol
 
 	i = 0;
 	if (ft_isalpha(c))
 		return (1);
 
-	while (exeptab[i])
-		if (ft_isdigit(c) || c == exeptab[i++])
+	while (ALL_FLAG[i])
+		if (ft_isdigit(c) || c == ALL_FLAG[i++])
 			return (0);
 	return (1);
 }
+
+// int		is_conv(char c)
+// {
+// 	int		i;
+// 	char	exeptab[NB_FLAG + 1] = ALL_FLAG; //lol
+
+// 	i = 0;
+// 	if (ft_isalpha(c))
+// 		return (1);
+
+// 	while (exeptab[i])
+// 		if (ft_isdigit(c) || c == exeptab[i++])
+// 			return (0);
+// 	return (1);
+// }
 
 static int		is_mod(char c)
 {
