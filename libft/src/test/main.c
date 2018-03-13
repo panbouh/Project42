@@ -6,20 +6,13 @@
 int	main(int ac, char **av)
 {
 
-	setlocale(LC_ALL, "");
-//----------------------------------------------
-	// wchar_t *s = ft_wstrdup(L"❤✖ĄѺ");
-	// char	c = 0;
-	// wchar_t	wc = 0;
-	// printf("%05c", 'a');
-	// ft_putstr("<\t");
+	int		*tab;
+	int		**bouh;
+	size_t	size;
+	char	*str = "1 2 3\n4 5 3\n7 8 9\0";
 
-	// ft_putwchar(wc);
+	bouh = ft_tabsplit(str);
 
-	// ft_putstr("\t>\n");
-
-	// printf("s[0] = %C\n", s[0]);
-
-	ft_wstrdel(&s);
+	ft_putdtab(bouh, 3, 3);
 	return (1);
 }

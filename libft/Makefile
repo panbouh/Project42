@@ -45,7 +45,8 @@ CHECK_FILE	=	ft_isalpha.c							\
 				ft_isdigit.c							\
 				ft_isalnum.c							\
 				ft_isascii.c							\
-				ft_isprint.c
+				ft_isprint.c							\
+				ft_isspace.c
 
 LIST_FILE	=	ft_lstnew.c								\
 				ft_lstdelone.c							\
@@ -87,10 +88,13 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_putendl_fd.c							\
 				ft_putnbr_fd.c							\
 				ft_puttab.c								\
+				ft_putdtab.c							\
+				ft_putstab.c							\
 				ft_putnchar.c							\
 				ft_putnofstr.c							\
 				ft_putwchar.c							\
 				ft_putwstr.c							\
+				ft_error.c								\
 				ft_putnofwstr.c
 
 
@@ -125,6 +129,9 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strtrim.c							\
 				ft_strsplit.c							\
 				ft_strtrim_full.c						\
+				ft_strlen_c.c							\
+				ft_tablen.c								\
+				ft_strtotab.c							\
 				ft_strmiam.c
 
 WSTR_FILE	=	ft_wstrlen.c							\

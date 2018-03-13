@@ -1,22 +1,17 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_puttab.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/27 19:07:37 by ccatoire          #+#    #+#             */
-/*   Updated: 2017/04/27 19:07:38 by ccatoire         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "libft.h"
 
-void		ft_puttab(const char **tab)
+void	ft_puttab(const int *tab, size_t size)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
-	while (tab[i])
-		ft_putendl(tab[i++]);
+	ft_putstr("{");
+	while (i < size)
+	{
+		ft_putnbr(tab[i]);
+		if (i < (size - 1))
+			ft_putstr(", ");
+		i++;
+	}
+	ft_putstr("}");
 }

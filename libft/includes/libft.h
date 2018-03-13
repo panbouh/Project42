@@ -39,6 +39,7 @@
 # define OK		0
 # define TILL	96
 # define ALL	69
+# define SKIP	9
 # define STOP	1
 # define GO		3
 
@@ -73,6 +74,9 @@ char				*ft_strsub_to(const char *s, unsigned int start, char stop);
 char				*ft_strtrim_full(const char *);
 char				*ft_addbit(char *bin);
 
+int					*ft_strtotab(const char *str, size_t *size);
+int					**ft_tabsplit(const char *str);
+
 size_t				ft_skip_char(const char *s, size_t i, char c, int flags);
 size_t				ft_count_word(const char *str, char space);
 size_t				ft_count_digit(int n);
@@ -83,6 +87,9 @@ size_t				ft_count_umaxdigit(unsigned long n);
 size_t				ft_count_imaxdigit(intmax_t n);
 uintmax_t			ft_abs_imax(intmax_t n);
 size_t				ft_strlen_till(const char *s, char stop);
+size_t				ft_strlen_c(const char *str, char c);
+size_t				ft_tablen(const char **tab);
+size_t				ft_strlen_till_skipspace(const char *str, char stop);
 
 long				ft_power(long nb, long power);
 unsigned long		ft_abs_l(long n);
@@ -91,7 +98,9 @@ unsigned int		ft_abs(int n);
 uintmax_t			ft_abs_imax(intmax_t n);
 unsigned int		ft_conv_fbase(char *nb, int base);
 
-void				ft_puttab(const char **tab);
+void				ft_putstab(const char **tab);
+void				ft_puttab(const int *tab, size_t size);
+void				ft_putdtab(const int **tab, size_t x, size_t y);
 void				ft_putnchar(char c, size_t n);
 void				ft_putnofstr(const char *str, size_t n);
 void				ft_putlnbr_fd(long long nb, int fd);
@@ -104,6 +113,8 @@ void				ft_putimaxnbr(intmax_t nb);
 void				ft_putimaxnbr_fd(intmax_t nb, int fd);
 void				ft_putnchar_fd(char c, size_t n, int fd);
 
+int					ft_isspace(char c);
+int					ft_error(char *message, int error);
 
 /*
 ** ---libsujet---

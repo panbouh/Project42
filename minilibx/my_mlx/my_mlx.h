@@ -10,46 +10,63 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef MY_MLX_H
+# define MY_MLX_H
 
-#include <stdio.h> //a delete
-#include "my_mlx.h"
+/*
+** Key input
+*/
+# define	KEY_ESC		53
+# define	KEY_UP		126
+# define	KEY_LEFT	123
+# define	KEY_RIGHT	124
+# define	KEY_DOWN	125
+# define	KEY_SPACE	49
+# define	KEY_TAB		48
 
-# define	USE		"Use :\n./fdf [MAP.fdf]"
-# define	BAD_FD	"File not found."
-# define	WIN_X	700
-# define	WIN_Y	400
-# define	PAD		20
-
-typedef struct		s_map
+typedef	struct	s_pos
 {
-	const char	**map;
-	size_t		size;
-	size_t		y;
-}					t_map;
+	int			x;
+	int			y;
+}				t_pos;
+
+typedef struct	s_line
+{
+	int		addx;
+	int		addy;
+	int		dx;
+	int		dy;
+	t_pos	p1;
+	t_pos	p2;
+
+}				t_line;
+
+typedef	struct	s_env
+{
+	void		*mlx_p;
+	void		*win_p;
+	void		*img_p;
+	char		*img_str;
+	int			bpp;
+	int			s_l;
+	int			endian;
+}				t_mlx_env;
 
 /*
-**	main.c
+**	mlx_put_pix_img.c
 */
-
+void	mlx_pix_put_img(char *img_str, int size, t_pos pos, unsigned int color);
 
 /*
-**	fdf.c
+**	mlx_put_line.c
 */
-void	fdf(t_map	map);
+
+void	mlx_put_line(t_mlx_env env, t_pos p1, t_pos p2, int color);
+void	mlx_put_line_img(t_mlx_env env, t_pos p1, t_pos p2, int color);
 
 /*
-**	input.c
+**	mlx_init.c
 */
-int		keyboard_input(int key, t_mlx_env *env);
-int		mouse_input(int but, int x, int y, t_mlx_env *env);
-
-/*
-**	init.c
-*/
-t_map		init_map(int fd);
-t_mlx_env	init_all();
-
+t_line	mlx_init_line(const t_pos *p1, const t_pos *p2);
 
 #endif

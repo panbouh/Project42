@@ -1,7 +1,9 @@
 NAME	=	fdf
 
 SRC		=	$(WAY)main.c					\
-			$(WAY)fdf.c
+			$(WAY)fdf.c						\
+			$(WAY)init.c					\
+			$(WAY)input.c
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -11,29 +13,39 @@ WAYHEAD	=	./includes/
 
 LIBFT		=	libft
 LIBFTPATH	=	./libft/
-HEADLIBPATH	=	./libft/includes/
+HEADLIBFTPATH	=	$(LIBFTPATH)includes/
 
-#LIBMLX		=	-I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
-LIBMLX		=	-I minilibx/ -L minilibx/ -lmlx -framework OpenGL -framework AppKit
+LIBMLX		=	libmlx
+LIBMLXPATH	=	./minilibx/
+HEADLIBMLXPATH	=	$(LIBMLXPATH)my_mlx/
 
-CFLAGS	=	-Wall -Wextra -Werror -I $(HEADLIBPATH) -I $(WAYHEAD)
+CCLIBMLX	=	-I minilibx/ -L minilibx/ -lmlx -framework OpenGL -framework AppKit
 
-CCLIB		=	-L libft/ -lft
+CFLAGS	=	-I $(HEADLIBFTPATH) -I $(WAYHEAD) -I $(HEADLIBMLXPATH) -I $(LIBMLXPATH)
+#-Wall -Wextra -Werror
+CCLIBFT		=	-L libft/ -lft
 
 RM		=	rm -rf
 
 all		:	$(NAME)
 
-$(NAME)		: $(OBJ) $(LIBFT)
-				echo "EH SALUT"
-				$(MAKE) -C $(LIBFTPATH) all
-				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB)  $(LIBMLX)
+$(NAME)		: $(OBJ) $(LIBFT) $(LIBMLX)
+				@echo "\033[0;33mBinary < $(NAME) > Creation\033[0m"
+				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIBFT) $(CCLIBMLX)
 
-lib			:	libft/libft.a
-				$(MAKE) -C $(LIBFTPATH) all
+libft		:	libft/libft.a
+				@echo "\033[0;33mLibrary < $(LIBFT).a > Creation\033[0m"
+				@$(MAKE) -C $(LIBFTPATH) all
 
-dellib		:
+libmlx		:	minilibx/libmlx.a
+				@echo "\033[0;33mLibrary < $(LIBMLX).a > Creation\033[0m"
+				@$(MAKE) -C $(LIBMLXPATH) all
+
+dellibft		:
 				$(MAKE) -C $(LIBFTPATH) fclean
+
+dellibmlx		:
+				$(MAKE) -C $(LIBMLXPATH) cclean
 
 clean		:
 			$(RM) $(OBJ)
@@ -41,9 +53,12 @@ clean		:
 fclean		:	clean
 			$(RM) $(NAME)
 
-relib		:
+relibft		:
 			$(MAKE) -C $(LIBFTPATH) re
+
+relibmlx		:
+			$(MAKE) -C $(LIBMLXPATH) re
 
 re			:	fclean dellib $(NAME)
 
-.PHONY		:	all re clean fclean lib dellib all relib
+.PHONY		:	all re clean fclean libft libmlx dellibft dellibmlx all relibft relibmlx
