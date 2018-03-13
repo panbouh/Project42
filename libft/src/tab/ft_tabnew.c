@@ -1,4 +1,6 @@
-int	**ft_new_tab(int x, int y)
+#include "stdlib.h"
+
+int		**ft_new_tab(int x, int y)
 {
 	int		**new;
 	size_t	i;

@@ -7,11 +7,11 @@
 #include <sys/stat.h> 
 #include <unistd.h>
 
-typedef	struct	s_test
+typedef	struct	s_param
 {
 	char	key;
 	void	(*f)();
-}				t_test;
+}				t_param;
 
 typedef	struct	s_env
 {
@@ -27,19 +27,9 @@ typedef	struct	s_env
 }				t_env;
 
 /*
-** libft.c
-*/
-char	**ft_tabcpy(char **src, char **dest);
-void	**ft_tabdup(void **src);
-void	ft_memswap(void *a, void *b);
-void	**ft_tabdel(void **tab);
-
-
-/*
 ** ft_ls.c
 */
-struct dirent	**get_file_name(DIR *dir);
-int				ft_ls(t_env env);
+int				ft_ls(char **av);
 
 /*
 ** print.c
@@ -50,7 +40,9 @@ void	print_dir(struct dirent **dir_d);
 /*
 ** init.c
 */
-t_env	*get_param(char **av, t_env *env);
+struct dirent **get_file(DIR *dir);
+void	check_param(t_env *env)
+t_env	*init_env(char **av, t_env *env);
 
 /*
 ** sorting.c

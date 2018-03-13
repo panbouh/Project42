@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include <stdarg.h>
+# include <sys/types.h>
 # include <stddef.h>
 
 # define ALL_FLAG	"#0-+ .\0"

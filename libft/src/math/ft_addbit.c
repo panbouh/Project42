@@ -16,7 +16,7 @@ char *ft_addbit(char *bin)
 		return (ft_strdup(bin));
 	rest = byte - rest;
 	new = ft_strnew(size + rest);
-	memset(new, '0', rest);
+	ft_memset(new, '0', rest);
 	ft_strcat(new, bin);
 	return (new);
 }

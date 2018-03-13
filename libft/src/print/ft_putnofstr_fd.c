@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <libft.h>
 
 void	ft_putnofstr_fd(const char *str, size_t n, int fd)

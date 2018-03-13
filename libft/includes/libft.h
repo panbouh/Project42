@@ -20,12 +20,11 @@
 */
 
 # include <stdlib.h>
-# include <string.h>
-# include <stdio.h>
-# include <ctype.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <fcntl.h>
+// # include <string.h>
+// # include <stdio.h>
+// # include <ctype.h>
+// # include <unistd.h>
+// # include <fcntl.h>
 
 /*
 ** ###########
@@ -109,6 +108,7 @@ char				*ft_addbit(char *bin);
 */
 void				ft_bzero(void *s, size_t n);
 void				ft_memdel(void **ap);
+void				ft_memswap(void **a, void **b);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 void				*ft_memset(void *s, int c, size_t n);
 void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
@@ -194,7 +194,10 @@ char				**ft_strsplit(const char *s, char c);
 /*
 ** tab
 */
+void				ft_tabdel(void **tab);
 size_t				ft_tablen(const char **tab);
-int					**ft_tabsplit(const char *str);
+void				**ft_tabdup(void **src);
+char				**ft_tabcpy(char **src, char **dest);
+int					**ft_tabnew(int x, int y);
 
 #endif

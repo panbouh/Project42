@@ -26,9 +26,8 @@ int	main(int ac, char **av)
 	t_env	env;
 
 	ft_bzero(&env, sizeof(env));
-	get_param(av, &env);
 	// print_env(env);
-	if (ft_ls(env) == FAIL)
+	if (ft_ls(av) == FAIL)
 		return (ft_error("problem", FAIL));
 	return (0);
 }

@@ -18,6 +18,7 @@ SRC_MEM		=	$(addprefix $(SRC_PATH),memory/)
 SRC_MORPH	=	$(addprefix $(SRC_PATH),morphing/)
 SRC_PRINT	=	$(addprefix $(SRC_PATH),print/)
 SRC_STR		=	$(addprefix $(SRC_PATH),str/)
+SRC_TAB		=	$(addprefix $(SRC_PATH),tab/)
 SRC_FILE	=	$(addprefix $(SRC_PATH),file/)
 SRC_PRINTF	=	$(addprefix $(SRC_PATH),printf/)
 SRC_WSTR	=	$(addprefix $(SRC_PATH),wstr/)
@@ -30,6 +31,7 @@ SRC		=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
 			$(addprefix $(SRC_MORPH),$(MORPH_FILE))		\
 			$(addprefix $(SRC_PRINT),$(PRINT_FILE))		\
 			$(addprefix $(SRC_STR),$(STR_FILE))			\
+			$(addprefix $(SRC_TAB),$(TAB_FILE))			\
 			$(addprefix $(SRC_FILE),$(FILE_FILE))		\
 			$(addprefix $(SRC_PRINTF),$(PRINTF_FILE))	\
 			$(addprefix $(SRC_WSTR),$(WSTR_FILE))
@@ -70,6 +72,7 @@ MEM_FILE	=	ft_memset.c								\
 				ft_memmove.c							\
 				ft_memchr.c								\
 				ft_memcmp.c								\
+				ft_memswap.c							\
 				ft_memalloc.c							\
 				ft_memdel.c
 
@@ -97,6 +100,11 @@ PRINT_FILE	=	ft_putchar.c							\
 				ft_error.c								\
 				ft_putnofwstr.c
 
+TAB_FILE	=	ft_tabcpy.c								\
+				ft_tabnew.c								\
+				ft_tabdup.c								\
+				ft_tablen.c								\
+				ft_tabdel.c
 
 STR_FILE	=	ft_skip_char.c							\
 				ft_count_word.c							\
@@ -130,7 +138,6 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strsplit.c							\
 				ft_strtrim_full.c						\
 				ft_strlen_c.c							\
-				ft_tablen.c								\
 				ft_strtotab.c							\
 				ft_strmiam.c
 
