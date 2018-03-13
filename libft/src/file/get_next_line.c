@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "get_next_line.h"
 
 static int		checkend(char **save, char **line, size_t i, char *buff)
 {
