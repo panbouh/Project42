@@ -12,6 +12,7 @@
 
 #include "ft_printf.h"
 
+	#include <stdio.h>
 /*
 **	[flags]			# 0-+
 **	[largeur]		N
@@ -66,31 +67,6 @@ int		check_for_flag(char c, t_flag_list *t_fl)
 	return (0);
 }
 
-void	check_for_pw(const char *form, size_t *i, t_flag_list *t_fl)
-{
-	size_t	size;
-
-	size = 1;
-	if (form[*i] == '.')
-	{
-		t_fl->prec = ft_atoi(&form[*i + 1]);
-		if (t_fl->prec == 0)
-		{
-			t_fl->put_val = 0;
-			if (form[*i + 1] == '0')
-				size++;
-		}
-		else
-			size += ft_count_digit(t_fl->prec);
-		*i += size;
-	}
-	if (ft_isdigit(form[*i]) && form[*i] != '0')
-	{
-		t_fl->width = ft_atoi(&form[*i]);
-		*i += ft_count_digit(t_fl->width);
-	}
-}
-
 int		do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl)
 {
 	size_t	y;
@@ -124,7 +100,7 @@ int		found_fl(const char *form, va_list ap, size_t *i)
 				return (ret);
 			status = STOP;
 		}
-		check_for_pw(form, i, &t_fl);
+		check_for_pw(form, i, &t_fl, ap);
 		*i += check_for_flag(form[*i], &t_fl);
 	}
 	if (!form[*i])

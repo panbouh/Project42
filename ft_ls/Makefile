@@ -4,21 +4,24 @@ SRC		=	$(WAY)main.c					\
 			$(WAY)ft_ls.c					\
 			$(WAY)init.c					\
 			$(WAY)print.c					\
-			$(WAY)libft.c					\
-			$(WAY)sorting.c					\
+			$(WAY)sort_file.c				\
+			$(WAY)sort_dir.c				\
+			$(WAY)error.c					\
+			$(WAY)get.c					\
+			$(WAY)utils.c					\
 			$(WAY)param.c
 
 OBJ		=	$(SRC:.c=.o)
 
 WAY	=	src/
 
-WAYHEAD	=	./includes/
+HEADPATH	=	./includes/
 
 LIBFT		=	libft
 LIBFTPATH	=	./libft/
 HEADLIBFTPATH	=	$(LIBFTPATH)includes/
 
-CFLAGS	=	-I $(HEADLIBFTPATH) -I $(WAYHEAD)
+CFLAGS	=	-I $(HEADLIBFTPATH) -I $(HEADPATH)
 #-Wall -Wextra -Werror
 CCLIBFT		=	-L libft/ -lft
 
@@ -26,11 +29,11 @@ RM		=	rm -rf
 
 all		:	$(NAME)
 
-$(NAME)		: $(OBJ) $(LIBFT)
+$(NAME)		: $(LIBFT) $(OBJ) $(HEADPATH)ft_ls.h
 				@echo "\033[0;33mBinary < $(NAME) > Creation\033[0m"
 				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIBFT)
 
-libft		:	libft/libft.a
+libft		:
 				@echo "\033[0;33mLibrary < $(LIBFT).a > Creation\033[0m"
 				@$(MAKE) -C $(LIBFTPATH) all
 
@@ -46,6 +49,6 @@ fclean		:	clean
 relibft		:
 			$(MAKE) -C $(LIBFTPATH) re
 
-re			:	fclean dellibft $(NAME)
+re			:	fclean $(NAME)
 
 .PHONY		:	all re clean fclean libft dellibft all relibft

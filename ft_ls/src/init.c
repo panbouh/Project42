@@ -10,41 +10,86 @@ t_param	g_paramtab[] =
 	{0, NULL},
 };
 
-struct dirent **get_file(DIR *dir)
-{
-	struct dirent	*dir_d[12345];
-	size_t			i;
-
-	i = 0;
-	while ((dir_d[i] = readdir(dir)))
-		i++;
-	dir_d[i] = NULL;
-	return ((struct dirent **)ft_tabdup((void**)dir_d));
-}
-
-void	check_param(t_env *env)
+int		ft_isvalid(char c, char *valid)
 {
 	size_t	i;
 
 	i = 0;
-	while (g_paramtab[i].key)
+	while (valid[i])
 	{
-		if (g_paramtab[i].key == ??)
-			g_paramtab[i].f(??);
+		if (c == valid[i])
+			return (OK);
 		i++;
 	}
+	return (FAIL);
 }
 
-void	init_path()
+int	check_param(t_env *env, char **av, size_t *y)
 {
-	
+	size_t	i;
+	size_t	x;
+
+	while (av[*y] && av[*y][0] && av[*y][0] == '-')
+	{
+		x = 1;
+		while (av[*y][x])
+		{
+			i = 0;
+			if ((ft_isvalid(av[*y][x], ALL_PARAM)) == FAIL)
+				return (err_invalid_param(env, av[*y][x]));
+			while (g_paramtab[i].key)
+			{
+				if (g_paramtab[i].key == av[*y][x])
+					g_paramtab[i].f(env);
+				i++;
+			}
+			x++;
+		}
+		(*y)++;
+	}
+	return (OK);
 }
 
-void	init_env(char **av, t_env *env)
+size_t	init_file(struct dirent **dir_d, t_finfo *f_info, const char *path)
 {
+	size_t		i;
+	size_t		size;
 
-	if (!(env.dir = opendir(env.path[0])))
+	size = 0;
+	i = 0;
+	ft_bzero(f_info, sizeof(t_finfo));
+	while (dir_d[i])
+	{
+		if ((stat(ft_newpath(path, dir_d[i]->d_name), &f_info->file_s)) == FAIL)
+			return (ft_error("init_file", 0));
+		size += f_info->file_s.st_blocks;
+		get_max_info(dir_d[i], f_info);
+		i++;
+	}
+	f_info->max_byte = ft_count_digit(f_info->max_byte);
+	f_info->max_link = ft_count_digit(f_info->max_link);
+	//free newpath
+	return (size);
+}
+
+int	init_env(t_env *env, char **av)
+{
+	size_t	i;
+
+	i = 1;
+	ft_bzero(env, sizeof(t_env));
+	if ((check_param(env, av, &i)) == FAIL)
 		return (FAIL);
-	env.dir_d = get_file(env.dir);
-
+	if (av[i])
+	{
+		env->path = ft_tabsdup(&av[i]);
+		sort_dir(env);
+	}
+	else
+	{
+		env->path = malloc(sizeof(char**) * 2);
+		env->path[0] = ft_strdup(".");
+		env->path[1] = NULL;
+	}
+	return (OK);
 }

@@ -32,13 +32,15 @@
 ** ###########
 */
 
-# define FAIL	-1
-# define OK		0
-# define TILL	96
-# define ALL	69
-# define SKIP	9
-# define STOP	1
-# define GO		3
+# define BUFF_MAX	4242
+# define FAIL		-1
+# define OK			0
+# define TILL		96
+# define ALL		69
+# define SKIP		9
+# define STOP		1
+# define GO			3
+# define BOUH		ft_printf("bouh\n");
 
 /*
 ** ###############
@@ -115,12 +117,14 @@ void				*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				*ft_memmove(void *dest, const void *src, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
+void				*ft_memdup(const void *src, size_t size);
 void				*ft_memalloc(size_t size);
 
 /*
 ** morphing
 */
 int					ft_toupper(int c);
+char				*ft_strlower(char *str);
 int					ft_tolower(int c);
 long				ft_atoi(const char *str);
 char				*ft_itoa(int n);
@@ -195,8 +199,9 @@ char				**ft_strsplit(const char *s, char c);
 ** tab
 */
 void				ft_tabdel(void **tab);
-size_t				ft_tablen(const char **tab);
-void				**ft_tabdup(void **src);
+size_t				ft_tablen(char **tab);
+void				**ft_tabdup(void **src, size_t size);
+char				**ft_tabsdup(char **src);
 char				**ft_tabcpy(char **src, char **dest);
 int					**ft_tabnew(int x, int y);
 

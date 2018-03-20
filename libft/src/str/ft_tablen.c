@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-size_t				ft_tablen(char **tab)
+size_t				ft_tablen(const char **tab)
 {
 	size_t	i;
 

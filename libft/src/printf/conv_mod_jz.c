@@ -39,7 +39,7 @@ int		conv_mod_j(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	(*x)++;
 	while (!is_conv(form[*x]))
 	{
-		check_for_pw(form, x, &t_fl);
+		check_for_pw(form, x, &t_fl, ap);
 		*x += check_for_flag(form[*x], &t_fl);
 	}
 	while (g_j_keytab[i].key)
@@ -80,7 +80,7 @@ int		conv_mod_z(va_list ap, t_flag_list t_fl, const char *form, size_t *x)
 	(*x)++;
 	while (!is_conv(form[*x]))
 	{
-		check_for_pw(form, x, &t_fl);
+		check_for_pw(form, x, &t_fl, ap);
 		*x += check_for_flag(form[*x], &t_fl);
 	}
 	while (g_z_keytab[i].key)

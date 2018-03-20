@@ -18,7 +18,7 @@
 # include <sys/types.h>
 # include <stddef.h>
 
-# define ALL_FLAG	"#0-+ .\0"
+# define ALL_FLAG	"#0-+ .*\0"
 # define NB_FLAG	6
 
 typedef	struct	s_flag_list
@@ -193,10 +193,16 @@ void		flag_plus(t_flag_list *f_list);
 void		flag_space(t_flag_list *f_list);
 
 /*
+** check_pw.c
+*/
+void		check_for_pw(const char *form, size_t *y, t_flag_list *t_fl,
+						va_list ap);
+void		check_p(const char *form, size_t *i, t_flag_list *t_fl, va_list ap);
+void		check_w(const char *form, size_t *i, t_flag_list *t_fl, va_list ap);
+
+/*
 ** ft_printf.c
 */
-
-void		check_for_pw(const char *form, size_t *y, t_flag_list *t_fl);
 int			ft_printf(const char *format, ...);
 int			check_for_flag(char c, t_flag_list *t_fl);
 int			do_conv(const char *form, va_list ap, size_t *i, t_flag_list *t_fl);

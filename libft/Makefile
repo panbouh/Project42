@@ -74,13 +74,15 @@ MEM_FILE	=	ft_memset.c								\
 				ft_memcmp.c								\
 				ft_memswap.c							\
 				ft_memalloc.c							\
+				ft_memdup.c								\
 				ft_memdel.c
 
 MORPH_FILE	=	ft_atoi.c								\
 				ft_itoa.c								\
 				ft_toupper.c							\
 				ft_tolower.c							\
-				ft_strupper.c
+				ft_strupper.c							\
+				ft_strlower.c
 
 PRINT_FILE	=	ft_putchar.c							\
 				ft_putstr.c								\
@@ -155,6 +157,7 @@ PRINTF_FILE	=	ft_printf.c				\
 				calc.c					\
 				err.c					\
 				utils.c					\
+				check_pw.c				\
 				conv_uisc_z_ui.c		\
 				conv_xop_z_id.c			\
 				conv_l_scox.c			\
