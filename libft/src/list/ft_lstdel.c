@@ -12,7 +12,6 @@
 
 #include "ft_list.h"
 #include "libft.h"
-#include "ft_printf.h"
 
 void	ft_lstdel(t_list **alst)
 {
@@ -20,7 +19,6 @@ void	ft_lstdel(t_list **alst)
 
 	if (!alst || !(*alst))
 		return ;
-	ft_printf("je del %p, %p\n", alst, *alst);
 	tmp = (*alst)->node;
 	while (tmp)
 	{

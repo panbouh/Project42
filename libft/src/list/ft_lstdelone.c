@@ -12,7 +12,6 @@
 
 #include "ft_list.h"
 #include "libft.h"
-#include "ft_printf.h"
 
 void	ft_lstdelone(t_list *lst, t_node **anode)
 {

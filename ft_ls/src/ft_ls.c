@@ -31,6 +31,7 @@ t_list	*get_file(t_maxf *maxf, const char *path, int a)
 	maxf->is_dir = 1;
 	while ((dir_d = readdir(dir)))
 	{
+		ft_printf("name : %s, ino = %li\n", dir_d->d_name, dir_d->d_ino);
 		if (dir_d->d_name[0] != '.' || a)
 			if (!(new_l = get_one_file(maxf, new_l, path,
 										ft_strdup(dir_d->d_name))))
@@ -68,12 +69,12 @@ int		list_file(t_env *env, const char *path)
 	if (!(lst = get_file(&maxf, path, env->a)))
 		return (err(path, strerror(errno), FAIL));
 	// lstput(lst, "Origin");
-	ft_printf("avant : %p\n", lst);
+	// ft_printf("avant : %p\n", lst);
 	t_list	*tmp = lst;
 	lst = sort_file(env, lst);
-	ft_printf("apres : %p, tmp = %p\n", lst, tmp);
-	ft_printf("tmp->node : %p\n", ((t_finfo*)tmp->node)->name);
-	ft_printf("lst->node : %p\n", ((t_finfo*)lst->node)->name);
+	// ft_printf("apres : %p, tmp = %p\n", lst, tmp);
+	// ft_printf("tmp->node : %p\n", ((t_finfo*)tmp->node)->name);
+	// ft_printf("lst->node : %p\n", ((t_finfo*)lst->node)->name);
 	// lstput(lst, "\n-----\nDorted");
 	if (lst->node)
 		print_list(env, lst, &maxf);

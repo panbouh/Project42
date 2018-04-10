@@ -43,6 +43,7 @@ void	lstput(t_list *lst, const char *name)
 	-@ et + devant file
 	-free
 	-ls -l /tmp et /tmp/
+	-probleme avec les fd dans /dev
 	-autre tri
 */
 

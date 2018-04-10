@@ -89,6 +89,7 @@ int		get_info(t_finfo *f_info, t_maxf *maxf, char *path)
 	// ft_printf("name : %s\n", f_info->name);
 	if((lstat(path, &f_info->file_s)) == FAIL)
 		return (ft_error("err getinfo : stat fail", errno));
+	ft_printf("ino : %li\n", f_info->file_s.st_ino);
 	maxf->bsize += f_info->file_s.st_blocks;
 	errno = 0;
 

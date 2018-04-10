@@ -42,11 +42,11 @@ int	main(int ac, char **av)
 	// t_list	*new = ft_lstnew();
 	// t_list	*sub = NULL;
 	ft_lstadd_end(lst, ft_lstnew_node(s1, sizeof(s1)));
-	ft_lstadd_end(lst, ft_lstnew_node(s2, sizeof(s2)));
-	ft_lstadd_end(lst, ft_lstnew_node(s3, sizeof(s3)));
-	ft_lstadd_end(lst, ft_lstnew_node(s4, sizeof(s4)));
-	ft_lstadd_end(lst, ft_lstnew_node(s5, sizeof(s5)));
-	ft_lstadd_end(lst, ft_lstnew_node(s6, sizeof(s6)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s2, sizeof(s2)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s3, sizeof(s3)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s4, sizeof(s4)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s5, sizeof(s5)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s6, sizeof(s6)));
 
 	// lstput(lst, "lst avantcat");
 	// lstput(sub, "sub");
@@ -55,10 +55,10 @@ int	main(int ac, char **av)
 	// sub = ft_lstsub(lst, 1, 3);
 	// lstput(sub, "sub");
 	ft_printf("lst : %p\n", lst);
-	ft_lstdelone(lst, &lst->node);
+	// ft_lstdelone(lst, &lst->node);
+	ft_lstdelone(lst, lst->node);
 	ft_printf("lst : %p\n", lst);
-	while (42)
-	{}
+
 
 	// ft_lstdel(&sub);
 	return (1);
