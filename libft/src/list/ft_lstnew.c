@@ -10,26 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_list.h"
 #include "libft.h"
 
-t_list	*ft_lstnew(const void *content, size_t content_size)
+t_node		*ft_lstnew_node(const void *data, size_t data_size)
+{
+	t_node	*new;
+
+	if (!(new = ft_memalloc(sizeof(t_node))))
+		return (NULL);
+	if (data)
+	{
+		if (!(new->data = ft_memalloc(data_size)))
+			return (NULL);
+		new->data = ft_memcpy(new->data, data, data_size);
+		new->data_size = data_size;
+	}
+	return (new);
+}
+
+t_list		*ft_lstnew()
 {
 	t_list	*new;
 
-	if (!(new = (t_list *)malloc(sizeof(t_list))))
+	if (!(new = ft_memalloc(sizeof(t_list))))
 		return (NULL);
-	if (content)
-	{
-		if (!(new->content = ft_memalloc(content_size)))
-			return (NULL);
-		new->content = ft_memcpy(new->content, content, content_size);
-		new->content_size = content_size;
-	}
-	else
-	{
-		new->content = NULL;
-		new->content_size = 0;
-	}
-	new->next = NULL;
 	return (new);
 }

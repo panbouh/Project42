@@ -26,32 +26,6 @@ char	*ft_newpath(const char *path, const char *name)
 	return (ft_strdup(new));
 }
 
-static int		lendir(struct dirent **src)
-{
-	size_t	i;
-
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
-
-struct dirent	**dupdir(struct dirent **src)
-{
-	size_t	i;
-	struct	dirent	**new;
-
-	new = malloc(sizeof(struct dirent**) * lendir(src));
-	i = 0;
-	while (src[i])
-	{
-		new[i] = src[i];
-		i++;
-	}
-	new[i] = 0;
-	return (new);
-}
-
 int		is_pointpoint(char *dir)
 {
 	if (!ft_strcmp(dir, ".") || !ft_strcmp(dir, ".."))

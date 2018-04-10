@@ -2,6 +2,7 @@
 # define FT_LS_H
 
 #include "libft.h"
+#include "ft_list.h"
 #include "ft_printf.h"
 #include <sys/types.h>
 #include <dirent.h>
@@ -13,6 +14,8 @@
 # define	ALL_PARAM	"Ralrt"
 # define	USE			"usage: ls [-Ralrt] [file ...]\0"
 # define	INV_PAR		"ls: illegal option -- \0"
+# define	ONE_DAY		86400
+# define	SIX_MONTH	(ONE_DAY * 30) * 3 + (ONE_DAY * 31) * 3
 
 typedef struct	s_param
 {
@@ -26,17 +29,17 @@ typedef struct	s_error
 	void	(*f)();
 }				t_error;
 
-typedef struct	s_type
-{
-	unsigned char	key;
-	char			type;
-}				t_type;
-
-typedef struct	s_right
+typedef struct	s_mode
 {
 	char	key;
-	char			*right;
-}				t_right;
+	char	*mode;
+}				t_mode;
+
+typedef struct	s_month
+{
+	char	*key;
+	int		val;
+}				t_month;
 
 typedef struct	s_env
 {
@@ -45,66 +48,78 @@ typedef struct	s_env
 	char			rup;
 	char			t;
 	char			a;
+	// char			*cur_path;
 	char			**path;
-	struct dirent	**dir_d;
 }				t_env;
 
 typedef struct	s_finfo
 {
-	char			type;
+	char			*name;
+	char			*path;
+	char			*uidname;
+	char			*gidname;
 	char			*mode;
+	char			*size;
+	unsigned char	type;
 	struct stat		file_s;
-	struct passwd	*file_p;
-	struct group	*group_p;
 	char			**time;
-	size_t			max_gr;
-	size_t			max_uname;
-	size_t			max_name;
-	size_t			max_link;
-	size_t			max_byte;
 }				t_finfo;
+
+typedef struct	s_maxf
+{
+	size_t			bsize;
+	size_t			name;
+	size_t			uname;
+	size_t			grname;
+	size_t			link;
+	size_t			byte;
+	size_t			is_dir;
+}				t_maxf;
 
 /*
 ** ft_ls.c
 */
-int				get_file(t_env *env, const char *path);
+void			list_r(t_env *env, t_list *lst, const char *path);
 int				list_file(t_env *env, const char *path);
+t_list			*get_file(t_maxf *maxf, const char *path, int a);
 int				ft_ls(char **av);
 
 /*
 ** print.c
 */
-int				print_info(struct dirent *dir_d, t_finfo f_info,
-							const char *path);
-void			print_list(t_env env, struct dirent **dir_d, const char *path);
+int				print_info(t_list *lst, t_maxf *maxf);
+void			print_list(t_env *env, t_list *lst, t_maxf *maxf);
+
 
 /*
 ** ultils.c
 */
 char			*ft_newpath(const char *path, const char *name);
 int				is_pointpoint(char *dir);
-struct dirent	**dupdir(struct dirent **src);
 
 /*
 ** get.c
 */
-char			**get_time(struct stat file_s);
-int				get_max_info(struct dirent *dir_d, t_finfo *f_info);
-char			*get_fmode(unsigned int n);
-char			get_ftype(unsigned char c);
+int				get_info(t_finfo *f_info, t_maxf *maxf, char *path);
+char			**get_time(const time_t *t);
+char			*get_fmode(mode_t m);
+char			get_ftype(mode_t mode);
+/*
+** get2.c
+*/
+char			*get_size(t_finfo *f_info);
+int				get_max(t_finfo *f_info, t_maxf *maxf);
 
 /*
 ** init.c
 */
-size_t			init_file(struct dirent **dir_d, t_finfo *f_info,
-								const char *path);
 int				check_param(t_env *env, char **av, size_t *y);
 int				init_env(t_env *env, char **av);
 
 /*
 ** sorting.c
 */
-void			sort_file(t_env *env);
+t_list			*sort_file(t_env *env, t_list *lst);
 void			sort_dir(t_env *env);
 
 
@@ -120,6 +135,7 @@ void			p_a(t_env *env);
 /*
 ** error.c
 */
+int				err(const char *message, char *strerr, int error);
 int				err_invalid_param(t_env *env, char c);
 
 /*
@@ -128,6 +144,7 @@ int				err_invalid_param(t_env *env, char c);
 void			print_dir(t_env env);
 void			print_env(t_env env);
 void			print_path(t_env env);
+void			lstput(t_list *lst, const char *name);
 
 
 #endif

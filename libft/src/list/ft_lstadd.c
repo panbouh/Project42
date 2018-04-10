@@ -10,10 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_list.h"
 
-void	ft_lstadd(t_list **alst, t_list *new)
+void	ft_lstadd_end(t_list *lst, t_node *node)
 {
-	new->next = *alst;
-	*alst = new;
+	if (lst->node)
+	{
+		node->back = lst->last;
+		lst->last->next = node;
+		lst->last = node;
+	}
+	else
+		ft_lstinit(lst, node);
+	lst->size++;
+}
+
+void	ft_lstadd_begin(t_list *lst, t_node *node)
+{
+	if (lst->node)
+	{
+		node->next = lst->first;
+		lst->first->back = node;
+		lst->first = node;
+	}
+	else
+		ft_lstinit(lst, node);
+	lst->node = lst->first;
+	lst->size++;
 }

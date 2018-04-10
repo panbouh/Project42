@@ -7,7 +7,8 @@ SRC		=	$(WAY)main.c					\
 			$(WAY)sort_file.c				\
 			$(WAY)sort_dir.c				\
 			$(WAY)error.c					\
-			$(WAY)get.c					\
+			$(WAY)get.c						\
+			$(WAY)get2.c					\
 			$(WAY)utils.c					\
 			$(WAY)param.c
 

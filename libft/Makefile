@@ -48,14 +48,21 @@ CHECK_FILE	=	ft_isalpha.c							\
 				ft_isalnum.c							\
 				ft_isascii.c							\
 				ft_isprint.c							\
+				ft_isvalid.c							\
 				ft_isspace.c
 
 LIST_FILE	=	ft_lstnew.c								\
+				ft_lstadd.c								\
+				ft_lstinit.c							\
+				ft_lstgetn.c							\
+				ft_lstswap.c							\
 				ft_lstdelone.c							\
 				ft_lstdel.c								\
-				ft_lstadd.c								\
-				ft_lstiter.c							\
-				ft_lstmap.c
+				ft_lstcat.c								\
+				ft_lstsub.c							
+				# ft_lstiter.c							\
+				# ft_lstsize.c							\
+				# ft_lstmap.c
 
 MATH_FILE	=	ft_power.c								\
 				ft_count_digit.c						\

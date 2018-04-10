@@ -10,22 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_list.h"
 #include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
+void	ft_lstdel(t_list **alst)
 {
-	t_list	*supr;
-	t_list	*save;
+	t_node	*tmp;
 
 	if (!alst || !(*alst))
 		return ;
-	supr = *alst;
-	while (supr)
+	ft_printf("je del %p, %p\n", alst, *alst);
+	tmp = (*alst)->node;
+	while (tmp)
 	{
-		save = supr->next;
-		del(supr->content, supr->content_size);
-		free(supr);
-		supr = save;
+		ft_lstdelone(*alst, &tmp);
 	}
-	*alst = NULL;
+	ft_memdel((void**)alst);
+	alst = NULL;
 }

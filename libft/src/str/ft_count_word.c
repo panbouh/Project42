@@ -23,10 +23,10 @@ size_t	ft_count_word(const char *str, char space)
 	size = ft_strlen(str);
 	while (str[i])
 	{
-		i = ft_skip_char(str, i, space, TILL);
-		if (i != size)
-			count++;
 		i = ft_skip_char(str, i, space, ALL);
+		if (str[i] && str[i] != space)
+			count++;
+		i = ft_skip_char(str, i, space, TILL);
 	}
 	return (count);
 }

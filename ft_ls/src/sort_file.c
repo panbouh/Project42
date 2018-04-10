@@ -1,87 +1,113 @@
 #include "ft_ls.h"
 
-static void	sort_by_name(t_env *env)
-{
-	size_t	i;
+	// ((t_finfo*)lst->content)->name
 
-	i = 0;
-	while (env->dir_d[i] && env->dir_d[i + 1])
+t_list	*merge(t_list *lst_l, t_list *lst_r)
+{
+	t_list	*result;
+
+	result = ft_lstnew(); //malloc
+	while (lst_l->node && lst_r->node)
 	{
-		if ((ft_strcmp(env->dir_d[i]->d_name, env->dir_d[i + 1]->d_name)) > 0)
+		if (ft_strcmp(((t_finfo*)lst_l->node->data)->name,
+						((t_finfo*)lst_r->node->data)->name) > 0)
 		{
-			ft_memswap((void **)&env->dir_d[i], (void **)&env->dir_d[i + 1]);
-			i = 0;
+			ft_lstadd_end(result, lst_r->node); //malloc
+			lst_r->node = lst_r->node->next;
 		}
 		else
-			i++;
-	}
-}
-
-static void	sort_by_name_r(t_env *env)
-{
-	size_t	i;
-
-	i = 0;
-	while (env->dir_d[i] && env->dir_d[i + 1])
-	{
-		if ((ft_strcmp(env->dir_d[i]->d_name, env->dir_d[i + 1]->d_name)) < 0)
 		{
-			ft_memswap((void **)&env->dir_d[i], (void **)&env->dir_d[i + 1]);
-			i = 0;
+			ft_lstadd_end(result, lst_l->node); //malloc
+			lst_l->node = lst_l->node->next;
 		}
-		else
-			i++;
 	}
+	result = ft_lstcat(result, lst_l);
+	result = ft_lstcat(result, lst_r);
+	return (result);
 }
 
-static void	sort_by_time(t_env *env)
+static t_list	*sort_by_name(t_env *env, t_list *lst)
 {
-	// size_t		i;
+	t_list	*lst_r;
+	t_list	*lst_l;
+	size_t	size;
 
-	// i = 0;
-	// while (env->dir_d[i])
-	// {
-	// 	if (env->file_s[i].st_size > env->file_s[i].st_size)
-	// 	{
-	// 		ft_memswap((void **)&env->dir_d[i], (void **)&env->dir_d[i + 1]);
-	// 		i = 0;
-	// 	}
-	// 	else
-	// 		i++;
-	// }
-	// print_dir(*env);
+	if ((size = lst->size) <= 1)
+		return (lst);
+	lst_l = ft_lstsub(lst, 0, size / 2); //malloc
+	lst_r = ft_lstsub(lst, size / 2, (size - size / 2)); //malloc
+	ft_lstdel(&lst);
+	lst_l = sort_by_name(env, lst_l);
+	lst_r = sort_by_name(env, lst_r);
+	return (merge(lst_l, lst_r));  //malloc
 }
 
-static void	sort_by_time_r(t_env *env)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static void	sort_by_name_r(t_env *env, t_list *lst)
 {
-	// size_t	i;
 
-	// i = 0;
-	// while (env->dir_d[i])
-	// {
-	// 	if (env->dir_d[i + 1] && env->dir_d[i]->d_name[0] > env->dir_d[i + 1]->d_name[0])
-	// 	{
-	// 		ft_memswap((void **)&env->dir_d[i], (void **)&env->dir_d[i + 1]);
-	// 		i = 0;
-	// 	}
-	// 	else
-	// 		i++;
-	// }
-	// print_dir(*env);
+}
+
+static void	sort_by_time(t_env *env, t_list *lst)
+{
+
+}
+
+static void	sort_by_time_r(t_env *env, t_list *lst)
+{
+
 }
 
 
-void	sort_file(t_env *env)
+t_list	*sort_file(t_env *env, t_list *lst)
 {
 	if (env->t)
 	{
 		if (env->r)
-			sort_by_time_r(env);
+			sort_by_time_r(env, lst);
 		else
-			sort_by_time(env);
+			sort_by_time(env, lst);
 	}
 	else if (env->r)
-		sort_by_name_r(env);
+		sort_by_name_r(env, lst);
 	else
-		sort_by_name(env);
+		return (sort_by_name(env, lst));
+	return (NULL);
 }

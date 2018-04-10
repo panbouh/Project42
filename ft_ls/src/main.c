@@ -9,34 +9,42 @@ void	print_env(t_env env)
 
 void	print_path(t_env env)
 {
-	ft_printf("Path :\n");
+	ft_printf("----Path :-----\n");
 	ft_putstab((const char**)env.path);
+	ft_printf("----------------\n");
 }
 
-void	print_dir(t_env env)
+
+void	lstput(t_list *lst, const char *name)
 {
-	size_t	i;
-
-	i = 0;
-	ft_printf("dir_d :\n");
-	while (env.dir_d[i])
+	if (!lst)
 	{
-		ft_printf("name : %s, ino : %i, type : %hhu\n",
-			env.dir_d[i]->d_name, env.dir_d[i]->d_ino, env.dir_d[i]->d_type);
-		i++;
+		ft_putendl("NULL");
+		return ;
 	}
+	t_node	*node = lst->node;
+	ft_printf("%s :\n", name);
+	while (node)
+	{
+		ft_printf("%s->", ((t_finfo*)node->data)->name);
+		node = node->next;
+	}
+	ft_putendl("NULL");
 }
 
-// void	print_st(t_env env)
-// 	i = 0;
-// 	ft_printf("file_s :\n");
-// 	while (&env.file_s[i])
-// 	{
-// 		ft_printf("ino : %i, taille : %hhu\n",
-// 			env.file_s[i].st_ino, env.file_s[i].st_size);
-// 		i++;
-// 	}
-// }
+/*
+	-Heure + de 6mois
+	{
+		1 jours = 24h * 60m * 60s = 86400 sec
+		x30 = 2592000 x 3 = 7776000
+		x31 = 2678400 x 3 = 8035200
+		-> 15811200
+	}
+	-@ et + devant file
+	-free
+	-ls -l /tmp et /tmp/
+	-autre tri
+*/
 
 int	main(int ac, char **av)
 {

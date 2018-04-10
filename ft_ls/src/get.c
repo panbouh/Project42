@@ -3,20 +3,7 @@
 #include <grp.h>
 #include <time.h>
 
-t_type	g_typetab[] =
-{
-	{DT_REG, '-'},
-	{DT_DIR, 'd'},
-	{DT_LNK, 'l'},
-	{DT_BLK, 'b'},
-	{DT_SOCK, 's'},
-	{DT_CHR, 'c'},
-	{DT_FIFO, 'p'},
-	{DT_UNKNOWN, '?'},
-	{0, 0},
-};
-
-t_right	g_righttab[] =
+t_mode	g_modetab[] =
 {
 	{'7', "rwx"},
 	{'6', "rw-"},
@@ -25,87 +12,101 @@ t_right	g_righttab[] =
 	{'3', "-wx"},
 	{'2', "-w-"},
 	{'1', "--x"},
+	{'0', "---"},
 	{0, NULL},
 };
 
-char	**get_time(struct stat file_s)
+char	**get_time(const time_t *t)
 {
-	char	buff[BUFF_MAX];
 	char	**last_m;
 	//Fri Mar 16 16:25:17 2018
 	//16 mar 16:25
-	last_m = ft_strsplit(ctime(&file_s.st_mtime), ' ');
+	last_m = ft_strsplit(ctime(t), ' ');
+	time_t	now;
+	time(&now);
+	if (ft_abs(now - *t) > SIX_MONTH)
+	{
+		last_m[4][ft_strlen(last_m[4]) - 1] = 0;
+		last_m[3] = last_m[4];
+	}
 	return (last_m);
 }
 
-char	get_ftype(unsigned char c)
+char	get_ftype(mode_t m)
 {
-	char	type;
-	size_t	i;
-
-	i = 0;
-	while (g_typetab[i].key)
-	{
-		if (g_typetab[i].key == c)
-			return (g_typetab[i].type);
-		i++;
-	}
-	return (0);
+	if (S_ISREG(m))
+		return ('-');
+	if (S_ISDIR(m))
+		return ('d');
+	if (S_ISCHR(m))
+		return ('c');
+	if (S_ISBLK(m))
+		return ('b');
+	if (S_ISFIFO(m))
+		return ('p');
+	if (S_ISLNK(m))
+		return ('l');
+	if (S_ISSOCK(m))
+		return ('s');
+	return ('?');
 }
 
-char	*get_fmode(unsigned int n)
+char	*get_fmode(mode_t m)
 {
 	char	buff[BUFF_MAX];
 	char	*mode;
 	size_t	size;
 	size_t	i;
 	size_t	x;
-	size_t	y;
 
-	mode = ft_conv_nbase(n, 8);
+	mode = ft_conv_nbase(m, 8);
 	size = ft_strlen(mode);
-	i = size - 4;
-	y = 0;
+	i = size - 3;
+	ft_bzero(&buff, BUFF_MAX);
 	while (mode[i])
 	{
 		x = 0;
-		while(g_righttab[x].key)
+		while(g_modetab[x].key)
 		{
-			if (g_righttab[x].key == mode[i])
-				ft_strcat(buff, g_righttab[x].right);
+			if (g_modetab[x].key == mode[i])
+				ft_strcat(buff, g_modetab[x].mode);
 			x++;
 		}
 		i++;
-		y += 3;
 	}
-	buff[y] = 0;
+	buff[9] = 0;
+	ft_strdel(&mode);
 	return (ft_strdup(buff));
 }
 
-int		get_max_info(struct dirent *dir_d, t_finfo *f_info)
+int		get_info(t_finfo *f_info, t_maxf *maxf, char *path)
 {
-	size_t		i;
-	size_t		uname;
-	size_t		name;
-	size_t		grou;
+	struct passwd	*file_p;
+	struct group	*group_p;
 
-	f_info->file_p = getpwuid(f_info->file_s.st_uid);
-	f_info->group_p = getgrgid(f_info->file_s.st_gid);
-	i = 0;
-	uname = ft_strlen(f_info->file_p->pw_name);
-	grou = ft_strlen(f_info->group_p->gr_name);
-	name = ft_strlen(dir_d->d_name);
-	if (f_info->max_byte < f_info->file_s.st_size)
-		f_info->max_byte = f_info->file_s.st_size;
-	// ft_printf("max byte = %i\n", f_info->max_byte);
-	if (f_info->max_link < f_info->file_s.st_nlink)
-		f_info->max_link = f_info->file_s.st_nlink;
-	i++;
-	if (f_info->max_uname < uname)
-		f_info->max_uname = uname;
-	if (f_info->max_gr < grou)
-		f_info->max_gr = grou;
-	if (f_info->max_name < name)
-		f_info->max_name = name;
+	f_info->path = path;
+	// ft_printf("path = %s\n", path);
+	// ft_printf("name : %s\n", f_info->name);
+	if((lstat(path, &f_info->file_s)) == FAIL)
+		return (ft_error("err getinfo : stat fail", errno));
+	maxf->bsize += f_info->file_s.st_blocks;
+	errno = 0;
+
+	if (!(file_p = getpwuid(f_info->file_s.st_uid)))
+		f_info->uidname = ft_itoa(f_info->file_s.st_uid);
+	else
+		f_info->uidname = ft_strdup(file_p->pw_name);
+	//-------------------------------------------------------
+	if(!(group_p = getgrgid(f_info->file_s.st_gid)))
+		f_info->gidname = ft_itoa(f_info->file_s.st_gid);
+	else
+		f_info->gidname = ft_strdup(group_p->gr_name);
+
+	f_info->mode = get_fmode(f_info->file_s.st_mode);
+	f_info->type = get_ftype(f_info->file_s.st_mode);
+	f_info->time = get_time(&f_info->file_s.st_mtime);
+
+	f_info->size = get_size(f_info);
+	get_max(f_info, maxf);
 	return (OK);
 }

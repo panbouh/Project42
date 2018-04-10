@@ -19,19 +19,19 @@ static void	sort_by_name(t_env *env)
 
 static void	sort_by_name_r(t_env *env)
 {
-	size_t	i;
+	// size_t	i;
 
-	i = 0;
-	while (env->path[i] && env->path[i + 1])
-	{
-		if ((ft_strcmp(env->path[i], env->path[i + 1])) < 0)
-		{
-			ft_memswap((void **)&env->path[i], (void **)&env->path[i + 1]);
-			i = 0;
-		}
-		else
-			i++;
-	}
+	// i = 0;
+	// while (env->path[i] && env->path[i + 1])
+	// {
+	// 	if ((ft_strcmp(env->path[i], env->path[i + 1])) < 0)
+	// 	{
+	// 		ft_memswap((void **)&env->path[i], (void **)&env->path[i + 1]);
+	// 		i = 0;
+	// 	}
+	// 	else
+	// 		i++;
+	// }
 }
 
 static void	sort_by_time(t_env *env)
