@@ -6,11 +6,14 @@ SRC		=	$(WAY)main.c					\
 			$(WAY)print.c					\
 			$(WAY)sort_file.c				\
 			$(WAY)sort_dir.c				\
+			$(WAY)sort_bonus.c				\
+			$(WAY)sort_bonus_r.c			\
 			$(WAY)error.c					\
 			$(WAY)get.c						\
 			$(WAY)get2.c					\
 			$(WAY)utils.c					\
-			$(WAY)param.c
+			$(WAY)param.c					\
+			$(WAY)param_sort.c				
 
 OBJ		=	$(SRC:.c=.o)
 

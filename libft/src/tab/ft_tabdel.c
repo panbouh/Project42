@@ -1,4 +1,5 @@
 #include "libft.h"
+#include "ft_printf.h"
 
 void	ft_tabdel(void **tab)
 {
@@ -10,5 +11,6 @@ void	ft_tabdel(void **tab)
 		ft_memdel(&tab[i]);
 		i++;
 	}
-	ft_memdel(tab);
+	free(tab);
+	tab = NULL;
 }

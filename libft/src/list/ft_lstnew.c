@@ -29,6 +29,20 @@ t_node		*ft_lstnew_node(const void *data, size_t data_size)
 	return (new);
 }
 
+t_node		*ft_lstnew_node_m(void *data, size_t data_size)
+{
+	t_node	*new;
+
+	if (!(new = ft_memalloc(sizeof(t_node))))
+		return (NULL);
+	if (data)
+	{
+		new->data = data;
+		new->data_size = data_size;
+	}
+	return (new);
+}
+
 t_list		*ft_lstnew()
 {
 	t_list	*new;

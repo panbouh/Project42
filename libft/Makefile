@@ -58,6 +58,7 @@ LIST_FILE	=	ft_lstnew.c								\
 				ft_lstswap.c							\
 				ft_lstdelone.c							\
 				ft_lstdel.c								\
+				ft_lstsort.c							\
 				ft_lstcat.c								\
 				ft_lstsub.c							
 				# ft_lstiter.c							\

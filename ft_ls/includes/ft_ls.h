@@ -11,17 +11,24 @@
 #include <errno.h>
 #include <string.h>
 
-# define	ALL_PARAM	"Ralrt"
-# define	USE			"usage: ls [-Ralrt] [file ...]\0"
+# define	ALL_PARAM	"RalrtucSf"
+# define	USE			"usage: ls [-RalrtucSf] [file ...]\0"
 # define	INV_PAR		"ls: illegal option -- \0"
 # define	ONE_DAY		86400
 # define	SIX_MONTH	(ONE_DAY * 30) * 3 + (ONE_DAY * 31) * 3
+# define	NB_SORT_P	6
 
 typedef struct	s_param
 {
 	char	key;
 	void	(*f)();
 }				t_param;
+
+typedef struct	s_sorting
+{
+	char	key;
+	int		(*f)(t_node*, t_node*);
+}				t_sorting;
 
 typedef struct	s_error
 {
@@ -43,13 +50,18 @@ typedef struct	s_month
 
 typedef struct	s_env
 {
-	char			l;
-	char			r;
-	char			rup;
-	char			t;
-	char			a;
-	// char			*cur_path;
 	char			**path;
+	char			tab_sort[NB_SORT_P];	//sort option
+	int				tsize;
+	char			l;
+	char			rup;
+	char			a;
+	char			t;			//mtime
+	char			u;			//atime
+	char			c;			//ctime
+	char			f;			//no tri
+	char			sup;		//size
+	char			r;			//reverse
 }				t_env;
 
 typedef struct	s_finfo
@@ -94,6 +106,8 @@ void			print_list(t_env *env, t_list *lst, t_maxf *maxf);
 /*
 ** ultils.c
 */
+void			delfinfo(t_finfo *f_info);
+void			delall(t_list *lst);
 char			*ft_newpath(const char *path, const char *name);
 int				is_pointpoint(char *dir);
 
@@ -121,22 +135,45 @@ int				init_env(t_env *env, char **av);
 */
 t_list			*sort_file(t_env *env, t_list *lst);
 void			sort_dir(t_env *env);
+int				sort_by_name(t_node *nd1, t_node *nd2);
+int				sort_by_name_r(t_node *nd1, t_node *nd2);
+int				sort_by_mtime(t_node *nd1, t_node *nd2);
+int				sort_by_mtime_r(t_node *nd1, t_node *nd2);
 
 
 /*
 ** param.c
 */
 void			p_l(t_env *env);
-void			p_r(t_env *env);
 void			p_rup(t_env *env);
-void			p_t(t_env *env);
 void			p_a(t_env *env);
+void			p_r(t_env *env);
+/*
+** param_sort.c
+*/
+void			p_t(t_env *env);
+void			p_u(t_env *env);
+void			p_c(t_env *env);
+void			p_f(t_env *env);
+void			p_sup(t_env *env);
+
 
 /*
 ** error.c
 */
 int				err(const char *message, char *strerr, int error);
 int				err_invalid_param(t_env *env, char c);
+
+/*
+** BONUS.c----------------------------------------------------------------------
+*/
+int				sort_by_size(t_node *nd1, t_node *nd2);
+int				sort_by_ctime(t_node *nd1, t_node *nd2);
+int				sort_by_atime(t_node *nd1, t_node *nd2);
+int				sort_by_size_r(t_node *nd1, t_node *nd2);
+int				sort_by_ctime_r(t_node *nd1, t_node *nd2);
+int				sort_by_atime_r(t_node *nd1, t_node *nd2);
+
 
 /*
 ** debug.c

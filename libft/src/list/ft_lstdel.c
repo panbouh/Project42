@@ -19,11 +19,10 @@ void	ft_lstdel(t_list **alst)
 
 	if (!alst || !(*alst))
 		return ;
-	tmp = (*alst)->node;
+	tmp = (*alst)->first;
 	while (tmp)
 	{
 		ft_lstdelone(*alst, &tmp);
 	}
 	ft_memdel((void**)alst);
-	alst = NULL;
 }

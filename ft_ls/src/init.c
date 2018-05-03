@@ -3,10 +3,14 @@
 t_param	g_paramtab[] =
 {
 	{'l', &p_l},
-	{'r', &p_r},
 	{'R', &p_rup},
-	{'t', &p_t},
 	{'a', &p_a},
+	{'r', &p_r},
+	{'t', &p_t},
+	{'u', &p_u},
+	{'c', &p_c},
+	{'S', &p_sup},
+	{'f', &p_f},
 	{0, NULL},
 };
 
@@ -41,7 +45,7 @@ int	init_env(t_env *env, char **av)
 	size_t	i;
 
 	i = 1;
-	ft_bzero(env, sizeof(env));
+	ft_bzero(env, sizeof(*env));
 	if ((check_param(env, av, &i)) == FAIL)
 		return (FAIL);
 	if (av[i])

@@ -19,9 +19,11 @@ t_mode	g_modetab[] =
 char	**get_time(const time_t *t)
 {
 	char	**last_m;
+	char	*bouh;
 	//Fri Mar 16 16:25:17 2018
 	//16 mar 16:25
-	last_m = ft_strsplit(ctime(t), ' ');
+	bouh = ctime(t);
+	last_m = ft_strsplit(bouh, ' ');
 	time_t	now;
 	time(&now);
 	if (ft_abs(now - *t) > SIX_MONTH)
@@ -89,7 +91,6 @@ int		get_info(t_finfo *f_info, t_maxf *maxf, char *path)
 	// ft_printf("name : %s\n", f_info->name);
 	if((lstat(path, &f_info->file_s)) == FAIL)
 		return (ft_error("err getinfo : stat fail", errno));
-	ft_printf("ino : %li\n", f_info->file_s.st_ino);
 	maxf->bsize += f_info->file_s.st_blocks;
 	errno = 0;
 

@@ -8,9 +8,19 @@ t_list *get_one_file(t_maxf *maxf, t_list *new_l, const char *path, char *name)
 		return (NULL);
 	f_info->name = name;
 	get_info(f_info, maxf, ft_newpath(path, f_info->name));
-	ft_lstadd_end(new_l, ft_lstnew_node(f_info, sizeof(t_finfo)));
+	ft_lstadd_end(new_l, ft_lstnew_node_m(f_info, sizeof(t_finfo)));
 	//newpatj
 	return (new_l);
+}
+
+int		check_if_sim(const char *path)
+{
+	struct stat	bouh;
+
+	lstat(path, &bouh);
+	if ((get_ftype(bouh.st_mode)) == 'l')
+		return (1);
+	return (0);
 }
 
 t_list	*get_file(t_maxf *maxf, const char *path, int a)
@@ -22,23 +32,23 @@ t_list	*get_file(t_maxf *maxf, const char *path, int a)
 	DIR				*dir;
 
 	new_l = ft_lstnew();
+	if (check_if_sim(path))
+		return (get_one_file(maxf, new_l, "./", ft_strdup(path)));
 	if (!(dir = opendir(path)))
 	{
 		if (errno == ENOTDIR)
-			return (get_one_file(maxf, new_l, "./", (char *)path));
+			return (get_one_file(maxf, new_l, "./", ft_strdup(path)));
 		return (NULL);
 	}
 	maxf->is_dir = 1;
 	while ((dir_d = readdir(dir)))
 	{
-		ft_printf("name : %s, ino = %li\n", dir_d->d_name, dir_d->d_ino);
 		if (dir_d->d_name[0] != '.' || a)
 			if (!(new_l = get_one_file(maxf, new_l, path,
 										ft_strdup(dir_d->d_name))))
 				return (NULL);
 	}
 	closedir(dir);
-	//freeall
 	return (new_l);
 }
 
@@ -67,11 +77,12 @@ int		list_file(t_env *env, const char *path)
 	// ft_printf("path = %s\n", path);
 	ft_bzero(&maxf, sizeof(t_maxf));
 	if (!(lst = get_file(&maxf, path, env->a)))
-		return (err(path, strerror(errno), FAIL));
+		return (FAIL);
 	// lstput(lst, "Origin");
 	// ft_printf("avant : %p\n", lst);
 	t_list	*tmp = lst;
-	lst = sort_file(env, lst);
+	if (!(lst = sort_file(env, lst)))	//leaks evident
+		return (FAIL);
 	// ft_printf("apres : %p, tmp = %p\n", lst, tmp);
 	// ft_printf("tmp->node : %p\n", ((t_finfo*)tmp->node)->name);
 	// ft_printf("lst->node : %p\n", ((t_finfo*)lst->node)->name);
@@ -80,6 +91,7 @@ int		list_file(t_env *env, const char *path)
 		print_list(env, lst, &maxf);
 	if (env->rup)
 		list_r(env, lst, path);
+	delall(lst);
 	//freeall
 	return (OK);
 }
@@ -103,7 +115,10 @@ int		ft_ls(char **av)
 		if ((list_file(&env, env.path[i])) == FAIL)
 			err(env.path[i], strerror(errno), FAIL);
 		i++;
+		if (env.path[i])
+			ft_putchar('\n');
 	}
 	//faire un free/close all
+	// while (42){}
 	return (OK);
 }

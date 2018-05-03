@@ -43,8 +43,8 @@ void	lstput(t_list *lst, const char *name)
 	-@ et + devant file
 	-free
 	-ls -l /tmp et /tmp/
-	-probleme avec les fd dans /dev
-	-autre tri
+	-leaks tri
+	-bad free on ./ft_ls -l [simlink->]
 */
 
 int	main(int ac, char **av)

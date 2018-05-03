@@ -1,113 +1,89 @@
 #include "ft_ls.h"
+#include <time.h>
 
-	// ((t_finfo*)lst->content)->name
-
-t_list	*merge(t_list *lst_l, t_list *lst_r)
+t_sorting	g_sorttab[] =
 {
-	t_list	*result;
+	{'t', &sort_by_mtime},
+	{'u', &sort_by_atime},
+	{'c', &sort_by_ctime},
+	{'S', &sort_by_size},
+	{0, NULL},
+};
 
-	result = ft_lstnew(); //malloc
-	while (lst_l->node && lst_r->node)
-	{
-		if (ft_strcmp(((t_finfo*)lst_l->node->data)->name,
-						((t_finfo*)lst_r->node->data)->name) > 0)
-		{
-			ft_lstadd_end(result, lst_r->node); //malloc
-			lst_r->node = lst_r->node->next;
-		}
-		else
-		{
-			ft_lstadd_end(result, lst_l->node); //malloc
-			lst_l->node = lst_l->node->next;
-		}
-	}
-	result = ft_lstcat(result, lst_l);
-	result = ft_lstcat(result, lst_r);
-	return (result);
+t_sorting	g_sorttab_r[] =
+{
+	{'t', &sort_by_mtime_r},
+	{'u', &sort_by_atime_r},
+	{'c', &sort_by_ctime_r},
+	{'S', &sort_by_size_r},
+	{0, NULL},
+};
+
+int	sort_by_name(t_node *nd1, t_node *nd2)
+{
+	if ((ft_strcmp(((t_finfo*)nd1->data)->name,
+					((t_finfo*)nd2->data)->name)) < 0)
+		return (0);
+	return (1);
 }
 
-static t_list	*sort_by_name(t_env *env, t_list *lst)
+int	sort_by_name_r(t_node *nd1, t_node *nd2)
 {
-	t_list	*lst_r;
-	t_list	*lst_l;
-	size_t	size;
-
-	if ((size = lst->size) <= 1)
-		return (lst);
-	lst_l = ft_lstsub(lst, 0, size / 2); //malloc
-	lst_r = ft_lstsub(lst, size / 2, (size - size / 2)); //malloc
-	ft_lstdel(&lst);
-	lst_l = sort_by_name(env, lst_l);
-	lst_r = sort_by_name(env, lst_r);
-	return (merge(lst_l, lst_r));  //malloc
+	if ((ft_strcmp(((t_finfo*)nd1->data)->name,
+					((t_finfo*)nd2->data)->name)) < 0)
+		return (1);
+	return (0);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-static void	sort_by_name_r(t_env *env, t_list *lst)
+int	sort_by_mtime(t_node *nd1, t_node *nd2)
 {
+	time_t	t1;
+	time_t	t2;
 
+	t1 = ((t_finfo*)nd1->data)->file_s.st_mtime;
+	t2 = ((t_finfo*)nd2->data)->file_s.st_mtime;
+	if (t1 < t2)
+		return (1);
+	return (0);
 }
 
-static void	sort_by_time(t_env *env, t_list *lst)
+int	sort_by_mtime_r(t_node *nd1, t_node *nd2)
 {
+	time_t	t1;
+	time_t	t2;
 
-}
-
-static void	sort_by_time_r(t_env *env, t_list *lst)
-{
-
+	t1 = ((t_finfo*)nd1->data)->file_s.st_mtime;
+	t2 = ((t_finfo*)nd2->data)->file_s.st_mtime;
+	if (t1 >= t2)
+		return (1);
+	return (0);
 }
 
 
 t_list	*sort_file(t_env *env, t_list *lst)
 {
-	if (env->t)
+	size_t	i;
+
+	i = 0;
+	if (env->r && !env->f)
 	{
-		if (env->r)
-			sort_by_time_r(env, lst);
-		else
-			sort_by_time(env, lst);
+		while (g_sorttab_r[i].key)
+		{
+			if (ft_strchr(env->tab_sort, g_sorttab_r[i].key))
+				return (ft_lstsort(lst, g_sorttab_r[i].f));
+			i++;
+		}
+		return (ft_lstsort(lst, &sort_by_name_r));
 	}
-	else if (env->r)
-		sort_by_name_r(env, lst);
-	else
-		return (sort_by_name(env, lst));
-	return (NULL);
+	else if (!env->f)
+	{
+		while (g_sorttab[i].key)
+		{
+			if (ft_strchr(env->tab_sort, g_sorttab[i].key))
+				return (ft_lstsort(lst, g_sorttab[i].f));
+			i++;
+		}
+		return (ft_lstsort(lst, &sort_by_name));
+	}
+	return (lst);
 }

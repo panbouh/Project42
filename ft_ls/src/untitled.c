@@ -29,41 +29,20 @@
 // 	return (-1);
 // }
 
-	size_t	i;
-	t_list *next;
-	t_list *tmp;
-
-	if (!lst)
-		return ;
-	tmp = lst;
-	next = lst->next;
-	i = 0;
-	while (lst && next)
+	if (env->f)
+		return (lst);
+	if (env->r)
 	{
-		if ((ft_strcmp(((t_finfo*)lst->content)->name, ((t_finfo*)next->content)->name)) > 0)
-		{
-			ft_lstswap(lst, next);
-			lst = tmp;
-			next = tmp->next;
-		}
+		if (env->t)
+			return (ft_lstsort(lst, &sort_by_mtime_r));
 		else
-		{
-			lst = lst->next;
-			next = next->next;
-		}
+			return (ft_lstsort(lst, &sort_by_name_r));
 	}
-
-
-			if (ft_strcmp(((t_finfo*)lst_l->node->data)->name,
-						((t_finfo*)lst_r->node->data)->name) > 0)
-		{
-			ft_lstadd_end(result,
-				ft_lstnew_node(lst_r->node->data, lst_r->node->data_size)); //malloc
-			lst_r->node = lst_r->node->next;
-		}
+	else
+	{
+		if (env->t)
+			return (ft_lstsort(lst, &sort_by_mtime));
 		else
-		{
-			ft_lstadd_end(result,
-				ft_lstnew_node(lst_l->node->data, lst_l->node->data_size)); //malloc
-			lst_l->node = lst_l->node->next;
-		}
+			return (ft_lstsort(lst, &sort_by_name));
+	}
+	return (NULL);
