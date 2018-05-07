@@ -25,13 +25,14 @@ void	lstput(t_list *lst, const char *name)
 	ft_putendl("NULL");
 }
 
-int main()
+int main(int ac, char **av)
 {
-	char *bouh = "un deux trois mdr";
-	char **lol = ft_strsplit(bouh, ' ');
-	ft_printf("WTF\n");
-	// ft_tabdel((void**)lol);
-	while (2){}
+	// char *bouh = "un deux trois mdr";
+	// char **lol = ft_strsplit(bouh, ' ');
+	// ft_printf("WTF\n");
+	// // ft_tabdel((void**)lol);
+	// while (2){}
+	ft_printf("path = %s\n", ft_newpath(av[1], av[2]));
 	return (0);
 }
 

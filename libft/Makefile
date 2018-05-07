@@ -149,6 +149,7 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strtrim_full.c						\
 				ft_strlen_c.c							\
 				ft_strtotab.c							\
+				ft_newpath.c							\
 				ft_strmiam.c
 
 WSTR_FILE	=	ft_wstrlen.c							\

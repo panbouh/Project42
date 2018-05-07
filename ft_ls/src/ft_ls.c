@@ -7,9 +7,9 @@ t_list *get_one_file(t_maxf *maxf, t_list *new_l, const char *path, char *name)
 	if (!(f_info = (t_finfo *)ft_memalloc(sizeof(t_finfo))))
 		return (NULL);
 	f_info->name = name;
-	get_info(f_info, maxf, ft_newpath(path, f_info->name));
+	if ((get_info(f_info, maxf, ft_newpath(path, f_info->name))) == FAIL)
+		return (NULL);
 	ft_lstadd_end(new_l, ft_lstnew_node_m(f_info, sizeof(t_finfo)));
-	//newpatj
 	return (new_l);
 }
 
@@ -18,7 +18,7 @@ int		check_if_sim(const char *path)
 	struct stat	bouh;
 
 	lstat(path, &bouh);
-	if ((get_ftype(bouh.st_mode)) == 'l')
+	if (S_ISLNK(bouh.st_mode))
 		return (1);
 	return (0);
 }
@@ -81,8 +81,8 @@ int		list_file(t_env *env, const char *path)
 	// lstput(lst, "Origin");
 	// ft_printf("avant : %p\n", lst);
 	t_list	*tmp = lst;
-	if (!(lst = sort_file(env, lst)))	//leaks evident
-		return (FAIL);
+	// if (!(lst = sort_file(env, lst)))	//leaks evident
+	// 	return (FAIL);
 	// ft_printf("apres : %p, tmp = %p\n", lst, tmp);
 	// ft_printf("tmp->node : %p\n", ((t_finfo*)tmp->node)->name);
 	// ft_printf("lst->node : %p\n", ((t_finfo*)lst->node)->name);

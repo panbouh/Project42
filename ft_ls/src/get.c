@@ -28,8 +28,8 @@ char	**get_time(const time_t *t)
 	time(&now);
 	if (ft_abs(now - *t) > SIX_MONTH)
 	{
-		last_m[4][ft_strlen(last_m[4]) - 1] = 0;
-		last_m[3] = last_m[4];
+		last_m[4][ft_strlen(last_m[4]) - 1] = ' ';		//enlever le '\n'
+		ft_memswap((void**)&last_m[3], (void**)&last_m[4]);
 	}
 	return (last_m);
 }
@@ -90,7 +90,7 @@ int		get_info(t_finfo *f_info, t_maxf *maxf, char *path)
 	// ft_printf("path = %s\n", path);
 	// ft_printf("name : %s\n", f_info->name);
 	if((lstat(path, &f_info->file_s)) == FAIL)
-		return (ft_error("err getinfo : stat fail", errno));
+		return (FAIL);
 	maxf->bsize += f_info->file_s.st_blocks;
 	errno = 0;
 

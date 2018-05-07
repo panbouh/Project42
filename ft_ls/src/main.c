@@ -33,18 +33,12 @@ void	lstput(t_list *lst, const char *name)
 }
 
 /*
-	-Heure + de 6mois
-	{
-		1 jours = 24h * 60m * 60s = 86400 sec
-		x30 = 2592000 x 3 = 7776000
-		x31 = 2678400 x 3 = 8035200
-		-> 15811200
-	}
+
 	-@ et + devant file
-	-free
-	-ls -l /tmp et /tmp/
 	-leaks tri
-	-bad free on ./ft_ls -l [simlink->]
+	-leaks
+	-afficher le bon m_time en fonctoin du tri
+	-tri bonnus corriger
 */
 
 int	main(int ac, char **av)
@@ -57,6 +51,7 @@ int	main(int ac, char **av)
 	if (ft_ls(av) == FAIL)
 		return (ft_error(strerror(errno), FAIL));
 	// ft_ls(av);
+	while (42){}
 	return (0);
 }
 
@@ -82,4 +77,11 @@ right		link	owner	group	bytes	date/hours		pathname
 
 includes
 
+	-Heure + de 6mois
+	{
+		1 jours = 24h * 60m * 60s = 86400 sec
+		x30 = 2592000 x 3 = 7776000
+		x31 = 2678400 x 3 = 8035200
+		-> 15811200
+	}
 */
