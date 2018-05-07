@@ -11,6 +11,7 @@ SRC		=	$(WAY)main.c					\
 			$(WAY)error.c					\
 			$(WAY)get.c						\
 			$(WAY)get2.c					\
+			$(WAY)get_file.c				\
 			$(WAY)utils.c					\
 			$(WAY)param.c					\
 			$(WAY)param_sort.c				
@@ -25,7 +26,7 @@ LIBFT		=	libft
 LIBFTPATH	=	./libft/
 HEADLIBFTPATH	=	$(LIBFTPATH)includes/
 
-CFLAGS	=	-I $(HEADLIBFTPATH) -I $(HEADPATH)
+CFLAGS	=	-I $(HEADLIBFTPATH) -I $(HEADPATH) -g3
 #-Wall -Wextra -Werror
 CCLIBFT		=	-L libft/ -lft
 

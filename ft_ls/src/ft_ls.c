@@ -1,57 +1,5 @@
 #include "ft_ls.h"
 
-t_list *get_one_file(t_maxf *maxf, t_list *new_l, const char *path, char *name)
-{
-	t_finfo	*f_info;
-
-	if (!(f_info = (t_finfo *)ft_memalloc(sizeof(t_finfo))))
-		return (NULL);
-	f_info->name = name;
-	if ((get_info(f_info, maxf, ft_newpath(path, f_info->name))) == FAIL)
-		return (NULL);
-	ft_lstadd_end(new_l, ft_lstnew_node_m(f_info, sizeof(t_finfo)));
-	return (new_l);
-}
-
-int		check_if_sim(const char *path)
-{
-	struct stat	bouh;
-
-	lstat(path, &bouh);
-	if (S_ISLNK(bouh.st_mode))
-		return (1);
-	return (0);
-}
-
-t_list	*get_file(t_maxf *maxf, const char *path, int a)
-{
-	t_list			*new_l;
-	t_finfo			*f_info;
-	char			*tmp;
-	struct dirent	*dir_d;
-	DIR				*dir;
-
-	new_l = ft_lstnew();
-	if (check_if_sim(path))
-		return (get_one_file(maxf, new_l, "./", ft_strdup(path)));
-	if (!(dir = opendir(path)))
-	{
-		if (errno == ENOTDIR)
-			return (get_one_file(maxf, new_l, "./", ft_strdup(path)));
-		return (NULL);
-	}
-	maxf->is_dir = 1;
-	while ((dir_d = readdir(dir)))
-	{
-		if (dir_d->d_name[0] != '.' || a)
-			if (!(new_l = get_one_file(maxf, new_l, path,
-										ft_strdup(dir_d->d_name))))
-				return (NULL);
-	}
-	closedir(dir);
-	return (new_l);
-}
-
 void	list_r(t_env *env, t_list *lst, const char *path)
 {
 	char	*new_p;
@@ -63,6 +11,7 @@ void	list_r(t_env *env, t_list *lst, const char *path)
 			new_p = ft_newpath(path, ((t_finfo*)lst->node->data)->name);
 			ft_printf("\n%s:\n", new_p);
 			list_file(env, new_p);
+			ft_strdel(&new_p);
 		}
 		lst->node = lst->node->next;
 	}
@@ -72,28 +21,26 @@ int		list_file(t_env *env, const char *path)
 {
 	t_list	*lst;
 	t_maxf	maxf;
+	int		ret;
 
-	errno = 0;
+	lst = ft_lstnew();
 	// ft_printf("path = %s\n", path);
 	ft_bzero(&maxf, sizeof(t_maxf));
-	if (!(lst = get_file(&maxf, path, env->a)))
-		return (FAIL);
-	// lstput(lst, "Origin");
-	// ft_printf("avant : %p\n", lst);
-	t_list	*tmp = lst;
-	// if (!(lst = sort_file(env, lst)))	//leaks evident
+	if (env->a)
+		maxf.a = 1;
+	if ((ret = get_file(lst, &maxf, path, env->l)) != FAIL)
+	{
+	// if (!(lst = sort_file(env, lst)))
 	// 	return (FAIL);
-	// ft_printf("apres : %p, tmp = %p\n", lst, tmp);
-	// ft_printf("tmp->node : %p\n", ((t_finfo*)tmp->node)->name);
-	// ft_printf("lst->node : %p\n", ((t_finfo*)lst->node)->name);
-	// lstput(lst, "\n-----\nDorted");
-	if (lst->node)
-		print_list(env, lst, &maxf);
-	if (env->rup)
-		list_r(env, lst, path);
+
+		if (lst->node)
+			print_list(env, lst, &maxf);
+		if (env->rup)
+			list_r(env, lst, path);
+	}
+	// printf("LAAAAA\n");
 	delall(lst);
-	//freeall
-	return (OK);
+	return (ret);
 }
 
 int		ft_ls(char **av)
@@ -110,15 +57,15 @@ int		ft_ls(char **av)
 	// ft_printf("-----------------\n\n");
 	while (env.path[i])
 	{
-		if (ft_tablen(env.path) > 1)
-			ft_printf("%s:\n", env.path[i]);
+		// if (ft_tablen(env.path) > 1)		//pas ici ><
+		// 	ft_printf("%s:\n", env.path[i]);
 		if ((list_file(&env, env.path[i])) == FAIL)
 			err(env.path[i], strerror(errno), FAIL);
 		i++;
 		if (env.path[i])
 			ft_putchar('\n');
 	}
+	ft_tabsdel(env.path);
 	//faire un free/close all
-	// while (42){}
 	return (OK);
 }

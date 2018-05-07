@@ -32,7 +32,15 @@ int main(int ac, char **av)
 	// ft_printf("WTF\n");
 	// // ft_tabdel((void**)lol);
 	// while (2){}
-	ft_printf("path = %s\n", ft_newpath(av[1], av[2]));
+
+	char **bouh = ft_strsplit("donc un il un home moche mdr", ' ');
+	char *ntm = bouh[2];
+	ft_printf("bouh[2]\t\t= %p\nntm\t\t= %p\n", bouh[2], ntm);
+	ft_strdel(&ntm);
+	ft_printf("bouh[2]\t\t= %p\nntm\t\t= %p\n", bouh[2], ntm);
+	if (bouh[2])
+		BOUH
+	ft_tabsdel(bouh);
 	return (0);
 }
 

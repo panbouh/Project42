@@ -1,7 +1,6 @@
 #include "libft.h"
 #include "stdlib.h"
 
-#include "ft_printf.h"
 void	**ft_tabdup(void **src, size_t size)
 {
 	void	**new;
@@ -9,11 +8,12 @@ void	**ft_tabdup(void **src, size_t size)
 	size_t	i;
 
 	i = 0;
-	new = malloc(sizeof(size));
+	if (!(new = malloc(sizeof(size))))
+		return (NULL);
 	tmp = new;
 	while (i < size)
 	{
-		tmp = src;
+		tmp = ft_memdup(src, sizeof(src));
 		tmp++;
 		src++;
 		i++;
@@ -26,12 +26,15 @@ char	**ft_tabsdup(char **src)
 {
 	char	**new;
 	size_t	i;
+	size_t	size;
 
+	size = ft_tablen(src) + 1;
 	i = 0;
-	new = malloc(sizeof(char *) * ft_tablen(src));
+	if (!(new = malloc(sizeof(char *) * size)))
+		return (NULL);
 	while (src[i])
 	{
-		new[i] = src[i];
+		new[i] = ft_strdup(src[i]);
 		i++;
 	}
 	new[i] = 0;

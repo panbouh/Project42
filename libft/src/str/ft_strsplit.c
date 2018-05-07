@@ -35,7 +35,7 @@ char		**ft_strsplit(const char *str, char c)
 	i = 0;
 	y = 0;
 	nb_word = ft_count_word(str, c);
-	if (!(split = (char **)malloc(sizeof(char *) * nb_word + 1)))
+	if (!(split = (char **)malloc(sizeof(char *) * (nb_word + 1))))
 		return (NULL);
 	while (y < nb_word)
 	{
@@ -44,6 +44,6 @@ char		**ft_strsplit(const char *str, char c)
 		y++;
 		i = ft_skip_char(str, i, c, TILL);
 	}
-	split[y] = 0;
+	split[y] = NULL;
 	return (split);
 }

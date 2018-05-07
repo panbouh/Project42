@@ -19,10 +19,12 @@ int	check_param(t_env *env, char **av, size_t *y)
 	size_t	i;
 	size_t	x;
 
-	while (av[*y] && av[*y][0] && av[*y][0] == '-')
+	while (av[*y] && av[*y][0] && av[*y][0] == '-' && !env->stop)
 	{
 		x = 1;
-		while (av[*y][x])
+		if (!ft_strcmp(av[*y], "--"))
+			env->stop = 1;
+		while (av[*y][x] && !env->stop)
 		{
 			i = 0;
 			if ((ft_isvalid(av[*y][x], ALL_PARAM)) == FAIL)
@@ -50,7 +52,7 @@ int	init_env(t_env *env, char **av)
 		return (FAIL);
 	if (av[i])
 	{
-		env->path = &av[i];
+		env->path = ft_tabsdup(&av[i]);
 		sort_dir(env);
 	}
 	else

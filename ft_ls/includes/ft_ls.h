@@ -30,11 +30,11 @@ typedef struct	s_sorting
 	int		(*f)(t_node*, t_node*);
 }				t_sorting;
 
-typedef struct	s_error
-{
-	int		key;
-	void	(*f)();
-}				t_error;
+// typedef struct	s_error
+// {
+// 	int		key;
+// 	void	(*f)();
+// }				t_error;
 
 typedef struct	s_mode
 {
@@ -53,6 +53,7 @@ typedef struct	s_env
 	char			**path;
 	char			tab_sort[NB_SORT_P];	//sort option
 	int				tsize;
+	char			stop;
 	char			l;
 	char			rup;
 	char			a;
@@ -79,6 +80,7 @@ typedef struct	s_finfo
 
 typedef struct	s_maxf
 {
+	char			a;
 	size_t			bsize;
 	size_t			name;
 	size_t			uname;
@@ -93,8 +95,17 @@ typedef struct	s_maxf
 */
 void			list_r(t_env *env, t_list *lst, const char *path);
 int				list_file(t_env *env, const char *path);
-t_list			*get_file(t_maxf *maxf, const char *path, int a);
 int				ft_ls(char **av);
+
+/*
+** get_file.c
+*/
+int				get_one_file(t_maxf *maxf, t_list *new_l, const char *path,
+								char *name);
+int				get_many_file(t_maxf *maxf, t_list *new_l, const char *path,
+								DIR *dir);
+int				check_if_sim(const char *path);
+int				get_file(t_list *lst, t_maxf *maxf, const char *path, int l);
 
 /*
 ** print.c
@@ -110,6 +121,7 @@ void			delfinfo(t_finfo *f_info);
 void			delall(t_list *lst);
 char			*ft_newpath(const char *path, const char *name);
 int				is_pointpoint(char *dir);
+char			*get_onlypath(char *path);
 
 /*
 ** get.c
@@ -163,6 +175,7 @@ void			p_sup(t_env *env);
 */
 int				err(const char *message, char *strerr, int error);
 int				err_invalid_param(t_env *env, char c);
+// int				err_abort(t_list *lst);
 
 /*
 ** BONUS.c----------------------------------------------------------------------

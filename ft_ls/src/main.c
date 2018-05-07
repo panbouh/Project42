@@ -51,7 +51,6 @@ int	main(int ac, char **av)
 	if (ft_ls(av) == FAIL)
 		return (ft_error(strerror(errno), FAIL));
 	// ft_ls(av);
-	while (42){}
 	return (0);
 }
 

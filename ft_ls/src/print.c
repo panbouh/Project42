@@ -33,7 +33,9 @@ int		print_info(t_list *lst, t_maxf *maxf)
 
 void	print_list(t_env *env, t_list *lst, t_maxf *maxf)
 {
-	if (env->l && maxf->is_dir) // si un seul fihcier dans dossier bug
+	if (maxf->is_dir)
+		ft_printf("%s:\n", get_onlypath(((t_finfo*)lst->node->data)->path)); //afficher juste le nom du dosier avant
+	if (env->l && maxf->is_dir)
 		ft_printf("total %i\n", maxf->bsize);
 	while (lst->node)
 	{

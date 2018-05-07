@@ -34,13 +34,22 @@
 
 # define BUFF_MAX	4242
 # define FAIL		-1
+# define SUCCESS	1
 # define OK			0
 # define TILL		96
 # define ALL		69
 # define SKIP		9
-# define STOP		1
+# define STOP		4
 # define GO			3
+
+/*
+** #################
+** #  MACRO DEBUG  #
+** #################
+*/
+// # define DEBUG		#include "ft_printf.h"
 # define BOUH		ft_putstr("bouh\n");
+
 
 /*
 ** ###############
@@ -183,7 +192,7 @@ char				**ft_strsplit(const char *s, char c);
 /*
 ** tab
 */
-void				ft_tabdel(void **tab);
+void				ft_tabsdel(char **tab);
 size_t				ft_tablen(char **tab);
 void				**ft_tabdup(void **src, size_t size);
 char				**ft_tabsdup(char **src);
