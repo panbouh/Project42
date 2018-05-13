@@ -14,8 +14,8 @@
 # define GET_NEXT_LINE_H
 
 # define BUFF_SIZE		50
-# define RD_DONE		1
-# define RD_END			0
+# define RD_DONE		7
+# define RD_END			8
 
 int				get_next_line(int fd, char **line);
 

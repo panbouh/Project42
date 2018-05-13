@@ -42,5 +42,5 @@ char	*get_onlypath(char *path)
 	while (stop >= 0 && path[stop] != '/')
 		stop--;
 	ft_strncat(new, path, stop);
-	return (new);
+	return (ft_strdup(new));
 }

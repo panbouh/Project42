@@ -31,23 +31,26 @@
 ** #  MACRO  #
 ** ###########
 */
-
 # define BUFF_MAX	4242
+
+/*
+** RET VALUE
+*/
 # define FAIL		-1
 # define SUCCESS	1
 # define OK			0
-# define TILL		96
-# define ALL		69
-# define SKIP		9
-# define STOP		4
-# define GO			3
+
+# define TILL		2
+# define ALL		3
+# define SKIP		4
+# define STOP		5
+# define GO			6
 
 /*
 ** #################
 ** #  MACRO DEBUG  #
 ** #################
 */
-// # define DEBUG		#include "ft_printf.h"
 # define BOUH		ft_putstr("bouh\n");
 
 
