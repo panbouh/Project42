@@ -12,8 +12,8 @@
 #include <string.h>
 
 # define	ALL_PARAM	"RalrtucSf"
-# define	USE			"usage: ls [-RalrtucSf] [file ...]\0"
-# define	INV_PAR		"ls: illegal option -- \0"
+# define	USE			"usage: ft_ls [-RalrtucSf] [file ...]\0"
+# define	INV_PAR		"ft_ls: illegal option -- \0"
 # define	ONE_DAY		86400
 # define	SIX_MONTH	(ONE_DAY * 30) * 3 + (ONE_DAY * 31) * 3
 # define	NB_SORT_P	6

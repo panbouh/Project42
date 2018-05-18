@@ -30,8 +30,8 @@ int		list_file(t_env *env, const char *path)
 		maxf.a = 1;
 	if ((ret = get_file(lst, &maxf, path, env->l)) != FAIL)
 	{
-	// if (!(lst = sort_file(env, lst)))
-	// 	return (FAIL);
+	if (!(lst = sort_file(env, lst)))
+		return (FAIL);
 
 		if (lst->node)
 			print_list(env, lst, &maxf);

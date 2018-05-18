@@ -5,7 +5,7 @@ int		err(const char *message, char *strerr, int error)
 	size_t	i;
 	if (!message)
 		return (error);
-	ft_putstr_fd("ls: ", 2);
+	ft_putstr_fd("ft_ls: ", 2);
 	if ((i = ft_strlen(message)))
 	{
 		while (i != 0 && message[i - 1] != '/')
