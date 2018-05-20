@@ -1,5 +1,0 @@
-	while (std::getline(std::cin, line))
-	{
-		
-	}
-

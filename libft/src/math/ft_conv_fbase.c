@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_conv_fbase.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/20 18:13:18 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/05/20 18:13:20 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 unsigned int	ft_conv_fbase(char *nb, int base)
@@ -17,7 +29,6 @@ unsigned int	ft_conv_fbase(char *nb, int base)
 			conv += (nb[i] - 39 - 48) * ft_power(base, size - i);
 		else
 			conv += (nb[i] - 48) * ft_power(base, size - i);
-		// printf("nb[i] = %c, conv = %u\n", nb[i], conv);
 		i++;
 	}
 	return (conv);

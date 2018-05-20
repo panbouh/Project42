@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstsort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/20 18:03:31 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/05/20 18:03:33 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_list.h"
 
 static t_list	*merge(t_list *lst_l, t_list *lst_r,
@@ -8,7 +20,7 @@ static t_list	*merge(t_list *lst_l, t_list *lst_r,
 
 	if (!lst_l || !lst_r)
 		return (NULL);
-	result = ft_lstnew(); //malloc
+	result = ft_lstnew();
 	while (lst_l->node && lst_r->node)
 	{
 		if ((ret = cmp(lst_l->node, lst_r->node)) == -1)
@@ -29,7 +41,7 @@ static t_list	*merge(t_list *lst_l, t_list *lst_r,
 	return (result);
 }
 
-t_list	*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *))
+t_list			*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *))
 {
 	t_list	*lst_r;
 	t_list	*lst_l;
@@ -38,12 +50,12 @@ t_list	*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *))
 
 	if ((size = lst->size) <= 1)
 		return (lst);
-	lst_l = ft_lstsub(lst, 0, size / 2); //malloc
-	lst_r = ft_lstsub(lst, size / 2, (size - size / 2)); //malloc
-	ft_lstdel(&lst);	//leaks evidents
+	lst_l = ft_lstsub(lst, 0, size / 2);
+	lst_r = ft_lstsub(lst, size / 2, (size - size / 2));
+	ft_lstdel(&lst);
 	lst_l = ft_lstsort(lst_l, cmp);
 	lst_r = ft_lstsort(lst_r, cmp);
-	if (!(result = merge(lst_l, lst_r, cmp)))	//malloc
+	if (!(result = merge(lst_l, lst_r, cmp)))
 		return (NULL);
 	return (result);
 }

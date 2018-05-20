@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstinit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/20 18:03:11 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/05/20 18:03:15 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_list.h"
 
 void	ft_lstinit(t_list *lst, t_node *node)
 {
-		lst->node = node;
-		lst->first = node;
-		lst->last = node;
+	lst->node = node;
+	lst->first = node;
+	lst->last = node;
 }

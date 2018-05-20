@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putdtab.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/20 18:19:17 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/05/20 18:19:18 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 void	ft_putdtab(const int **tab, size_t x, size_t y)
@@ -5,7 +17,7 @@ void	ft_putdtab(const int **tab, size_t x, size_t y)
 	size_t	i;
 
 	i = 0;
-	while(i < y)
+	while (i < y)
 	{
 		ft_puttab(tab[i], x);
 		ft_putstr(";\n");

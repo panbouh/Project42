@@ -31,6 +31,7 @@ void	ft_putumaxnbr(uintmax_t nb)
 {
 	ft_putumaxnbr_fd(nb, 1);
 }
+
 void	ft_putimaxnbr(intmax_t nb)
 {
 	ft_putimaxnbr_fd(nb, 1);

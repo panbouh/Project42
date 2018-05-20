@@ -1,4 +1,16 @@
-#ifndef	FT_LIST_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_list.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/20 18:38:47 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/05/20 18:38:50 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FT_LIST_H
 # define FT_LIST_H
 
 # include <stdlib.h>
@@ -41,8 +53,6 @@ void				ft_lstinit(t_list *lst, t_node *node);
 void				ft_lstswap(t_node *lst1, t_node *ls2);
 void				ft_lstdelone(t_list *node, t_node **alst);
 void				ft_lstdel(t_list **alst);
-// void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-// size_t				ft_lstsize(t_list *lst);
 t_list				*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *));
 t_list				*ft_lstcat(t_list *dest, t_list *src);
 t_list				*ft_lstsub(t_list *lst, size_t start, size_t len);
@@ -50,6 +60,5 @@ t_list				*ft_lstnew();
 t_node				*ft_lstgetn(t_list *lst, size_t n);
 t_node				*ft_lstnew_node_m(void *data, size_t data_size);
 t_node				*ft_lstnew_node(const void *data, size_t data_size);
-// t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 #endif

@@ -20,11 +20,6 @@
 */
 
 # include <stdlib.h>
-// # include <string.h>
-// # include <stdio.h>
-// # include <ctype.h>
-// # include <unistd.h>
-// # include <fcntl.h>
 
 /*
 ** ###########
@@ -52,7 +47,6 @@
 ** #################
 */
 # define BOUH		ft_putstr("bouh\n");
-
 
 /*
 ** ###############
@@ -172,7 +166,7 @@ int					*ft_strtotab(const char *str, size_t *size);
 char				*ft_strrev(char *str);
 char				*ft_strupper(char *str);
 char				*ft_strsub_to(const char *s, unsigned int start, char stop);
-char				*ft_strtrim_full(const char *);
+char				*ft_strtrim_full(const char *s);
 char				*ft_strdup(const char *s);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strncpy(char *dest, const char *src, size_t n);
