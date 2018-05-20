@@ -3,10 +3,13 @@
 void	list_r(t_env *env, t_list *lst, const char *path)
 {
 	char	*new_p;
-
+// 	ft_printf("name_d = %s\n", ((t_finfo*)lst->node->data)->name);
+// sleep(2);
 	while (lst->node)
 	{
-		if (((t_finfo*)lst->node->data)->type == 'd')
+		if (((t_finfo*)lst->node->data)->type == 'd'
+			&& ft_strcmp(((t_finfo*)lst->node->data)->name, ".")
+			&& ft_strcmp(((t_finfo*)lst->node->data)->name, ".."))
 		{
 			new_p = ft_newpath(path, ((t_finfo*)lst->node->data)->name);
 			ft_printf("\n%s:\n", new_p);
@@ -47,6 +50,7 @@ int		ft_ls(char **av)
 {
 	t_env	env;
 	size_t	i;
+	size_t	ret;
 
 	i = 0;
 	if ((init_env(&env, av)) == FAIL)
@@ -59,10 +63,10 @@ int		ft_ls(char **av)
 	{
 		// if (ft_tablen(env.path) > 1)		//pas ici ><
 		// 	ft_printf("%s:\n", env.path[i]);
-		if ((list_file(&env, env.path[i])) == FAIL)
+		if ((ret = (list_file(&env, env.path[i]))) == FAIL)
 			err(env.path[i], strerror(errno), FAIL);
 		i++;
-		if (env.path[i])
+		if (env.path[i] && ret != FAIL)
 			ft_putchar('\n');
 	}
 	ft_tabsdel(env.path);

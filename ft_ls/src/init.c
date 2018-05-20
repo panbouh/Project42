@@ -14,29 +14,41 @@ t_param	g_paramtab[] =
 	{0, NULL},
 };
 
+int	lanormeomg(t_env *env, char *param)
+{
+	size_t	x;
+	size_t	i;
+
+	x = 1;
+	while (param[x] && !env->stop)
+	{
+		i = 0;
+		if ((ft_isvalid(param[x], ALL_PARAM)) == FAIL)
+			return (err_invalid_param(env, param[x]));
+		while (g_paramtab[i].key)
+		{
+			if (g_paramtab[i].key == param[x])
+			{
+				g_paramtab[i].f(env);
+				break;
+			}
+			i++;
+		}
+		x++;
+	}
+	return (OK);
+}
+
 int	check_param(t_env *env, char **av, size_t *y)
 {
-	size_t	i;
-	size_t	x;
-
 	while (av[*y] && av[*y][0] && av[*y][0] == '-' && !env->stop)
 	{
-		x = 1;
 		if (!ft_strcmp(av[*y], "--"))
 			env->stop = 1;
-		while (av[*y][x] && !env->stop)
-		{
-			i = 0;
-			if ((ft_isvalid(av[*y][x], ALL_PARAM)) == FAIL)
-				return (err_invalid_param(env, av[*y][x]));
-			while (g_paramtab[i].key)
-			{
-				if (g_paramtab[i].key == av[*y][x])
-					g_paramtab[i].f(env);
-				i++;
-			}
-			x++;
-		}
+		if (!av[*y][1])
+			return (OK);
+		if ((lanormeomg(env, av[*y])) == FAIL)
+			return (FAIL);
 		(*y)++;
 	}
 	return (OK);

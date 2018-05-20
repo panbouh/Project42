@@ -36,11 +36,11 @@ typedef struct	s_sorting
 // 	void	(*f)();
 // }				t_error;
 
-typedef struct	s_mode
-{
-	char	key;
-	char	*mode;
-}				t_mode;
+// typedef struct	s_mode
+// {
+// 	char	key;
+// 	char	*mode;
+// }				t_mode;
 
 typedef struct	s_month
 {
