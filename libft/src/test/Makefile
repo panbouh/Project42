@@ -10,7 +10,7 @@ HEADLIBPATH	=	$(LIBPATH)includes/
 
 OBJ		=	$(SRC:.c=.o)
 
-CFLAGS	=	 -I $(HEADLIBPATH) -g
+CFLAGS	=	 -I $(HEADLIBPATH) -g3
 
 #-Wall -Wextra -Werror
 

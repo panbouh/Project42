@@ -12,7 +12,9 @@ void	list_r(t_env *env, t_list *lst, const char *path)
 			&& ft_strcmp(((t_finfo*)lst->node->data)->name, ".."))
 		{
 			new_p = ft_newpath(path, ((t_finfo*)lst->node->data)->name);
-			ft_printf("\n%s:\n", new_p);
+			if ((ft_tablen(env->path)) <= 1)
+				ft_printf("\n%s:", new_p);
+			ft_putchar('\n');
 			list_file(env, new_p);
 			ft_strdel(&new_p);
 		}
@@ -23,19 +25,20 @@ void	list_r(t_env *env, t_list *lst, const char *path)
 int		list_file(t_env *env, const char *path)
 {
 	t_list	*lst;
+	t_list	*tmp;
 	t_maxf	maxf;
 	int		ret;
 
 	lst = ft_lstnew();
-	// ft_printf("path = %s\n", path);
 	ft_bzero(&maxf, sizeof(t_maxf));
 	if (env->a)
 		maxf.a = 1;
 	if ((ret = get_file(lst, &maxf, path, env->l)) != FAIL)
 	{
-	if (!(lst = sort_file(env, lst)))
-		return (FAIL);
-
+		tmp = lst;
+		if (!(lst = sort_file(env, lst)))
+			return (FAIL);
+		delall(tmp);
 		if (lst->node)
 			print_list(env, lst, &maxf);
 		if (env->rup)
@@ -67,7 +70,7 @@ int		ft_ls(char **av)
 			err(env.path[i], strerror(errno), FAIL);
 		i++;
 		if (env.path[i] && ret != FAIL)
-			ft_putchar('\n');
+			ft_putstr("\n");
 	}
 	ft_tabsdel(env.path);
 	//faire un free/close all

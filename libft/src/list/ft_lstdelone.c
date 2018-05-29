@@ -12,30 +12,35 @@
 
 #include "ft_list.h"
 #include "libft.h"
-
+#include "ft_printf.h"
 void	ft_lstdelone(t_list *lst, t_node **anode)
 {
 	t_node *tmp;
+	t_node *anow;
 
 	if (!anode || !(*anode))
 		return ;
 	tmp = *anode;
-	if (tmp->back)
-		tmp->back->next = tmp->next;
-	else
+	anow = tmp->next;
+	(void)lst;
+	ft_printf("je del ---> : %s, qui a %p\n", tmp->data, tmp);
+	ft_printf("anow = ---> : %s, qui a %p\n", anow->data);
+
+	if (anow)
 	{
-		tmp->back = NULL;
-		lst->first = tmp->next;
+		anow->back = tmp->back;
+		if (anow->back)
+			anow->back->next = anow;
 	}
-	if (tmp->next)
-		tmp->next->back = tmp->back;
-	else
-	{
-		tmp->next = NULL;
-		lst->last = tmp->back;
-	}
-	ft_memdel(&(*anode)->data);
+
+	ft_printf("lstfirst = %s\n", (*anode)->data);
+	ft_printf("lstfirst = %s\n", lst->first->data);
+
+	ft_memdel(&tmp->data);
+	ft_printf("-data deleted\n");
 	ft_memdel((void **)anode);
-	if (!lst->node)
-		*anode = lst->first;
+	ft_printf("-node deleted\n");
+
+	if (!lst->first)
+		lst->first = anow;
 }

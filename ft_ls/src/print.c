@@ -34,8 +34,8 @@ int		print_info(t_list *lst, t_maxf *maxf)
 void	print_list(t_env *env, t_list *lst, t_maxf *maxf)
 {
 	char	*path = get_onlypath(((t_finfo*)lst->node->data)->path);
-	if (maxf->is_dir && (ft_tablen(env->path)) > 1 /*ft_strcmp(path, ".")*/)
-		ft_printf("%s:\n", path); //afficher juste le nom du dosier avant
+	if (((ft_tablen(env->path)) > 1 && maxf->is_dir))
+			ft_printf("%s:\n", path); //afficher juste le nom du dosier avant
 	if (env->l && maxf->is_dir)
 		ft_printf("total %i\n", maxf->bsize);
 	while (lst->node)

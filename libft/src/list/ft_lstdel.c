@@ -13,6 +13,8 @@
 #include "ft_list.h"
 #include "libft.h"
 
+#include "ft_printf.h"
+
 void	ft_lstdel(t_list **alst)
 {
 	t_node	*tmp;
@@ -22,6 +24,7 @@ void	ft_lstdel(t_list **alst)
 	tmp = (*alst)->first;
 	while (tmp)
 	{
+		ft_printf("dell : %s, next : %s\n", tmp->data, tmp->next);
 		ft_lstdelone(*alst, &tmp);
 	}
 	ft_memdel((void**)alst);
