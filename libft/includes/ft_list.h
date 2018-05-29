@@ -51,9 +51,11 @@ void				ft_lstadd_end(t_list *lst, t_node *node);
 void				ft_lstadd_begin(t_list *lst, t_node *node);
 void				ft_lstinit(t_list *lst, t_node *node);
 void				ft_lstswap(t_node *lst1, t_node *ls2);
-void				ft_lstdelone(t_list *node, t_node **alst);
-void				ft_lstdel(t_list **alst);
-t_list				*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *));
+void				ft_lstdelone(t_list *node, t_node **alst, 
+															void(*del)(void**));
+void				ft_lstdel(t_list **alst, void(*del)(void**));
+t_list				*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *),
+															void(*del)(void**));
 t_list				*ft_lstcat(t_list *dest, t_list *src);
 t_list				*ft_lstsub(t_list *lst, size_t start, size_t len);
 t_list				*ft_lstnew();

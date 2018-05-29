@@ -13,34 +13,23 @@
 #include "ft_list.h"
 #include "libft.h"
 #include "ft_printf.h"
-void	ft_lstdelone(t_list *lst, t_node **anode)
+
+void	ft_lstdelone(t_list *lst, t_node **anode, void(*del)(void**))
 {
-	t_node *tmp;
-	t_node *anow;
-
-	if (!anode || !(*anode))
-		return ;
-	tmp = *anode;
-	anow = tmp->next;
-	(void)lst;
-	ft_printf("je del ---> : %s, qui a %p\n", tmp->data, tmp);
-	ft_printf("anow = ---> : %s, qui a %p\n", anow->data);
-
-	if (anow)
+	if ((*anode)->next)
+		(*anode)->next->back = (*anode)->back;
+	if ((*anode)->back)
+		(*anode)->back->next = (*anode)->next;
+	if (lst->first == *anode)
 	{
-		anow->back = tmp->back;
-		if (anow->back)
-			anow->back->next = anow;
+		lst->first = (*anode)->next;
+		lst->node = lst->first;
 	}
-
-	ft_printf("lstfirst = %s\n", (*anode)->data);
-	ft_printf("lstfirst = %s\n", lst->first->data);
-
-	ft_memdel(&tmp->data);
-	ft_printf("-data deleted\n");
-	ft_memdel((void **)anode);
-	ft_printf("-node deleted\n");
-
-	if (!lst->first)
-		lst->first = anow;
+	if (lst->last == *anode)
+		lst->last = (*anode)->back;
+	ft_printf("je      del %p, ", (*anode)->data);
+	ft_printf("et %p\n", *anode);
+	del((*anode)->data);
+	free(*anode);
+	anode = NULL;
 }

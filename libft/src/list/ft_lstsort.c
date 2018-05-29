@@ -41,7 +41,8 @@ static t_list	*merge(t_list *lst_l, t_list *lst_r,
 	return (result);
 }
 
-t_list			*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *))
+t_list			*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *), 
+															void(*del)(void**))
 {
 	t_list	*lst_r;
 	t_list	*lst_l;
@@ -52,9 +53,9 @@ t_list			*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *))
 		return (lst);
 	lst_l = ft_lstsub(lst, 0, size / 2);
 	lst_r = ft_lstsub(lst, size / 2, (size - size / 2));
-	ft_lstdel(&lst);
-	lst_l = ft_lstsort(lst_l, cmp);
-	lst_r = ft_lstsort(lst_r, cmp);
+	ft_lstdel(&lst, del);
+	lst_l = ft_lstsort(lst_l, cmp, del);
+	lst_r = ft_lstsort(lst_r, cmp, del);
 	if (!(result = merge(lst_l, lst_r, cmp)))
 		return (NULL);
 	return (result);

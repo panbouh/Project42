@@ -15,7 +15,7 @@
 
 #include "ft_printf.h"
 
-void	ft_lstdel(t_list **alst)
+void	ft_lstdel(t_list **alst, void(*del)(void**))
 {
 	t_node	*tmp;
 
@@ -24,8 +24,8 @@ void	ft_lstdel(t_list **alst)
 	tmp = (*alst)->first;
 	while (tmp)
 	{
-		ft_printf("dell : %s, next : %s\n", tmp->data, tmp->next);
-		ft_lstdelone(*alst, &tmp);
+		ft_lstdelone(*alst, &tmp, del);
 	}
 	ft_memdel((void**)alst);
+	alst = NULL;
 }

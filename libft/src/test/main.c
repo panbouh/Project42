@@ -48,24 +48,27 @@ int	main(int ac, char **av)
 	t_list	*lst = ft_lstnew();
 
 	ft_lstadd_end(lst, ft_lstnew_node(s6, sizeof(*s6) * ft_strlen(s6)));
-	ft_lstadd_end(lst, ft_lstnew_node(s5, sizeof(*s5) * ft_strlen(s5)));
-	ft_lstadd_end(lst, ft_lstnew_node(s4, sizeof(*s4) * ft_strlen(s4)));
-	ft_lstadd_end(lst, ft_lstnew_node(s3, sizeof(*s3) * ft_strlen(s3)));
-	ft_lstadd_end(lst, ft_lstnew_node(s2, sizeof(*s2) * ft_strlen(s2)));
-	ft_lstadd_end(lst, ft_lstnew_node(s1, sizeof(*s1) * ft_strlen(s1)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s5, sizeof(*s5) * ft_strlen(s5)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s4, sizeof(*s4) * ft_strlen(s4)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s3, sizeof(*s3) * ft_strlen(s3)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s2, sizeof(*s2) * ft_strlen(s2)));
+	// ft_lstadd_end(lst, ft_lstnew_node(s1, sizeof(*s1) * ft_strlen(s1)));
 
-	lstput(lst, "pd");
-	t_node	*lol = ft_lstgetn(lst, atoi(av[1]));
-	ft_printf("je veux del : %s, qui a %p\n", lol->data, lol);
-	ft_lstdelone(lst, &lol);
+	ft_printf("je dois del %p, ", lst->node->data);
+	ft_printf("et %p\n", lst->node);
 
-	lstput(lst, "pd");
+	// lstput(lst, "pd");
+	// t_node	*lol = ft_lstgetn(lst, atoi(av[1]));
+	// ft_printf("je veux del : %s, qui a %p\n", lol->data, lol);
+	ft_lstdelone(lst, &lst->node, &ft_memdel);
+	// ft_printf("del Done\n");
+	// lstput(lst, "pd");
 
 	// ft_printf("avant : %p\n", lst);
 	// lst = ft_lstsort(lst, &lol);
 	// ft_printf("apres : %p\n", lst);
 
-
+	free(lst);
 
 	// ft_lstdel(&lst);
 	return (1);
