@@ -11,6 +11,13 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
+#include "libft.h"
+
+static void		del_l_r(t_list	**lst_r, t_list	**lst_l)
+{
+	ft_memdel((void**)lst_r);
+	ft_memdel((void**)lst_l);
+}
 
 static t_list	*merge(t_list *lst_l, t_list *lst_r,
 						int (*cmp)(t_node *, t_node *))
@@ -38,6 +45,7 @@ static t_list	*merge(t_list *lst_l, t_list *lst_r,
 	}
 	result = ft_lstcat(result, lst_l);
 	result = ft_lstcat(result, lst_r);
+	del_l_r(&lst_r, &lst_l);
 	return (result);
 }
 

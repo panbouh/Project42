@@ -47,6 +47,9 @@
 ** #################
 */
 # define BOUH		ft_putstr("bouh\n");
+# define TEST		ft_putstr("test\n");
+# define HELLO		ft_putstr("Hello Word\n");
+# define DADA		ft_putstr("dada\n");
 
 /*
 ** ###############

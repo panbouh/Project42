@@ -7,28 +7,32 @@ int		is_pointpoint(char *dir)
 	return (0);
 }
 
-void	delfinfo(t_finfo *f_info)
+void	delfinfo(void **f_info)
 {
-	ft_strdel(&f_info->name);
-	ft_strdel(&f_info->path);
-	ft_strdel(&f_info->uidname);
-	ft_strdel(&f_info->gidname);
-	ft_strdel(&f_info->mode);
-	ft_strdel(&f_info->size);
-	ft_tabsdel(f_info->time);
+	t_finfo	*tmp;
+
+	tmp = *f_info;
+	ft_printf("name : %s\n", tmp->name);
+	ft_strdel(&tmp->name);
+	ft_strdel(&tmp->path);
+	ft_strdel(&tmp->uidname);
+	ft_strdel(&tmp->gidname);
+	ft_strdel(&tmp->mode);
+	ft_strdel(&tmp->size);
+	ft_tabsdel(tmp->time);
 }
 
-void	delall(t_list *lst)
-{
-	t_finfo	*f_info;
-	lst->node = lst->first;
-	while (lst->node)
-	{
-		delfinfo(lst->node->data);
-		lst->node = lst->node->next;
-	}
-	ft_lstdel(&lst);
-}
+// void	delall(t_list *lst)
+// {
+// 	t_finfo	*f_info;
+// 	lst->node = lst->first;
+// 	while (lst->node)
+// 	{
+// 		delfinfo(lst->node->data);
+// 		lst->node = lst->node->next;
+// 	}
+// 	ft_lstdel(&lst);
+// }
 
 char	*get_onlypath(char *path)
 {

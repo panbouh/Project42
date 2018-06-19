@@ -12,24 +12,25 @@
 
 #include "ft_list.h"
 #include "libft.h"
-#include "ft_printf.h"
 
-void	ft_lstdelone(t_list *lst, t_node **anode, void(*del)(void**))
+void	ft_lstdelone(t_list *lst, t_node **anode, void (*del)(void**))
 {
-	if ((*anode)->next)
-		(*anode)->next->back = (*anode)->back;
-	if ((*anode)->back)
-		(*anode)->back->next = (*anode)->next;
-	if (lst->first == *anode)
+	if (lst->size > 1)
 	{
-		lst->first = (*anode)->next;
-		lst->node = lst->first;
+		if ((*anode)->next)
+			(*anode)->next->back = (*anode)->back;
+		if ((*anode)->back)
+			(*anode)->back->next = (*anode)->next;
+		if (lst->first == *anode)
+		{
+			lst->first = (*anode)->next;
+			lst->node = lst->first;
+		}
+		if (lst->last == *anode)
+			lst->last = (*anode)->back;
 	}
-	if (lst->last == *anode)
-		lst->last = (*anode)->back;
-	ft_printf("je      del %p, ", (*anode)->data);
-	ft_printf("et %p\n", *anode);
-	del((*anode)->data);
+	del(&(*anode)->data);
 	free(*anode);
-	anode = NULL;
+	*anode = NULL;
+	lst->size--;
 }

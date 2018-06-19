@@ -117,7 +117,7 @@ void			print_list(t_env *env, t_list *lst, t_maxf *maxf);
 /*
 ** ultils.c
 */
-void			delfinfo(t_finfo *f_info);
+void			delfinfo(void **f_info);
 void			delall(t_list *lst);
 char			*ft_newpath(const char *path, const char *name);
 int				is_pointpoint(char *dir);

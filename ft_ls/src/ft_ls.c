@@ -3,8 +3,7 @@
 void	list_r(t_env *env, t_list *lst, const char *path)
 {
 	char	*new_p;
-// 	ft_printf("name_d = %s\n", ((t_finfo*)lst->node->data)->name);
-// sleep(2);
+
 	while (lst->node)
 	{
 		if (((t_finfo*)lst->node->data)->type == 'd'
@@ -25,7 +24,6 @@ void	list_r(t_env *env, t_list *lst, const char *path)
 int		list_file(t_env *env, const char *path)
 {
 	t_list	*lst;
-	t_list	*tmp;
 	t_maxf	maxf;
 	int		ret;
 
@@ -35,17 +33,15 @@ int		list_file(t_env *env, const char *path)
 		maxf.a = 1;
 	if ((ret = get_file(lst, &maxf, path, env->l)) != FAIL)
 	{
-		tmp = lst;
 		if (!(lst = sort_file(env, lst)))
 			return (FAIL);
-		delall(tmp);
 		if (lst->node)
 			print_list(env, lst, &maxf);
 		if (env->rup)
 			list_r(env, lst, path);
 	}
-	// printf("LAAAAA\n");
-	delall(lst);
+	BOUH
+	ft_lstdel(&lst, &delfinfo);
 	return (ret);
 }
 

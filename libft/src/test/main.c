@@ -9,6 +9,13 @@
 #include <dirent.h>
 #include <string.h>
 
+typedef struct	s_test
+{
+	char			*name;
+	char			*age;
+	char			*id;
+}				t_test;
+
 void	lstput(t_list *lst, const char *name)
 {
 	if (!lst)
@@ -16,60 +23,73 @@ void	lstput(t_list *lst, const char *name)
 		ft_putendl("NULL");
 		return ;
 	}
-	t_node	*node = lst->node;
+	t_node	*node = lst->first;
 	ft_printf("%s :\n", name);
 	while (node)
 	{
-		ft_printf("%s->", node->data);
+		ft_printf("%s->", ((t_test*)node->data)->name);
 		node = node->next;
 	}
 	ft_putendl("NULL");
 }
 
-int	lol(t_node *nd1, t_node *nd2)
+t_test	*new_test(int n)
 {
-	if ((ft_strcmp(nd1->data, nd2->data)) < 0)
-		return (0);
+	t_test	*new = malloc(sizeof(*new));
+	ft_bzero(new, sizeof(*new));
+
+	new->name = ft_itoa(n + 100);
+	new->age = ft_itoa(n);
+	new->id = ft_itoa(n + 1000);
+	return (new);
+}
+
+void	del_test(void **bouh)
+{
+	t_test *del = *bouh;
+
+	ft_strdel(&del->name);
+	ft_strdel(&del->age);
+	ft_strdel(&del->id);
+}
+
+int	sort_lol(t_node *n1, t_node *n2)
+{
+	if (ft_strcmp(((t_test *)n1->data)->name, ((t_test *)n2->data)->name) > 1)
+		return (1);
 	return (1);
 }
 
+void	test_print(t_node *lol)
+{
+	while (lol)
+		ft_putstr(((t_test *)lol->data)->name);
+}
+
+t_list			*test_sort(t_list *lst, int (*cmp)(t_node *, t_node *));
+
+
 int	main(int ac, char **av)
 {
-	// char	*s1 = av[1];
-	// char	*s2 = av[2];
-	// ft_printf("res : %i\n", ft_strcmp(s1, s2));
-
-	char	*s1	= "10000000";
-	char	*s2	= "2213";
-	char	*s3	= "313";
-	char	*s4	= "423";
-	char	*s5	= "521";
-	char	*s6	= "643";
 	t_list	*lst = ft_lstnew();
 
-	ft_lstadd_end(lst, ft_lstnew_node(s6, sizeof(*s6) * ft_strlen(s6)));
-	// ft_lstadd_end(lst, ft_lstnew_node(s5, sizeof(*s5) * ft_strlen(s5)));
-	// ft_lstadd_end(lst, ft_lstnew_node(s4, sizeof(*s4) * ft_strlen(s4)));
-	// ft_lstadd_end(lst, ft_lstnew_node(s3, sizeof(*s3) * ft_strlen(s3)));
-	// ft_lstadd_end(lst, ft_lstnew_node(s2, sizeof(*s2) * ft_strlen(s2)));
-	// ft_lstadd_end(lst, ft_lstnew_node(s1, sizeof(*s1) * ft_strlen(s1)));
+	t_test	*test;
+	
+	for (int i = 5; i > 0; i--)
+	{
+		test = new_test(i);
+		ft_lstadd_end(lst, ft_lstnew_node(test, sizeof(*test)));
+	}
+	// lstput(lst, "lst");
+	lst = test_sort(lst, &sort_lol);
 
-	ft_printf("je dois del %p, ", lst->node->data);
-	ft_printf("et %p\n", lst->node);
 
-	// lstput(lst, "pd");
-	// t_node	*lol = ft_lstgetn(lst, atoi(av[1]));
-	// ft_printf("je veux del : %s, qui a %p\n", lol->data, lol);
-	ft_lstdelone(lst, &lst->node, &ft_memdel);
-	// ft_printf("del Done\n");
-	// lstput(lst, "pd");
+	// lstput(lst, "lst sorted");
 
-	// ft_printf("avant : %p\n", lst);
-	// lst = ft_lstsort(lst, &lol);
-	// ft_printf("apres : %p\n", lst);
+	// lstput(lst, "lst sorted");
 
-	free(lst);
 
-	// ft_lstdel(&lst);
+	ft_lstdel(&lst, &ft_memdel);	
+
 	return (1);
 }
