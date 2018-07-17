@@ -12,15 +12,15 @@
 
 #include "ft_list.h"
 
-void	ft_lstswap(t_node *lst1, t_node *lst2)
+void	ft_lstswap(t_node *nd1, t_node *nd2)
 {
 	void	*tmp;
 	size_t	s_save;
 
-	s_save = lst1->data_size;
-	tmp = lst1->data;
-	lst1->data = lst2->data;
-	lst1->data_size = lst2->data_size;
-	lst2->data = tmp;
-	lst2->data_size = s_save;
+	tmp = nd1->data;
+	s_save = nd1->data_size;
+	nd1->data = nd2->data;
+	nd1->data_size = nd2->data_size;
+	nd2->data = tmp;
+	nd2->data_size = s_save;
 }

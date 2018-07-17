@@ -12,7 +12,6 @@ void	delfinfo(void **f_info)
 	t_finfo	*tmp;
 
 	tmp = *f_info;
-	ft_printf("name : %s\n", tmp->name);
 	ft_strdel(&tmp->name);
 	ft_strdel(&tmp->path);
 	ft_strdel(&tmp->uidname);

@@ -33,6 +33,10 @@
 */
 # define FAIL		-1
 # define SUCCESS	1
+# define YES		1
+# define NO			0
+# define TRUE		1
+# define FALSE		0
 # define OK			0
 
 # define TILL		2
@@ -50,6 +54,13 @@
 # define TEST		ft_putstr("test\n");
 # define HELLO		ft_putstr("Hello Word\n");
 # define DADA		ft_putstr("dada\n");
+# define LOL		ft_putstr("lol\n");
+# define LTAMER		ft_putstr("tamer\n");
+# define HERE		ft_putstr("here?\n");
+# define HR			ft_putstr("--------------------------------------------\n");
+# define BR			ft_putchar('\n');
+# define SPACE		ft_putchar(' ');
+# define TAB		ft_putchar('\t');
 
 /*
 ** ###############

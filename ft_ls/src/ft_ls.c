@@ -40,7 +40,6 @@ int		list_file(t_env *env, const char *path)
 		if (env->rup)
 			list_r(env, lst, path);
 	}
-	BOUH
 	ft_lstdel(&lst, &delfinfo);
 	return (ret);
 }

@@ -70,20 +70,20 @@ t_list	*sort_file(t_env *env, t_list *lst)
 		while (g_sorttab_r[i].key)
 		{
 			if (ft_strchr(env->tab_sort, g_sorttab_r[i].key))
-				return (ft_lstsort(lst, g_sorttab_r[i].f, &delfinfo));
+				return (ft_lstsort(lst, g_sorttab_r[i].f));
 			i++;
 		}
-		return (ft_lstsort(lst, &sort_by_name_r, &delfinfo));
+		return (ft_lstsort(lst, &sort_by_name_r));
 	}
 	else if (!env->f)
 	{
 		while (g_sorttab[i].key)
 		{
 			if (ft_strchr(env->tab_sort, g_sorttab[i].key))
-				return (ft_lstsort(lst, g_sorttab[i].f, &delfinfo));
+				return (ft_lstsort(lst, g_sorttab[i].f));
 			i++;
 		}
-		return (ft_lstsort(lst, &sort_by_name, &delfinfo));
+		return (ft_lstsort(lst, &sort_by_name));
 	}
 	return (lst);
 }

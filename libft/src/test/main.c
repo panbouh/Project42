@@ -55,19 +55,22 @@ void	del_test(void **bouh)
 
 int	sort_lol(t_node *n1, t_node *n2)
 {
-	if (ft_strcmp(((t_test *)n1->data)->name, ((t_test *)n2->data)->name) > 1)
+	if (ft_strcmp(((t_test *)n1->data)->name, ((t_test *)n2->data)->name) > 0)
 		return (1);
-	return (1);
+	return (0);
 }
 
-void	test_print(t_node *lol)
+void	test_print(t_node *lol, char *name)
 {
-	while (lol)
-		ft_putstr(((t_test *)lol->data)->name);
+	ft_printf("%s :\n", name);
+	if (!lol)
+		ft_printf("NULL");
+	while (lol){
+		ft_printf("%s->", ((t_test *)lol->data)->name);
+		lol = lol->next;
+	}
+	ft_putchar('\n');
 }
-
-t_list			*test_sort(t_list *lst, int (*cmp)(t_node *, t_node *));
-
 
 int	main(int ac, char **av)
 {
@@ -80,16 +83,16 @@ int	main(int ac, char **av)
 		test = new_test(i);
 		ft_lstadd_end(lst, ft_lstnew_node(test, sizeof(*test)));
 	}
-	// lstput(lst, "lst");
-	lst = test_sort(lst, &sort_lol);
+
+	test_print(lst->first, "avant");
+
+	lst = ft_lstsort(lst, &sort_lol);
+
+	test_print(lst->first, "apres");
 
 
-	// lstput(lst, "lst sorted");
-
-	// lstput(lst, "lst sorted");
 
 
-	ft_lstdel(&lst, &ft_memdel);	
-
+	ft_lstdel(&lst, &del_test);
 	return (1);
 }
