@@ -55,7 +55,7 @@
 # define HELLO		ft_putstr("Hello Word\n");
 # define DADA		ft_putstr("dada\n");
 # define LOL		ft_putstr("lol\n");
-# define LTAMER		ft_putstr("tamer\n");
+# define TAMER		ft_putstr("tamer\n");
 # define HERE		ft_putstr("here?\n");
 # define HR			ft_putstr("--------------------------------------------\n");
 # define BR			ft_putchar('\n');

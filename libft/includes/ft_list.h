@@ -49,6 +49,7 @@ typedef struct		s_list
 
 void				ft_lstadd_end(t_list *lst, t_node *node);
 void				ft_lstadd_begin(t_list *lst, t_node *node);
+void				ft_lstadd_at(t_list *lst, t_node *node, size_t n);
 void				ft_lstinit(t_list *lst, t_node *node);
 void				ft_lstswap(t_node *lst1, t_node *ls2);
 void				ft_lstdelone(t_list *node, t_node **alst,
