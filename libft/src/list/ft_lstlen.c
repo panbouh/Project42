@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnofstr.c                                     :+:      :+:    :+:   */
+/*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 18:21:03 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/05/20 18:21:03 by ccatoire         ###   ########.fr       */
+/*   Created: 2018/07/17 15:22:30 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/07/17 15:22:39 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <libft.h>
+#include "ft_list.h"
 
-void	ft_putnofstr(const char *str, size_t n)
+size_t	ft_lstlen(t_node *n)
 {
 	size_t	i;
-	size_t	size;
 
+	if (!n)
+		return (0);
 	i = 0;
-	if ((size = ft_strlen(str)) < n)
-		n = size;
-	while (str[i] && i < n)
+	while (n)
 	{
-		write(1, &str[i], 1);
+		n = n->next;
 		i++;
 	}
+	return (i);
 }

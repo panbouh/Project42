@@ -39,6 +39,7 @@ void	lstput(t_list *lst, const char *name)
 	-leaks
 	-afficher le bon m_time en fonctoin du tri
 	-tri bonnus corriger
+	./ft_ls -lRatr  GOLLIET gsdfg dfgdfg sdfg sdfgdf gwe ger wert ewrt wgdfsg sdfgsdf gsdfg dfgsdf gsdfg sdfg dsfg sdfgfd g
 */
 
 int	main(int ac, char **av)
@@ -48,9 +49,9 @@ int	main(int ac, char **av)
 	errno = 0;
 	ft_bzero(&env, sizeof(env));
 	// print_env(env);
-	if (ft_ls(av) == FAIL)
-		return (ft_error(strerror(errno), FAIL));
-	// ft_ls(av);
+	// if (ft_ls(av) == FAIL)
+	// 	return (ft_error(strerror(errno), FAIL));
+	ft_ls(av);
 	return (0);
 }
 

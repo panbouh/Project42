@@ -3,19 +3,6 @@
 #include <grp.h>
 #include <time.h>
 
-t_mode	g_modetab[] =
-{
-	{'7', "rwx"},
-	{'6', "rw-"},
-	{'5', "r-x"},
-	{'4', "r--"},
-	{'3', "-wx"},
-	{'2', "-w-"},
-	{'1', "--x"},
-	{'0', "---"},
-	{0, NULL},
-};
-
 char	**get_time(const time_t *t)
 {
 	char	**last_m;
@@ -53,31 +40,26 @@ char	get_ftype(mode_t m)
 	return ('?');
 }
 
-char	*get_fmode(mode_t m)
+char	*get_fmode(mode_t mode)
 {
-	char	buff[BUFF_MAX];
-	char	*mode;
-	size_t	size;
-	size_t	i;
-	size_t	x;
+	char	buff[10];
 
-	mode = ft_conv_nbase(m, 8);
-	size = ft_strlen(mode);
-	i = size - 3;
-	ft_bzero(&buff, BUFF_MAX);
-	while (mode[i])
-	{
-		x = 0;
-		while(g_modetab[x].key)
-		{
-			if (g_modetab[x].key == mode[i])
-				ft_strcat(buff, g_modetab[x].mode);
-			x++;
-		}
-		i++;
-	}
-	buff[9] = 0;
-	ft_strdel(&mode);
+	ft_bzero(buff, sizeof(char) * 10);
+	buff[0] = (mode & S_IRUSR) ? 'r' : '-';
+	buff[1] = (mode & S_IWUSR) ? 'w' : '-';
+	buff[2] = (mode & S_IXUSR) ? 'x' : '-';
+	buff[3] = (mode & S_IRGRP) ? 'r' : '-';
+	buff[4] = (mode & S_IWGRP) ? 'w' : '-';
+	buff[5] = (mode & S_IXGRP) ? 'x' : '-';
+	buff[6] = (mode & S_IROTH) ? 'r' : '-';
+	buff[7] = (mode & S_IWOTH) ? 'w' : '-';
+	buff[8] = (mode & S_IXOTH) ? 'x' : '-';
+	if (mode & S_ISVTX)
+		buff[8] = (buff[8] == '-' ? 'T' : 't');
+	if (mode & S_ISUID)
+		buff[2] = (buff[2] == '-' ? 'S' : 's');
+	if (mode & S_ISGID)
+		buff[5] = (buff[5] == '-' ? 'S' : 's');
 	return (ft_strdup(buff));
 }
 

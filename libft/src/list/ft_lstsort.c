@@ -1,49 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstsort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/17 15:23:15 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/07/17 15:23:17 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_list.h"
 
-static t_list	*merge(t_list *lst_l, t_list *lst_r,
-						int (*cmp)(t_node *, t_node *))
-{
-	t_list	*result;
-	int		ret;
+#include "libft.h"
+#include "ft_printf.h"
 
-	if (!lst_l || !lst_r)
-		return (NULL);
-	result = ft_lstnew(); //malloc
-	while (lst_l->node && lst_r->node)
+static t_node	*sort(t_node *nd, int (*cmp)(t_node *, t_node*))
+{
+	t_node	*first;
+
+	first = nd;
+	while (nd && nd->next)
 	{
-		if ((ret = cmp(lst_l->node, lst_r->node)) == -1)
-			return (NULL);
-		if (ret)
+		if (cmp(nd, nd->next))
 		{
-			ft_lstadd_end(result, lst_r->node);
-			lst_r->node = lst_r->node->next;
+			ft_lstswap(nd, nd->next);
+			nd = first;
 		}
 		else
-		{
-			ft_lstadd_end(result, lst_l->node);
-			lst_l->node = lst_l->node->next;
-		}
+			nd = nd->next;
 	}
-	result = ft_lstcat(result, lst_l);
-	result = ft_lstcat(result, lst_r);
-	return (result);
+	return (first);
 }
 
-t_list	*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *))
+t_list			*ft_lstsort(t_list *lst, int (*cmp)(t_node *, t_node *))
 {
-	t_list	*lst_r;
-	t_list	*lst_l;
-	t_list	*result;
-	size_t	size;
-
-	if ((size = lst->size) <= 1)
-		return (lst);
-	lst_l = ft_lstsub(lst, 0, size / 2); //malloc
-	lst_r = ft_lstsub(lst, size / 2, (size - size / 2)); //malloc
-	ft_lstdel(&lst);	//leaks evidents
-	lst_l = ft_lstsort(lst_l, cmp);
-	lst_r = ft_lstsort(lst_r, cmp);
-	if (!(result = merge(lst_l, lst_r, cmp)))	//malloc
-		return (NULL);
-	return (result);
+	lst->first = sort(lst->first, cmp);
+	lst->node = lst->first;
+	lst->last = ft_lstgetn(lst, lst->size);
+	return (lst);
 }

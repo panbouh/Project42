@@ -13,29 +13,24 @@
 #include "ft_list.h"
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, t_node **anode)
+void	ft_lstdelone(t_list *lst, t_node **anode, void (*del)(void**))
 {
-	t_node *tmp;
-
-	if (!anode || !(*anode))
-		return ;
-	tmp = *anode;
-	if (tmp->back)
-		tmp->back->next = tmp->next;
-	else
+	if (lst->size > 1)
 	{
-		tmp->back = NULL;
-		lst->first = tmp->next;
+		if ((*anode)->next)
+			(*anode)->next->back = (*anode)->back;
+		if ((*anode)->back)
+			(*anode)->back->next = (*anode)->next;
+		if (lst->first == *anode)
+		{
+			lst->first = (*anode)->next;
+			lst->node = lst->first;
+		}
+		if (lst->last == *anode)
+			lst->last = (*anode)->back;
 	}
-	if (tmp->next)
-		tmp->next->back = tmp->back;
-	else
-	{
-		tmp->next = NULL;
-		lst->last = tmp->back;
-	}
-	ft_memdel(&(*anode)->data);
-	ft_memdel((void **)anode);
-	if (!lst->node)
-		*anode = lst->first;
+	del(&(*anode)->data);
+	free(*anode);
+	*anode = NULL;
+	lst->size--;
 }

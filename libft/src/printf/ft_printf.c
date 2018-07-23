@@ -12,7 +12,8 @@
 
 #include "ft_printf.h"
 
-	#include <stdio.h>
+#include <stdio.h>
+
 /*
 **	[flags]			# 0-+
 **	[largeur]		N

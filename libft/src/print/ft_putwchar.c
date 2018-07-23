@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putwchar.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/20 18:19:02 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/05/20 18:19:02 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include "libft.h"
 #include "ft_wuni.h"
 
-const t_mask_uni	g_masktab_put[] = 
+const t_mask_uni	g_masktab_put[] =
 {
 	{"0xxxxxxx\0", 7},
 	{"110xxxxx10xxxxxx\0", 11},
@@ -11,11 +23,11 @@ const t_mask_uni	g_masktab_put[] =
 	{NULL, 0},
 };
 
-static	char *add_mask(char *bin, size_t size)
+static	char		*add_mask(char *bin, size_t size)
 {
-	char	*new;
-	size_t	y;
-	size_t	x;
+	char			*new;
+	size_t			y;
+	size_t			x;
 
 	y = 0;
 	x = 0;
@@ -36,7 +48,7 @@ static	char *add_mask(char *bin, size_t size)
 
 static unsigned int	get_byte(char *bin, size_t i)
 {
-	char		byte[424242];
+	char			byte[424242];
 	unsigned int	n;
 	int				count;
 	size_t			y;
@@ -53,7 +65,7 @@ static unsigned int	get_byte(char *bin, size_t i)
 	return (n);
 }
 
-int	ft_putwchar(const wchar_t c)
+int					ft_putwchar(const wchar_t c)
 {
 	char			*conv;
 	size_t			i;
@@ -63,11 +75,11 @@ int	ft_putwchar(const wchar_t c)
 
 	conv = ft_conv_nbase(c, 2);
 	if ((size = ft_wcharlen(c)) == 1)
-		{
-			ft_putchar(c);
-			ft_strdel(&conv);
-			return (size);
-		}
+	{
+		ft_putchar(c);
+		ft_strdel(&conv);
+		return (size);
+	}
 	conv = add_mask(conv, size - 1);
 	i = 0;
 	ret = size;
@@ -81,5 +93,3 @@ int	ft_putwchar(const wchar_t c)
 	ft_strdel(&conv);
 	return (ret);
 }
-
-

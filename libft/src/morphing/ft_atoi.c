@@ -23,7 +23,7 @@ static size_t		skip_bad_chars(const char *str)
 	return (i);
 }
 
-long					ft_atoi(const char *str)
+long				ft_atoi(const char *str)
 {
 	long	nb;
 	size_t	i;

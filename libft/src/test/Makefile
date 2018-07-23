@@ -1,6 +1,7 @@
 NAME	=	ft_test
 
-SRC		=	main.c
+SRC		=	main.c		\
+			test_list/test_sort.c
 
 LIB		=	$(LIBPATH)libft.a
 
@@ -10,7 +11,7 @@ HEADLIBPATH	=	$(LIBPATH)includes/
 
 OBJ		=	$(SRC:.c=.o)
 
-CFLAGS	=	 -I $(HEADLIBPATH) -g
+CFLAGS	=	 -I $(HEADLIBPATH) -g3
 
 #-Wall -Wextra -Werror
 

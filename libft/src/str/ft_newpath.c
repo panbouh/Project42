@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_newpath.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/05/20 18:27:49 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/05/20 18:27:50 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include "ft_printf.h"
 
@@ -15,7 +27,6 @@ char	*ft_newpath(const char *path, const char *name)
 	i = ft_strlen(new);
 	if (new[ft_abs(i - 1)] && new[ft_abs(i - 1)] != '/')
 		new[i++] = '/';
-
 	ft_strcat(new, name);
 	return (ft_strdup(new));
 }

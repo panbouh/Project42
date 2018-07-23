@@ -58,12 +58,10 @@ LIST_FILE	=	ft_lstnew.c								\
 				ft_lstswap.c							\
 				ft_lstdelone.c							\
 				ft_lstdel.c								\
-				ft_lstsort.c							\
 				ft_lstcat.c								\
-				ft_lstsub.c							
-				# ft_lstiter.c							\
-				# ft_lstsize.c							\
-				# ft_lstmap.c
+				ft_lstlen.c								\
+				ft_lstsub.c								\
+				ft_lstsort.c
 
 MATH_FILE	=	ft_power.c								\
 				ft_count_digit.c						\
@@ -198,7 +196,7 @@ OBJ		=	$(SRC:.c=.o)
 
 CC		=	gcc -o
 
-CFLAGS	=	-Wall -Wextra -Werror -I$(INC_PATH)
+CFLAGS	=	-Wall -Wextra -Werror -I$(INC_PATH) -g3
 
 RM		=	rm -rf
 

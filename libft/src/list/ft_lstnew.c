@@ -29,6 +29,10 @@ t_node		*ft_lstnew_node(const void *data, size_t data_size)
 	return (new);
 }
 
+/*
+**	Sans copier la data
+*/
+
 t_node		*ft_lstnew_node_m(void *data, size_t data_size)
 {
 	t_node	*new;
@@ -43,7 +47,7 @@ t_node		*ft_lstnew_node_m(void *data, size_t data_size)
 	return (new);
 }
 
-t_list		*ft_lstnew()
+t_list		*ft_lstnew(void)
 {
 	t_list	*new;
 
