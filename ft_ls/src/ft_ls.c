@@ -46,7 +46,6 @@ int		list_file(t_env *env, const char *path)
 int		ft_ls(char **av)
 {
 	t_env	env;
-	size_t	i;
 
 	i = 0;
 	if ((init_env(&env, av)) == FAIL)
