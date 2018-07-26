@@ -11,7 +11,7 @@
 
 int	sort_lol(t_node *n1, t_node *n2)
 {
-	if (ft_strcmp(n1->data, n2->data) > 0)
+	if (ft_strcmp(n1->data, n2->data) < 0)
 		return (1);
 	return (0);
 }
@@ -52,27 +52,23 @@ char	*new_test(int i)
 	return (ft_itoa(i + 100));
 }
 
-t_list	*test_sort(t_list *lst, int (*cmp)(t_node*, t_node*));
-void	ft_lstmove(t_list *dest, t_node *src, size_t n);
-
 int	main(int ac, char **av)
 {
 	t_list	*lst = ft_lstnew();
 
 	char	*test;
 	
-	for (int i = 5; i > 0; i--)
+	for (int i = 0; i < 5; i++)
 	{
 		test = new_test(i);
-		ft_lstadd_end(lst, ft_lstnew_node(test, sizeof(test)));
+		ft_lstadd_end(lst, ft_lstnew_node_m(test, sizeof(char) * ft_strlen(test)));
 	}
-
 	test_print(lst, "avant", 0);
 
-	// lst = test_sort(lst, &sort_lol);
+	// ft_lstmove(lst, lst->first, 1);
+	ft_lstsort_ins(lst, &sort_lol);
+	// ft_lstsort(lst, &sort_lol);
 
-	char *bouh = new_test(42); //ft_lstnew_node(bouh, sizeof(bouh)), 1
-	ft_lstmove(lst, ft_lstgetn(lst, 0), 5);
 HR
 	test_print(lst, "apres", 0);
 	test_print(lst, "apres rev", 1);

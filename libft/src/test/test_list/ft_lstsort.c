@@ -1,43 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstgetn.c                                       :+:      :+:    :+:   */
+/*   ft_lstsort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 18:02:28 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/05/20 18:02:31 by ccatoire         ###   ########.fr       */
+/*   Created: 2018/07/20 15:45:15 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/07/20 15:45:17 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_node	*ft_lstgetn(t_list *lst, size_t n)
+static void		ins_nd(t_list *dest, t_node *src, int (*cmp)(t_node*, t_node*))
 {
+	t_node	*nd_d;
 	size_t	i;
-	t_node	*node;
 
 	i = 0;
-	if (!lst || !lst->node)
-		return (NULL);
-	if (n > lst->size)
-		return (lst->last);
-	node = lst->first;
-	while (node && n)
+	nd_d = dest->first;
+	while (nd_d && (nd_d == src || cmp(src, nd_d)))
 	{
-		node = node->next;
 		i++;
-		n--;
+		nd_d = nd_d->next;
 	}
-	return (node);
+	ft_lstmove(dest, src, i);
 }
 
-t_node	*ft_nodegetn(t_node *node, size_t n)
+void			ft_lstsort_ins(t_list *lst, int (*cmp)(t_node*, t_node*))
 {
-	while (node && n > 0)
+	t_node	*nd;
+
+	nd = lst->first;
+	while (nd && nd->next)
 	{
-		node = node->next;
-		n--;
+		if (cmp(nd, nd->next))
+		{
+			ins_nd(lst, nd, cmp);
+			nd = lst->first;
+		}
+		else
+			nd = nd->next;
 	}
-	return (node);
 }

@@ -9,11 +9,9 @@
 /*   Updated: 2018/07/17 15:23:17 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
 #include "ft_list.h"
-
-#include "libft.h"
-#include "ft_printf.h"
 
 static t_node	*sort(t_node *nd, int (*cmp)(t_node *, t_node*))
 {

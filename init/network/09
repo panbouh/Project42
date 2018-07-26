@@ -1,0 +1,21 @@
+PING 42.fr (10.52.1.12): 56 data bytes
+64 bytes from 10.52.1.12: icmp_seq=0 ttl=63 time=0.350 ms
+64 bytes from 10.52.1.12: icmp_seq=1 ttl=63 time=0.427 ms
+64 bytes from 10.52.1.12: icmp_seq=2 ttl=63 time=1.424 ms
+64 bytes from 10.52.1.12: icmp_seq=3 ttl=63 time=0.340 ms
+64 bytes from 10.52.1.12: icmp_seq=4 ttl=63 time=0.386 ms
+64 bytes from 10.52.1.12: icmp_seq=5 ttl=63 time=0.372 ms
+64 bytes from 10.52.1.12: icmp_seq=6 ttl=63 time=0.332 ms
+64 bytes from 10.52.1.12: icmp_seq=7 ttl=63 time=0.316 ms
+64 bytes from 10.52.1.12: icmp_seq=8 ttl=63 time=0.422 ms
+64 bytes from 10.52.1.12: icmp_seq=9 ttl=63 time=0.310 ms
+64 bytes from 10.52.1.12: icmp_seq=10 ttl=63 time=1.972 ms
+64 bytes from 10.52.1.12: icmp_seq=11 ttl=63 time=0.379 ms
+64 bytes from 10.52.1.12: icmp_seq=12 ttl=63 time=0.404 ms
+64 bytes from 10.52.1.12: icmp_seq=13 ttl=63 time=0.296 ms
+64 bytes from 10.52.1.12: icmp_seq=14 ttl=63 time=0.345 ms
+64 bytes from 10.52.1.12: icmp_seq=15 ttl=63 time=2.113 ms
+
+--- 42.fr ping statistics ---
+16 packets transmitted, 16 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.296/0.637/2.113/0.592 ms

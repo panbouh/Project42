@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstgetn.c                                       :+:      :+:    :+:   */
+/*   ft_lstput.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 18:02:28 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/05/20 18:02:31 by ccatoire         ###   ########.fr       */
+/*   Created: 2018/07/20 15:45:28 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/07/20 15:45:28 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_node	*ft_lstgetn(t_list *lst, size_t n)
+void	ft_lstput(t_list *lst, void (*put)(t_node nd))
 {
-	size_t	i;
-	t_node	*node;
+	t_node	*nd;
 
-	i = 0;
-	if (!lst || !lst->node)
-		return (NULL);
-	if (n > lst->size)
-		return (lst->last);
-	node = lst->first;
-	while (node && n)
+	if (!lst)
+		return ;
+	nd = lst->first;
+	while (nd)
 	{
-		node = node->next;
-		i++;
-		n--;
+		put(*nd);
+		nd = nd->next;
 	}
-	return (node);
-}
-
-t_node	*ft_nodegetn(t_node *node, size_t n)
-{
-	while (node && n > 0)
-	{
-		node = node->next;
-		n--;
-	}
-	return (node);
 }

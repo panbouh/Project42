@@ -13,6 +13,8 @@
 #include "ft_list.h"
 
 #include "libft.h"
+#include "ft_printf.h"
+
 void	ft_lstadd_end(t_list *dest, t_node *src)
 {
 	if (dest->first)
@@ -47,9 +49,9 @@ void	ft_lstadd_at(t_list *dest, t_node *src, size_t n)
 
 	if (n == 0)
 		ft_lstadd_begin(dest, src);
-	else if (n >= dest->size)
+	else if (n + 1 > dest->size)
 		ft_lstadd_end(dest, src);
-	else if (n < dest->size)
+	else
 	{
 		curr = ft_lstgetn(dest, n);
 		prev = curr->back;
@@ -57,6 +59,6 @@ void	ft_lstadd_at(t_list *dest, t_node *src, size_t n)
 		curr->back = src;
 		src->next = curr;
 		src->back = prev;
+		dest->size = ft_lstlen(dest->first);
 	}
-	dest->size = ft_lstlen(dest->first);
 }

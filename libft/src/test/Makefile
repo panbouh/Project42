@@ -1,7 +1,6 @@
 NAME	=	ft_test
 
-SRC		=	main.c		\
-			test_list/test_sort.c
+SRC		=	main.c		
 
 LIB		=	$(LIBPATH)libft.a
 

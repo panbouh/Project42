@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstgetn.c                                       :+:      :+:    :+:   */
+/*   ft_lstmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 18:02:28 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/05/20 18:02:31 by ccatoire         ###   ########.fr       */
+/*   Created: 2018/07/20 15:45:22 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/07/20 15:45:23 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-t_node	*ft_lstgetn(t_list *lst, size_t n)
+void	ft_lstmove(t_list *dest, t_node *src, size_t n)
 {
-	size_t	i;
-	t_node	*node;
+	t_node	*prev;
+	t_node	*front;
 
-	i = 0;
-	if (!lst || !lst->node)
-		return (NULL);
-	if (n > lst->size)
-		return (lst->last);
-	node = lst->first;
-	while (node && n)
-	{
-		node = node->next;
-		i++;
-		n--;
-	}
-	return (node);
-}
-
-t_node	*ft_nodegetn(t_node *node, size_t n)
-{
-	while (node && n > 0)
-	{
-		node = node->next;
-		n--;
-	}
-	return (node);
+	if (ft_lstgetn(dest, n) == src)
+		return ;
+	prev = src->back;
+	front = src->next;
+	if (prev)
+		prev->next = front;
+	if (front)
+		front->back = prev;
+	src->next = NULL;
+	src->back = NULL;
+	dest->size--;
+	if (src == dest->first)
+		dest->first = front;
+	if (src == dest->last)
+		dest->last = prev;
+	ft_lstadd_at(dest, src, n);
 }
