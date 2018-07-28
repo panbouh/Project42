@@ -62,8 +62,7 @@ LIST_FILE	=	ft_lstnew.c								\
 				ft_lstlen.c								\
 				ft_lstsub.c								\
 				ft_lstmove.c							\
-				ft_lstput.c								\
-				ft_lstsort.c
+				ft_lstput.c								
 
 MATH_FILE	=	ft_power.c								\
 				ft_count_digit.c						\

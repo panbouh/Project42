@@ -14,8 +14,8 @@
 # define FT_FILLIT_H
 # define BUFFMAX_O	122
 # define BUFFMAX_I	547
-# define FALSE		-42
-# define TRUE		42
+// # define FALSE		-42
+// # define TRUE		42
 # define NOPE		69
 # define TABSIZE	13
 # define ERR		87

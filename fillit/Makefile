@@ -14,7 +14,7 @@ LIB		=	libft
 
 LIBPATH	=	./libft/
 
-HEADLIBPATH	=	./libft/includes/
+HEADLIBPATH	=	$(LIBPATH)includes/
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -30,7 +30,7 @@ $(NAME)		: $(OBJ) $(LIB)
 				$(MAKE) -C $(LIBPATH) all
 				gcc $(CFLAGS) -o $(NAME) $(OBJ) $(CCLIB) -I $(HEADLIBPATH)
 
-lib			:	libft/libft.a
+lib			:	$(LIBPATH)$(LIB).a
 				$(MAKE) -C $(LIBPATH) all
 
 dellib		:
