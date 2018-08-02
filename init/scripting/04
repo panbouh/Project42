@@ -1,0 +1,29 @@
+echo '#!/bin/bash
+
+NAME="crontab"
+FILE_STATE="/tmp/last_state_crontab"
+FILE_PATH="/etc/crontab"
+
+#check if the file to test exist, if not, stop
+if [ ! -e "$FILE_PATH" ]
+then
+   exit
+fi
+
+#Check if the curent sate of file exist, if not, create it
+if [ ! -e "$FILE_STATE" ]
+then
+    md5sum $FILE_PATH | cut -f1 -d" " > $FILE_STATE
+    exit
+fi
+
+#get the current state and the old
+OLD=`cat $FILE_STATE`
+NEW=`md5sum $FILE_PATH | cut -f1 -d" "`
+
+#if the file has been modified, send mail to root
+if [ "$NEW" != "$OLD" ]
+then
+    echo "$FILE_PATH has been modified" | mail -s "$NAME modified" root@init42
+    echo $NEW > $FILE_STATE
+fi' > boloss.sh
