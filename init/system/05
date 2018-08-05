@@ -1,1 +1,3 @@
 /etc/init.d/ssh status
+#ou en mode root
+#service ssh status

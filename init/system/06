@@ -1,1 +1,3 @@
-/etc/init.d/ssh status
+/etc/init.d/ssh restart
+#ou en mode root
+#service ssh restart
