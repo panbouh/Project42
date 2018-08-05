@@ -9,8 +9,8 @@ SRC_PATH	=	src
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 OBJ_PATH	=	obj
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+SRC			=	$(addprefix $(SRC_PATH)/,$(SRC_NAME))
+OBJ			=	$(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
 HEADPATH	=	./includes/
 
@@ -33,7 +33,7 @@ $(NAME)		:  $(LIBFT) $(OBJ)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 				@mkdir $(OBJ_PATH) 2> /dev/null || true
-				gcc $(CFLAGS) $(CCLIBFT) -o $ -c $<
+				gcc $(CFLAGS) -o $@ -c $<
 
 $(LIBFT)	:
 				@echo "\033[0;33mLibrary < $(LIBFT).a > Creation\033[0m"
