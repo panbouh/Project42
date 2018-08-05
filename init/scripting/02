@@ -1,1 +1,11 @@
-echo "00 04 * * root apt-get update >> /var/log/update_script.log ; apt-get upgrade >> /var/log/update_script.log" > /etc/cron.hourly/apt_update
+#!/bin/bash
+
+#A ajouter au crontab avec "crontab -e" (uniquement pour user)
+#avec :
+#00 04 * *
+#ou au dossier /etc/cron.daily (pour root)
+#puis au /etc/crontab avec :
+#00 04 * * root run-parts /etc/cron.daily
+
+apt-get update >> /var/log/update_script.log
+apt-get upgrade >> /var/log/update_script.log

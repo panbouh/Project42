@@ -1,4 +1,4 @@
-echo '#!/bin/bash
+#!/bin/bash
 
 NAME="crontab"
 FILE_STATE="/tmp/last_state_crontab"
@@ -13,8 +13,8 @@ fi
 #Check if the curent sate of file exist, if not, create it
 if [ ! -e "$FILE_STATE" ]
 then
-    md5sum $FILE_PATH | cut -f1 -d" " > $FILE_STATE
-    exit
+	md5sum $FILE_PATH | cut -f1 -d" " > $FILE_STATE
+	exit
 fi
 
 #get the current state and the old
@@ -24,6 +24,8 @@ NEW=`md5sum $FILE_PATH | cut -f1 -d" "`
 #if the file has been modified, send mail to root
 if [ "$NEW" != "$OLD" ]
 then
-    echo "$FILE_PATH has been modified" | mail -s "$NAME modified" root@init42
-    echo $NEW > $FILE_STATE
-fi' > boloss.sh
+	echo "$FILE_PATH has been modified" | mail -s "$NAME modified" root@init42
+	echo $NEW > $FILE_STATE
+fi
+
+#Meme procedure que l'exo 2 pour ajouter la tache planifier
