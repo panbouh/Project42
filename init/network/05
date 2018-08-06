@@ -1,1 +1,1 @@
-host slash16.org | grep address
+nslookup slash16.org | grep Server
