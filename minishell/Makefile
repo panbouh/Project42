@@ -1,7 +1,11 @@
-NAME	=	ft_ls
+NAME	=	minishell
 
 SRC_NAME	=	main.c		\
-				minishell.c
+				minishell.c	\
+				init.c	\
+				bul_pwd.c	\
+				ft_artoli.c	\
+				ft_realloc.c
 
 
 SRC_PATH	=	src

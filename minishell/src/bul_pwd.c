@@ -10,49 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		MINISHELL_H
-# define	MINISHELL_H
+#include "minishell.h"
+#include <unistd.h>
 
-# include "libft.h"
-# include "ft_printf.h"
-# include "ft_list.h"
-
-# define	PRINT	1
-# define	NOPRINT	2
-
-typedef struct	s_cli
+char	*get_pwd()
 {
-	t_list	*env_var;
+	char	*buff;
+	size_t	i;
+
+	buff = ft_strnew(BUFF_MAX);
+	i = 0;
+	while (!getcwd(buff, BUFF_MAX + i))
+	{
+		i += sizeof(char) * 42;
+		ft_realloc(buff, i);
+	}
+	return (buff);
+}
+
+int		bul_pwd()
+{
 	char	*pwd;
-}				t_cli;
 
-typedef struct	s_bul_l
-{
-	char	*key;
-	int		(*f)();
-}				t_bul_l;
-
-/*
-**	minishell.c
-*/
-int		minishell(t_cli *env);
-
-/*
-**	init.c
-*/
-t_cli	*init_env();
-void	del_env(t_cli *env);
-
-/*
-**	libft
-*/
-t_list	*ft_artoli(char **src);
-void	*ft_realloc(void *src, size_t size);
-
-/*
-**	Bultins
-*/
-char	*get_pwd();
-int		bul_pwd();
-
-#endif
+	pwd = get_pwd();
+	ft_putendl(pwd);
+	ft_strdel(&pwd);
+	return (OK);
+}

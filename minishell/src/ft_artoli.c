@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_artoli.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:08:31 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/08/08 15:08:32 by ccatoire         ###   ########.fr       */
+/*   Created: 2018/08/13 15:09:09 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/08/13 15:09:11 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ft_list.h"
+#include "libft.h"
 
-int	main(void)
+t_list	*ft_artoli(char **src)
 {
-	t_cli	*env;
+	size_t	i;
+	size_t	size;
+	t_list	*new;
 
-	env = init_env();
-
-	minishell(env);
-
-	del_env(env);
-	return (OK);
+	new = ft_lstnew();
+	i = 0;
+	while(src[i])
+	{
+		size = ft_strlen(src[i]);
+		ft_lstadd_end(new, ft_lstnew_node(src[i], sizeof(char) * size + 1));
+		i++;
+	}
+	return (new);
 }
-
-/*
-	Bultins :
-		-echo
-		-cd
-		-setenv
-		-unsetenv
-		-env
-		-exit
-	fonction autorisee :
-		-malloc,free
-		-access
-		-open, close, read, write
-		-opendir, readdir, closedir
-		-getcwd, chdir
-		-stat, lstat, fstat
-		-fork, execve
-		-wait, waitpid, wait3, wait4
-		-signal, kill
-		-exit
-*/
