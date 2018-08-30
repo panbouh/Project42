@@ -16,19 +16,23 @@
 t_bul_l		bultab[] =
 {
 	{"pwd", &bul_pwd},
+	{"cd", &bul_cd},
 	{NULL, NULL},
 };
 
-static int	find_bul(char *cmd)
+static int	find_bul(char *cmd, t_list *env)
 {
 	size_t	i;
+	size_t	cmd_s;
 
 	i = 0;
+	cmd_s = ft_strlen_till(cmd, ' ');
+	ft_putendl(cmd);
 	while (bultab[i].key)
 	{
-		if (!ft_strcmp(cmd, bultab[i].key))
+		if (!ft_strncmp(cmd, bultab[i].key, cmd_s))
 		{
-			bultab[i].f();
+			bultab[i].f(ft_strsplit(cmd, ' '), env);
 			return (OK);
 		}
 		i++;
@@ -36,9 +40,9 @@ static int	find_bul(char *cmd)
 	return (FAIL);
 }
 
-static int	check_cmd(char *cmd)
+static int	check_cmd(char *cmd, t_list *env)
 {
-	if (find_bul(cmd) == OK)
+	if (find_bul(cmd, env) == OK)
 		return (OK);
 	return (FAIL);
 }
@@ -52,7 +56,7 @@ int			minishell(t_cli *env)
 		ft_strdel(&cmd);							//del anciene commande
 		ft_printf("%s>", env->pwd);					//prompt
 		get_next_line(0, &cmd);						//get cmd
-		if (check_cmd(cmd) == FAIL)
+		if (check_cmd(cmd, env->env_var) == FAIL)
 			ft_printf("minishell: command not found: %s\n", cmd);
 	}
 	ft_strdel(&cmd);

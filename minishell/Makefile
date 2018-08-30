@@ -4,6 +4,7 @@ SRC_NAME	=	main.c		\
 				minishell.c	\
 				init.c	\
 				bul_pwd.c	\
+				bul_cd.c	\
 				ft_artoli.c	\
 				ft_realloc.c
 

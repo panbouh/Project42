@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void		ft_putstab(const char **tab)
+void		ft_putstab(char **tab)
 {
 	unsigned int	i;
 

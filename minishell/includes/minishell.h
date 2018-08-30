@@ -54,5 +54,6 @@ void	*ft_realloc(void *src, size_t size);
 */
 char	*get_pwd();
 int		bul_pwd();
+int		bul_cd(char **av, t_list *env);
 
 #endif

@@ -144,7 +144,7 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(const char *str, int fd);
 void				ft_putendl_fd(const char *str, int fd);
 void				ft_putnbr_fd(int n, int fd);
-void				ft_putstab(const char **tab);
+void				ft_putstab(char **tab);
 void				ft_puttab(const int *tab, size_t size);
 void				ft_putdtab(const int **tab, size_t x, size_t y);
 void				ft_putnchar(char c, size_t n);
