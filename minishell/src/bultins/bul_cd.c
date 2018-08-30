@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabcpy.c                                        :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/20 18:33:48 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/05/20 18:33:48 by ccatoire         ###   ########.fr       */
+/*   Created: 2018/08/30 13:54:45 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/08/30 13:54:47 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/types.h>
+#include "minishell.h"
 
-char	**ft_tabcpy(char **dest, char **src)
+int	bul_cd(char **av, char **env)
 {
-	size_t	i;
-
-	i = 0;
-	while (dest[i])
-	{
-		dest[i] = ft_strdup(src[i]);
-		i++;
+	ft_putendl("------------cd-----------");
+	(void)env;
+	if (av){
+		ft_putendl("OK");
+		ft_putstab(av);
 	}
-	return (dest);
+	else
+		ft_putendl("none av");
+	return (OK);
 }

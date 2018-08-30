@@ -1,19 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/30 13:54:45 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/08/30 13:54:47 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void	del_env(t_cli *env)
+void	del_env(char **env)
 {
-	ft_lstdel(&env->env_var, ft_memdel);
-	ft_strdel(&env->pwd);
-	ft_memdel((void**)&env);
+	ft_tabsdel(env);
 }
 
-t_cli	*init_env()
+char	**init_env()
 {
 	extern char	**environ;
-	t_cli		*new;
 
-	new = ft_memalloc(sizeof(t_cli));
-	new->env_var = ft_artoli(environ);
-	new->pwd = get_pwd();
-	return (new);
+	return (ft_tabsdup(environ));
 }

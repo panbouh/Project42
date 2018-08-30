@@ -57,10 +57,10 @@
 # define LOL		ft_putstr("lol\n");
 # define TAMER		ft_putstr("tamer\n");
 # define HERE		ft_putstr("here?\n");
-# define HR			ft_putstr("--------------------------------------------\n");
-# define BR			ft_putchar('\n');
-# define SPACE		ft_putchar(' ');
-# define TAB		ft_putchar('\t');
+# define PUTHR		ft_putstr("--------------------------------------------\n");
+# define PUTBR		ft_putchar('\n');
+# define PUTSPACE	ft_putchar(' ');
+# define PUTTAB		ft_putchar('\t');
 
 /*
 ** ###############

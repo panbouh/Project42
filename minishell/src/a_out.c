@@ -11,62 +11,64 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "get_next_line.h"
+#include "unistd.h"
 
-t_bul_l		bultab[] =
-{
-	{"env", &bul_env},
-	{"pwd", &bul_pwd},
-	{"cd", &bul_cd},
-	{"echo", &bul_echo},
-	{NULL, NULL},
-};
 
-static int	find_bul(char **cmd, char **env)
+#include <errno.h>
+#include <string.h>
+/*
+**	a.out looooool
+*/
+
+char	*find_exe(char *name, char *path)
 {
+	char	buff[BUFF_MAX];
 	size_t	i;
+	size_t	stop = 0;
 
 	i = 0;
-	while (bultab[i].key)
+	if (!access(name, F_OK))
+		return (ft_strdup(name));
+	i = ft_skip_char(path, i, '=', TILL) + 1;
+	while (path[i])
 	{
-		if (!ft_strcmp(cmd[0], bultab[i].key))
+		stop = ft_strlen_till(&path[i], ':');
+		// ft_printf("path :\n%s\n", &path[i]);
+		ft_bzero(buff, BUFF_MAX);
+
+		ft_strncat(buff, &path[i], stop);
+		ft_strcat(buff, "/");
+		ft_strcat(buff, name);
+
+		// ft_printf("buff :\n%s\n", buff);
+		if (!access(buff, F_OK))
+			return (ft_strdup(buff));
+		i += stop + 1;
+		// PUTHR
+	}
+	return (NULL);
+}
+
+int		a_out(char **av, char **env)
+{
+	char	*exe;
+	pid_t	pid;
+
+	if (!(exe = find_exe(av[0], get_venv("PATH", env))))
+			return (FAIL);
+
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execve(exe, &av[0], env) == FAIL)
 		{
-			bultab[i].f(cmd, env);
-			return (OK);
+			// ft_printf("execve : %s\n", strerror(errno)); //ndawndkwand
+			ft_strdel(&exe);
+			return (FAIL);
 		}
-		i++;
 	}
-	return (FAIL);
-}
-
-static int	check_cmd(char *cmd, char **env)
-{
-	char	**av;
-
-	av = ft_strsplit(cmd, ' ');
-
-
-	if (find_bul(av, env) == OK)		//cherche un bultins
-		return (OK);
-	else if (a_out(av, env) == OK)		//sinon cheche un exe
-		return (OK);
-
-	ft_tabsdel(av);
-	return (FAIL);			//sinon ca existe pas
-}
-
-int			minishell(char **env)
-{
-	char *cmd = NULL;
-
-	while (42)
-	{
-		ft_strdel(&cmd);							//del anciene commande
-		ft_printf("%s>", get_venv("PWD", env));					//prompt degueu
-		get_next_line(0, &cmd);						//get cmd
-		if (check_cmd(cmd, env) == FAIL)
-			ft_printf("minishell: command not found: %s\n", cmd);
-	}
-	ft_strdel(&cmd);
+	else
+		wait(0);
+	ft_strdel(&exe);
 	return (OK);
 }

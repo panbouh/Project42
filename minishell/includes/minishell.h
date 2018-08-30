@@ -20,12 +20,6 @@
 # define	PRINT	1
 # define	NOPRINT	2
 
-typedef struct	s_cli
-{
-	t_list	*env_var;
-	char	*pwd;
-}				t_cli;
-
 typedef struct	s_bul_l
 {
 	char	*key;
@@ -35,13 +29,19 @@ typedef struct	s_bul_l
 /*
 **	minishell.c
 */
-int		minishell(t_cli *env);
+int		minishell(char **env);
 
 /*
 **	init.c
 */
-t_cli	*init_env();
-void	del_env(t_cli *env);
+char	**init_env();
+void	del_env(char **env);
+
+/*
+**	utils.c
+*/
+char	*get_venv(char *v_name, char **env);
+char	*get_pwd();
 
 /*
 **	libft
@@ -50,10 +50,16 @@ t_list	*ft_artoli(char **src);
 void	*ft_realloc(void *src, size_t size);
 
 /*
-**	Bultins
+**	Bultins.c
 */
-char	*get_pwd();
+int		bul_env(char **av, char **env);
 int		bul_pwd();
-int		bul_cd(char **av, t_list *env);
+int		bul_echo(char **av, char **env);
+int		bul_cd(char **av, char **env);
+
+/*
+**	a_out.c
+*/
+int		a_out(char **av, char **env);
 
 #endif

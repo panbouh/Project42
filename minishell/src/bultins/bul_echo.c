@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 15:08:31 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/08/08 15:08:32 by ccatoire         ###   ########.fr       */
+/*   Created: 2018/08/30 13:54:45 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/08/30 13:54:47 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h>
 
-char	*get_pwd()
+int	bul_echo(char **av, char **env)
 {
-	char	*buff;
 	size_t	i;
 
-	buff = ft_strnew(BUFF_MAX);
-	i = 0;
-	while (!getcwd(buff, BUFF_MAX + i))
+	i = 1;
+	(void)env;
+	while (av[i])
 	{
-		i += sizeof(char) * 42;
-		ft_realloc(buff, i);
+		ft_putstr(av[i]);
+		i++;
+		if (av[i])
+			PUTSPACE
 	}
-	return (buff);
-}
-
-int		bul_pwd()
-{
-	char	*pwd;
-
-	pwd = get_pwd();
-	ft_putendl(pwd);
-	ft_strdel(&pwd);
+	PUTBR
 	return (OK);
 }

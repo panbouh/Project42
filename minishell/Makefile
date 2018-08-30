@@ -1,13 +1,22 @@
 NAME	=	minishell
 
+BUL_PATH	=	bultins
+
+BUL_NAME	=	bul_env.c	\
+				bul_pwd.c	\
+				bul_cd.c	\
+				bul_echo.c
+
+BUL			=	$(addprefix $(BUL_PATH)/,$(BUL_NAME))
+
 SRC_NAME	=	main.c		\
 				minishell.c	\
 				init.c	\
-				bul_pwd.c	\
-				bul_cd.c	\
+				utils.c	\
+				a_out.c	\
 				ft_artoli.c	\
-				ft_realloc.c
-
+				ft_realloc.c	\
+				$(BUL)
 
 SRC_PATH	=	src
 
@@ -38,6 +47,7 @@ $(NAME)		:  $(LIBFT) $(OBJ)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 				@mkdir $(OBJ_PATH) 2> /dev/null || true
+				@mkdir $(OBJ_PATH)/$(BUL_PATH) 2> /dev/null || true
 				gcc $(CFLAGS) -o $@ -c $<
 
 $(LIBFT)	:
