@@ -16,6 +16,7 @@ SRC_NAME	=	main.c		\
 				a_out.c	\
 				ft_artoli.c	\
 				ft_realloc.c	\
+				onrre.c	\
 				$(BUL)
 
 SRC_PATH	=	src

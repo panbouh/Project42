@@ -13,7 +13,7 @@
 #include "minishell.h"
 #include "get_next_line.h"
 
-t_bul_l		bultab[] =
+t_bul_l		g_bultab[] =
 {
 	{"env", &bul_env},
 	{"pwd", &bul_pwd},
@@ -27,11 +27,11 @@ static int	find_bul(char **cmd, char **env)
 	size_t	i;
 
 	i = 0;
-	while (bultab[i].key)
+	while (g_bultab[i].key)
 	{
-		if (!ft_strcmp(cmd[0], bultab[i].key))
+		if (!ft_strcmp(cmd[0], g_bultab[i].key))
 		{
-			bultab[i].f(cmd, env);
+			g_bultab[i].f(cmd, env);
 			return (OK);
 		}
 		i++;
@@ -50,7 +50,6 @@ static int	check_cmd(char *cmd, char **env)
 		return (OK);
 	else if (a_out(av, env) == OK)		//sinon cheche un exe
 		return (OK);
-
 	ft_tabsdel(av);
 	return (FAIL);			//sinon ca existe pas
 }
@@ -65,7 +64,7 @@ int			minishell(char **env)
 		ft_printf("%s>", get_venv("PWD", env));					//prompt degueu
 		get_next_line(0, &cmd);						//get cmd
 		if (check_cmd(cmd, env) == FAIL)
-			ft_printf("minishell: command not found: %s\n", cmd);
+			ft_printf("minishell: %s : %s\n", cmd, get_onrre(g_onrre));
 	}
 	ft_strdel(&cmd);
 	return (OK);

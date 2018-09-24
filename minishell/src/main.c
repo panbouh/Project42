@@ -14,6 +14,7 @@
 
 int	main()
 {
+	g_onrre = 0;
 	char	**env;
 
 	env = init_env();

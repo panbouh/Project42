@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <sys/types.h>
+#include "libft.h"
 
 char	**ft_tabcpy(char **dest, char **src)
 {
