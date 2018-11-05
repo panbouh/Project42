@@ -28,6 +28,11 @@ typedef struct	s_bul_l
 }				t_bul_l;
 
 /*
+**	libft
+// */
+// void	*ft_realloc(void *src, size_t size);
+
+/*
 **	minishell.c
 */
 int		minishell(char **env);
@@ -42,6 +47,7 @@ void	del_env(char **env);
 **	utils.c
 */
 char	*get_venv(char *v_name, char **env);
+char	*get_venv_val(char *v_name, char **env);
 char	*get_pwd();
 
 /*

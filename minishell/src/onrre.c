@@ -1,11 +1,16 @@
 #include "onrre.h"
 #include <stdlib.h>
 
+/*
+**	onrre = errno
+*/
+
 t_onrre		g_errtab[] =
 {
 	{E_NOPERM, E_NOPERM_STR},
 	{E_NOFOUND, E_NOFOUND_STR},
-	{-4896, NULL},
+	{E_NOTADIR, E_NOTADIR_STR},
+	{-4896, 0},
 };
 
 char*	get_onrre(int onrre)

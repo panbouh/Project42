@@ -34,3 +34,14 @@ char	*get_venv(char *v_name, char **env)
 	}
 	return (NULL);
 }
+
+char	*get_venv_val(char *v_name, char **env)
+{
+	char	*venv;
+
+	if (!(venv = get_venv(v_name, env)))
+		return (NULL);
+	if (!(venv = ft_strchr(venv, '=') + 1))
+		return (NULL);
+	return (venv);
+}
