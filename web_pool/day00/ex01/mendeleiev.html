@@ -4,18 +4,25 @@
         <meta charset="UTF-8">
         <title>cchiant</title>
         <style>
+            body {
+                background-image: url("https://www.ema.europa.eu/sites/default/files/regulatory_science_to_2015.jpg");
+                /* background-position: center; */
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
             td {
+                position: relative;
                 border: 1px solid black;
                 border-radius: 7px;
-                width: 70px;
-                height: 70px;
+                width: 80px;
+                height: 80px;
                 text-align: center;
             }
             .blank {
                 border: 0px;
             }
             .red {
-                background-color: rgb(196, 41, 41);
+                background-color: rgb(210, 64, 64);
             }
             .orange {
                 background-color: rgb(255, 116, 10);
@@ -39,14 +46,14 @@
                 background-color: rgb(0, 255, 208);
             }
             .purple {
-                background-color: rgb(93, 0, 206);
+                background-color: rgb(131, 64, 208);
             }
             .pink {
-                background-color: rgb(154, 0, 136);
+                background-color: rgb(196, 55, 180);
             }
             .mass {
                 position: absolute;
-                top: 0px;
+                top: 1px;
                 right: 3px;
                 font-size: 13px;
             }
@@ -58,7 +65,12 @@
                 position: absolute;
                 bottom: 0px;
                 left: 3px;
-                font-size: 20px;
+                font-size: 17px;
+            }
+            .caption-box {
+                float: left;
+                width: 30px;
+                height: 30px;
             }
         </style>
     </head>
@@ -135,7 +147,7 @@
                 <td colspan="10" class="blank"></td>
                 <td class="d_green">
                     <div class="mass">26.9815385</div>
-                    <div class="symbol"></div>
+                    <div class="symbol">Al</div>
                     <div class="number">13</div>
                 </td>
                 <td class="l_blue">
@@ -166,8 +178,8 @@
             </tr>
             <tr>
                 <td class="red">
-                    <div class="mass">K</div>
-                    <div class="symbol">39.0983</div>
+                    <div class="mass">39.0983</div>
+                    <div class="symbol">K</div>
                     <div class="number">19</div>
                 </td>
                 <td class="orange">
@@ -359,12 +371,12 @@
                     <div class="symbol">Ba</div>
                     <div class="number">56</div>
                 </td>
-                <td class="pink">
+                <td class="l_green">
                     <div class="mass">138.90547</div>
                     <div class="symbol">La</div>
                     <div class="number">57</div>
                 </td>
-                <td class="l_green">
+                <td class="yellow">
                     <div class="mass">178.49</div>
                     <div class="symbol">Hf</div>
                     <div class="number">72</div>
@@ -409,7 +421,7 @@
                     <div class="symbol">Hg</div>
                     <div class="number">80</div>
                 </td>
-                <td class="yellow">
+                <td class="d_green">
                     <div class="mass">204.3835</div>
                     <div class="symbol">Tl</div>
                     <div class="number">81</div>
@@ -429,12 +441,12 @@
                     <div class="symbol">Po</div>
                     <div class="number">84</div>
                 </td>
-                <td class="l_blue">
+                <td class="purple">
                     <div class="mass">210</div>
                     <div class="symbol">At</div>
                     <div class="number">85</div>
                 </td>
-                <td class="purple">
+                <td class="pink">
                     <div class="mass">222</div>
                     <div class="symbol">Rn</div>
                     <div class="number">86</div>
@@ -473,8 +485,8 @@
                     <div class="number">106</div>
                 </td>
                 <td class="yellow">
-                    <div class="mass">Bh</div>
-                    <div class="symbol">270</div>
+                    <div class="mass">270</div>
+                    <div class="symbol">Bh</div>
                     <div class="number">107</div>
                 </td>
                 <td class="yellow">
@@ -693,5 +705,6 @@
                 </td>
             </tr>
         </table>
+ 
     </body>
 </html>

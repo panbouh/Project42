@@ -1,0 +1,33 @@
+body {
+    background-color: #505050;
+}
+
+header {
+    position: relative;
+    width: 1420px;
+    height: 137px;
+    float: center;
+}
+
+#side-left {
+    width: 140px;
+    height: 425px;
+}
+
+.box {
+    background-color: #909090;
+    border-radius: 10px;
+    box-shadow: 8px 8px 7px;
+}
+
+/* IMG */
+
+header .img-ajust {
+    width: 433px;
+    height: 116px;
+}
+
+#side-left .img-ajust {
+    width: 63px;
+    height: 63px;
+}
