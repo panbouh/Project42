@@ -1,17 +1,9 @@
+/* 
+** global config
+*/
 body {
     background-color: #505050;
-}
-
-header {
-    position: relative;
-    width: 1420px;
-    height: 137px;
-    float: center;
-}
-
-#side-left {
-    width: 140px;
-    height: 425px;
+    font-family: Arial;
 }
 
 .box {
@@ -20,14 +12,174 @@ header {
     box-shadow: 8px 8px 7px;
 }
 
-/* IMG */
+/* 
+**  body site
+*/
 
-header .img-ajust {
-    width: 433px;
-    height: 116px;
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1420px;
+    height: 137px;
+    margin: 0 auto;
+    margin-top: 18px;
 }
 
+.head-right {
+    position: relative;
+    width: 287px;
+    height: 137px;
+}
+
+/* side-left */
+#side-left {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 425px;
+    left: -160px;
+    top: 0px;
+}
+
+/* center */
+#center {
+    position: relative;
+    margin: 0 auto;
+    width: 1024px;
+    height: 576px;
+    padding: 10px;
+    top: 20px;
+}
+
+#chair {
+    position: absolute;
+    width: 145px;
+    height: 230px;
+    top: 340px;
+    left: 340px;
+}
+
+#apple {
+    position: absolute;
+    width: 193px;
+    height: 174px;
+    top: 330px;
+    left: 818px;
+}
+
+/* side right */
+#side-right {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 140px;
+    height: 425px;
+    right: -160px;
+    top: 0px;
+}
+
+/* bottom */
+#bottom {
+    position: absolute;
+    background-color: #88ff89;
+    width: 522px;
+    height: 172px;
+    bottom: -95px;
+    left: -245px;
+}
+
+p {
+    padding: 7px 0 0 10px;
+    font-size: 17px;
+}
+
+strong {
+    font-size: 35px;
+    font-weight: normal;
+}
+
+span {
+    text-shadow: 18px 5px 5px red;
+}
+
+#text
+{
+    width: 379px;
+    height: 16px;
+}
+
+button {
+    font-size: 14px;
+}
+
+/* 
+**  IMG
+*/
+/* header */
+.head-img {
+    position: relative;
+    width: 440px;
+    height: 115px;
+    left: 10px;
+}
+
+.zoom-icon {
+    position: absolute;
+    bottom: -20px;
+
+}
+
+.reload-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+}
+
+.close-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* side-left */
 #side-left .img-ajust {
     width: 63px;
     height: 63px;
+    padding: 8px 0;
+}
+
+#eye {
+    width: 70px;
+    height: auto;
+    margin: 5px 0;
+    border: 5px solid red;
+    border-radius: 4px;
+}
+
+/* side-right */
+#book {
+    padding-top: 15px; 
+    width: 75px;
+    height: auto;
+}
+
+#towel {
+    padding: 8px 0; 
+    width: 75px;
+    height: auto;
+}
+
+#wall { 
+    background-image: url("resources/brick.jpg");
+    width: 119px;
+    height: 70px;
 }

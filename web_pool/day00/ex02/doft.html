@@ -7,19 +7,42 @@
     </head>
     <body>
         <header class="box">
-            <img src="resources/day_of_the_42.png" class="img-ajust" alt="tamerlapute">
-        </header>
-        <div id="side-left">
-            <div class="box">
-                <img src="resources/arrow.png" class="img-ajust" alt="Avancer" title="Avancer">
-                <img src="resources/main.png" class="img-ajust" alt="Prendre" title="Prendre">
-                <img src="resources/oeil.png" class="img-ajust" alt="Regarder" title="Regarder">
-                <img src="resources/outil.png" class="img-ajust" alt="Utilier" title="Utiliser">
-                <img src="resources/chat-icon.png" class="img-ajust" alt="Parler" title="Parler">
+            <img src="resources/day_of_the_42.png" class="head-img" alt="tamerlapute" title="header image">
+            <div class="head-right">
+                <a href="http://www.disney.com/"><img src="resources/reload.png" class="reload-icon" alt="Recommencer au début" title="Recommencer au début"></a>
+                <img src="resources/loupe.png" class="zoom-icon" alt="zoom" title="zoom">
+                <a href="http://www.relaischateaux.com/"><img src="resources/close.gif" class="close-icon" alt="Déconnecter" title="Déconnecter"></a>
             </div>
-        </div>
-        <div id="center" class="box"></div>
-        <div id="side-right"class="box"></div>
-        <div id="bottom"class="box"></div>
+        </header>
+
+        <section id="center" class="box">
+                
+            <nav id="side-left" class="box">
+                    <img src="resources/arrow.png" class="img-ajust" alt="Avancer" title="Avancer">
+                    <img src="resources/main.png" class="img-ajust" alt="Prendre" title="Prendre">
+                    <img src="resources/oeil.png" id="eye" alt="Regarder" title="Regarder">
+                    <img src="resources/outil.png" class="img-ajust" alt="Utilier" title="Utiliser">
+                    <img src="resources/chat-icon.png" class="img-ajust" alt="Parler" title="Parler">
+            </nav>
+
+            <a href="http://www.ikea.com/"><div id="chair"></div></a>
+            <a href="http://www.apple.com/"><div id="apple"></div></a>
+            <img src="resources/cluster.jpg" alt="">
+            
+            <nav id="side-right"class="box">
+                <img id="book" src="resources/book.png" title="dont panic, get a coockie">
+                <img id="towel" src="resources/towel.png" title="never forget your towel!">
+                <div id="wall" title="another brick in the wall~"></div>
+            </nav>
+
+            <div id="bottom" class="box">
+                <p>
+                    Vous <strong>entrez</strong> alors dans une grande piece remplie <span>d'ordinateurs</span>...<br>
+                    <i>-Bonjour, vous êtes nouveau ici ?</i>
+                    <input type="text" id="text">
+                    <button>Repondre</button>
+                </p>
+            </div>
+        </section>
     </body>
 </html>
