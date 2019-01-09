@@ -4,7 +4,9 @@
     {
         $sorted = $tab;
         sort($sorted);
-        if ($tab === $sorted)
+        $sortedinv = $tab;
+        rsort($sortedinv);
+        if ($tab === $sorted || $tab === $sortedinv)
             return (true);
         else
             return (false);

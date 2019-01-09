@@ -1,5 +1,7 @@
 #!/usr/bin/php
 <?php
+    if ($argc < 2)
+        return (false);
 
     function is_alpha($a)
     {
@@ -8,13 +10,6 @@
         return (false);
     }
 
-    function is_bigger($nb1 ,$nb2)
-    {
-        echo "dawdw\n";
-        if (intval($nb1) > intval($nb2))
-            return (true);
-        return (false);
-    }
     function get_param($av)
     {
         $new = [];
@@ -30,9 +25,9 @@
 
     function ft_sort($tab)
     {
-        $alp = [];
-        $mum = [];
-        $spe = [];
+        $alp = array();
+        $mum = array();
+        $spe = array();
 
         foreach ($tab as $line)
         {
@@ -43,18 +38,20 @@
             else
                 $spe[] = $line;
         }
-        print_r($alp);
-        print_r($num);
-        print_r($spe);
-        sort($alp, SORT_NATURAL | SORT_FLAG_CASE);
-        // sort($num, SORT_NUMERIC);
-        usort($num, "is_bigger");
-        sort($spe);
-        echo "------sorting-----------\n";
-        print_r($alp);
-        print_r($num);
-        print_r($spe);
-        $new = array_merge($alp, $num, $spe);
+        // print_r($alp);
+        // print_r($num);
+        // print_r($spe);
+        if ($alp)
+            sort($alp, SORT_NATURAL | SORT_FLAG_CASE);
+        if ($num)
+            sort($num, SORT_STRING);
+        if ($spe)
+            sort($spe);
+        // echo "------sorting-----------\n";
+        // print_r($alp);
+        // print_r($num);
+        // print_r($spe);
+        $new = array_merge((array)$alp, (array)$num, (array)$spe);
         return ($new);
     }
 
@@ -63,8 +60,8 @@
         $new = explode(" ", $str);
         $new = array_filter($new);
         $new = ft_sort($new);
-        echo "------fnish-----------\n";
-        print_r($new);
+        // echo "------fnish-----------\n";
+        // print_r($new);
         return ($new);
     }
 
