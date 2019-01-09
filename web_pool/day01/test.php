@@ -1,6 +1,13 @@
 #!/usr/bin/php
 <?php
-    include("ex03/ft_split.php");
-    ft_split("Hello    World AAA");
-    // print_r(ft_split("Hello    World AAA"));
+    function is_alpha($a)
+    {
+        if (($a >= "a" && $a <= "z") || ($a >= "A" && $a <= "Z"))
+            return (true);
+        else
+            return (false);
+    }
+
+    if (is_alpha("1"))
+        echo "aaaa\n";
 ?>
