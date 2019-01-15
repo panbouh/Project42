@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
     function auth($login, $passwd)
     {
@@ -15,6 +14,4 @@
         }
         return (FALSE);
     }
-
-    
 ?>

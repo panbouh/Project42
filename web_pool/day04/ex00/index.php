@@ -1,9 +1,10 @@
 <?PHP
     session_start();
-    echo "reload4\n";
-    $_SESSION["login"] = $_GET["login"];
-    $_SESSION["pwd"] = $_GET["passwd"];
-    echo "log : ".$_SESSION["login"]."\npwd : ".$_SESSION["pwd"]."\n";
+    if ($_GET["submit"] === "ok")
+    {
+        $_SESSION["login"] = $_GET["login"];
+        $_SESSION["pwd"] = $_GET["passwd"];
+    }
 ?>
 
 <html lang="fr">
@@ -14,10 +15,12 @@
     <body>
         <form action="index.php" method="GET">
             <label for="login">Login</label>
-            <input type="text" name="login" id="login" value="<?php $_SESSION[login]?>">
+            <input type="text" name="login" id="login" value=<?php echo $_SESSION['login']?>>
+            <br>
             <label for="pwd">Password</label>
-            <input type="password" name="passwd" id="pwd" value="echo $_SESSION[pwd]">
-            <button type="submit" name="submit">ok</button>    
+            <input type="password" name="passwd" id="pwd" value=<?php echo $_SESSION['pwd']?>>
+            <br>
+            <button type="submit" name="submit" value ="OK">ok</button>    
         </form>
     </body>
 </html>
