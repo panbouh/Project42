@@ -1,4 +1,24 @@
 
 <- Vertex ----------------------------------------------------------------------
-Your documentation here.
+The Vertex class handles vertexs. (lolnojoke).
+
+$newVertex = new Vertex( array( 'x' => 0.0, 'y' => 0.0, 'z' => 0.0[[, 'w' => 0.0], ['color' => $Color] ) );
+
+
+An instance can be contructed from a x-y-z Value:
+$newVertex = new Vertex( array( 'x' => 0.0, 'y' => 0.0, 'z' => 0.0 ) );
+
+The W and color are optionnal :
+-W Default value is 1.0.
+-Color default value is white. This param take a new instance of Color class.
+
+Invalid value or Any other use is undefined behaviour.
+
+The class provides get and set methods :
+get[X-Y-Z-W-Color];
+set[X-Y-Z-W]($value);
+set[Color](Color $color);
+
+The class provides a verbose static attribute, false by default, if it's set on true, the construct and destruct will print additionnal information, and the print() method will also print the color attribute.
+
 ---------------------------------------------------------------------- Vertex ->

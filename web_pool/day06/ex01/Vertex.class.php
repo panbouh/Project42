@@ -1,14 +1,15 @@
 <?php
+    // include ('Color.class.php');
     class Vertex
     {
-        private static $verbose = FALSE;
+        public static $verbose = FALSE;
         private $_x = 0;
         private $_y = 0;
         private $_z = 0;
         private $_w = 1.0;
         private $_color;
 
-        function __construt (array $val)
+        function __construct (array $val)
         {
             $this->_x = $val['x'];
             $this->_y = $val['y'];
@@ -18,8 +19,11 @@
             if ($val['color'])
                 $this->_color = $val['color'];
             else
-                $_color = new Color(array ('rgb' => 16777215));
-            echo "$this constructed\n";        
+                $this->setColor(new Color(array ('rgb' => 16777215)));
+
+
+            if (self::$verbose)
+                print($this.' constructed'.PHP_EOL);
         }
         
         public static function doc()
@@ -42,17 +46,26 @@
 
         public function __toString ()
         {
-            $s = "Vertex( x: ".$this->_x.", y: ".$this->_y.", z:".$this->_z.", w:".$this->_w;
             if (self::$verbose)
-                $s = $s.", ".Color();
-            $s = $s." )";
-            return ($s);
+                return ('Vertex( x: '.sprintf("%.2f", $this->_x).', y: '.sprintf("%.2f",$this->_y).', z:'.sprintf("%.2f", $this->_z).', w:'.sprintf("%.2f", $this->_w).', '.$this->_color.' )');
+            return ('Vertex( x: '.sprintf("%.2f", $this->_x).', y: '.sprintf("%.2f",$this->_y).', z:'.sprintf("%.2f", $this->_z).', w:'.sprintf("%.2f", $this->_w).' )');
         }
 
         function __destruct ()
         {
-            echo "$this destructed\n";
+            if (self::$verbose)
+                print($this.' destructed'.PHP_EOL);
             return;
         }
     }
+
+    // Color::$verbose = TRUE;
+    // $red = new Color(array ('rgb' => 16777215));
+
+    // print($red.PHP_EOL);
+    
+    // Vertex::$verbose = TRUE;
+    // $bouh  = new Vertex( array( 'x' => 0.0, 'y' => 0.0, 'z' => 0.0 ) );
+
+    // print($bouh.PHP_EOL);
 ?>
