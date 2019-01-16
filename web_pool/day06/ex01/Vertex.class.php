@@ -1,5 +1,4 @@
 <?php
-    // include ('Color.class.php');
     class Vertex
     {
         public static $verbose = FALSE;
@@ -58,14 +57,4 @@
             return;
         }
     }
-
-    // Color::$verbose = TRUE;
-    // $red = new Color(array ('rgb' => 16777215));
-
-    // print($red.PHP_EOL);
-    
-    // Vertex::$verbose = TRUE;
-    // $bouh  = new Vertex( array( 'x' => 0.0, 'y' => 0.0, 'z' => 0.0 ) );
-
-    // print($bouh.PHP_EOL);
 ?>

@@ -2,7 +2,6 @@
 
     class   Color
     {
-
         public $red = 0;
         public $green = 0;
         public $blue = 0;
@@ -34,7 +33,7 @@
             }
             if (self::$verbose)
                 echo($this.' constructed.'.PHP_EOL);
-            return;//RRGGBB
+            return;
         }
 
         public function add (Color $b)
