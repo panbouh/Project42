@@ -1,0 +1,34 @@
+/* COULEUR */
+/* 
+    rgba(0, 0, 0, 1)       REGISTRATION BLACK
+    rgba(88, 111, 124, 1)  PAYNE'S GREY
+    rgba(184, 219, 217)    COLUMBIA BLUE
+    rgba(244, 244, 249)    WHITE SMOKE
+    rgba(4, 114, 77, 1)    BOTTLE GREEN
+*/
+
+#head 
+{
+    background-color: rgba(244, 244, 249);
+}
+
+#home-box
+{
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#head a
+{
+    color: rgba(244, 244, 249);
+}
+
+#head a:hover
+{
+    color: rgb(148, 148, 148);
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#sign-box
+{
+    background-color: rgba(0, 0, 0, 1);
+}
