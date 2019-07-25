@@ -27,6 +27,12 @@ typedef struct	s_bul_l
 	int		(*f)();
 }				t_bul_l;
 
+typedef struct	s_cli
+{
+	t_list	*env_var;
+	char	*pwd;
+}
+
 /*
 **	libft
 // */

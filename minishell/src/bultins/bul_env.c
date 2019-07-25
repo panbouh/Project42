@@ -10,7 +10,7 @@ void	mod_env(char *dest, char *src, char **env)
 		dest = ft_realloc( dest, (size + 1) * sizeof(char));
 		while (src[size])
 		{
-			dest[size] = src [size];
+			dest[size] = src[size];
 			size++;
 		}
 	}

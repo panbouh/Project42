@@ -42,12 +42,11 @@ char	*find_exe(char *name, char *path)
 	if (check_exe(name) == OK)
 		return (ft_strdup(name));
 	
-	i = ft_skip_char(path, i, '=', TILL) + 1;
 
-	if (ft_strchr(name, '/'))		//si name est un chemin, check pas dans path
-		i = 0;
-	
-	while (path[i] && i)
+	if (!ft_strchr(name, '/'))		//si name est un chemin, check pas dans path
+		i = ft_skip_char(path, i, '=', TILL) + 1; //sinon on se place dans le path
+
+	while (path[i] && i) // "&& i" pour ignorer si path absolu
 	{
 		stop = ft_strlen_till(&path[i], ':');
 		// ft_printf("path :\n%s\n", &path[i]);
@@ -77,7 +76,7 @@ int		a_out(char **av, char **env)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(exe, &av[0], env) == FAIL)
+		if (execve(exe, &av[0], env) == FAIL) //??
 		{
 			// ft_printf("execve : %s\n", strerror(errno)); //ndawndkwand
 			ft_strdel(&exe);
