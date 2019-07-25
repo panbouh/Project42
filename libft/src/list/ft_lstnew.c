@@ -17,10 +17,10 @@ t_node		*ft_lstnew_node(const void *data, size_t data_size)
 {
 	t_node	*new;
 
-	if (!(new = ft_memalloc(sizeof(t_node))))
-		return (NULL);
 	if (data)
 	{
+		if (!(new = ft_memalloc(sizeof(t_node))))
+			return (NULL);
 		if (!(new->data = ft_memalloc(data_size)))
 			return (NULL);
 		new->data = ft_memcpy(new->data, data, data_size);

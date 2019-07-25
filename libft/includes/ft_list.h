@@ -59,6 +59,9 @@ void				ft_lstdelone(t_list *node, t_node **alst,
 															void(*del)(void**));
 void				ft_lstdel(t_list **alst, void(*del)(void**));
 size_t				ft_lstlen(t_node *n);
+char				**ft_lsttotab(t_list *lst);
+char				**ft_lsttotab_m(t_list *lst);
+t_list				*ft_lsttabsplit(char **tab);
 t_list				*ft_lstcat(t_list *dest, t_list *src);
 t_list				*ft_lstncat(t_list *dest, t_list *src, size_t n);
 t_list				*ft_lstsub(t_list *lst, size_t start, size_t len);

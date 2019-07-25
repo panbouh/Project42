@@ -44,19 +44,23 @@ static int	check_cmd(char *cmd, t_list *env)
 {
 	if (find_bul(cmd, env) == OK)
 		return (OK);
+	if (a_out(ft_strsplit(cmd, ' '), env) == OK)
+		return (OK); 
 	return (FAIL);
 }
 
-int			minishell(t_cli *env)
+int			minishell(t_cli *cli)
 {
 	char *cmd = NULL;
 
-	while (42)					//Tant que l'user ne dis pas exit
+	while (42)			//Tant que l'user ne dis pas exit
 	{
 		ft_strdel(&cmd);							//del anciene commande
-		ft_printf("%s>", env->pwd);					//prompt
+		ft_printf("%s > ", cli->pwd);					//prompt
 		get_next_line(0, &cmd);						//get cmd
-		if (check_cmd(cmd, env->env_var) == FAIL)
+		if (ft_strcmp("exit", cmd) == 0)
+			break ;
+		if (check_cmd(cmd, cli->env_var) == FAIL)
 			ft_printf("minishell: command not found: %s\n", cmd);
 	}
 	ft_strdel(&cmd);

@@ -12,14 +12,22 @@
 
 #include "minishell.h"
 
-void	del_env(char **env)
+static void	del_data(void **s)
 {
-	ft_tabsdel(env);
+	ft_strdel((char **)s);
 }
 
-char	**init_env()
+void		del_cli(t_cli *cli)
+{
+	ft_lstdel(&cli->env_var, &del_data);
+	ft_strdel(&cli->pwd);
+}
+
+void		init_cli(t_cli *cli)
 {
 	extern char	**environ;
 
-	return (ft_tabsdup(environ));
+	ft_bzero(cli, sizeof(t_cli));
+	cli->env_var = ft_lsttabsplit(environ);
+	cli->pwd = get_pwd();
 }

@@ -31,7 +31,7 @@ typedef struct	s_cli
 {
 	t_list	*env_var;
 	char	*pwd;
-}
+}				t_cli;
 
 /*
 **	libft
@@ -41,19 +41,19 @@ typedef struct	s_cli
 /*
 **	minishell.c
 */
-int		minishell(char **env);
+int		minishell(t_cli *env);
 
 /*
 **	init.c
 */
-char	**init_env();
-void	del_env(char **env);
+void	init_cli(t_cli *cli);
+void	del_cli(t_cli *cli);
 
 /*
 **	utils.c
 */
-char	*get_venv(char *v_name, char **env);
-char	*get_venv_val(char *v_name, char **env);
+char	*get_venv(char *v_name, t_list *env);
+char	*get_venv_val(char *v_name, t_list *env);
 char	*get_pwd();
 
 /*
@@ -73,6 +73,6 @@ int		bul_cd(char **av, char **env);
 /*
 **	a_out.c
 */
-int		a_out(char **av, char **env);
+int		a_out(char **av, t_list *env);
 
 #endif

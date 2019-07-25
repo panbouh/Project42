@@ -40,7 +40,7 @@ char	*find_exe(char *name, char *path)
 
 	i = 0;
 	if (check_exe(name) == OK)
-		return (ft_strdup(name));
+		return (name);		//???
 	
 
 	if (!ft_strchr(name, '/'))		//si name est un chemin, check pas dans path
@@ -65,7 +65,7 @@ char	*find_exe(char *name, char *path)
 	return (NULL);
 }
 
-int		a_out(char **av, char **env)
+int		a_out(char **av, t_list *env)
 {
 	char	*exe;
 	pid_t	pid;
@@ -76,15 +76,15 @@ int		a_out(char **av, char **env)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(exe, &av[0], env) == FAIL) //??
+		if (execve(exe, &av[0], ft_lsttotab(env)) == FAIL) //??
 		{
 			// ft_printf("execve : %s\n", strerror(errno)); //ndawndkwand
-			ft_strdel(&exe);
+			ft_tabsdel(av);
 			return (set_onrre(E_IDK, FAIL));
 		}
 	}
 	else
 		wait(0);
-	ft_strdel(&exe);
+	ft_tabsdel(av);
 	return (OK);
 }

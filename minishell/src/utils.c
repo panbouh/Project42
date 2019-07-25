@@ -17,25 +17,24 @@ char	*get_pwd()
 	return (buff);
 }
 
-char	*get_venv(char *v_name, char **env)
+char	*get_venv(char *v_name, t_list *env)
 {
-	size_t	i;
 	size_t	size;
 
 	if (!v_name || !env)
 		return (NULL);
 	size = ft_strlen(v_name);
-	i = 0;
-	while (env[i])
+	env->node = env->first;
+	while (env->node)
 	{
-		if (!ft_strncmp(v_name, env[i], size))
-			return (env[i]);
-		i++;
+		if (!ft_strncmp(v_name, env->node->data, size))
+			return (env->node->data);
+		env->node = env->node->next;
 	}
 	return (NULL);
 }
 
-char	*get_venv_val(char *v_name, char **env)
+char	*get_venv_val(char *v_name, t_list *env)
 {
 	char	*venv;
 
