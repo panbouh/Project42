@@ -15,22 +15,25 @@
 
 void	ft_lstdelone(t_list *lst, t_node **anode, void (*del)(void**))
 {
+	t_node	*del_me;
+
+	del_me = *anode;
 	if (lst->size > 1)
 	{
-		if ((*anode)->next)
-			(*anode)->next->back = (*anode)->back;
-		if ((*anode)->back)
-			(*anode)->back->next = (*anode)->next;
-		if (lst->first == *anode)
+		if (del_me->back != NULL)
+			del_me->back->next = del_me->next;
+		if (del_me->next != NULL)
+			del_me->next->back = del_me->back;
+		if (lst->first == del_me)
 		{
-			lst->first = (*anode)->next;
+			lst->first = del_me->next;
 			lst->node = lst->first;
 		}
-		if (lst->last == *anode)
-			lst->last = (*anode)->back;
+		if (lst->last == del_me)
+			lst->last = del_me->back;
 	}
-	del(&(*anode)->data);
-	free(*anode);
-	*anode = NULL;
+	del(&del_me->data);
+	free(del_me);
+	del_me = NULL;
 	lst->size--;
 }

@@ -46,6 +46,18 @@
 # define GO			6
 
 /*
+**	whats_my_file_status
+*/
+# define	W_IDK					99
+# define	W_REG					1
+# define	W_DIR					2
+# define	W_LNK					3
+# define	W_CHR					4
+# define	W_BLK					5
+# define	W_FIF					6
+# define	W_SOK					7
+
+/*
 ** #################
 ** #  MACRO DEBUG  #
 ** #################
@@ -86,6 +98,12 @@ int					ft_isprint(int c);
 int					ft_isvalid(char c, char *valid);
 
 /*
+** file
+*/
+int					ft_access(char *file);
+int					whats_my_file(char *file);
+
+/*
 ** math
 */
 size_t				ft_skip_char(const char *s, size_t i, char c, int flags);
@@ -109,6 +127,7 @@ char				*ft_convlu_nbase(unsigned long long n, unsigned int base);
 char				*ft_convimax_nbase(intmax_t n, unsigned int base);
 char				*ft_convumax_nbase(uintmax_t n, unsigned int base);
 char				*ft_addbit(char *bin);
+
 /*
 ** memmory
 */

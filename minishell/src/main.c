@@ -29,10 +29,13 @@ int	main()
 	Bultins :
 		-echo
 		-cd
-		-setenv
+		-setenvg
 		-unsetenv
 		-env
 		-exit
+	Expension :
+		-~
+		-$
 	fonction autorisee :
 		-malloc,free
 		-access

@@ -1,50 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lsttotab.c                                      :+:      :+:    :+:   */
+/*   ft_lstdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/27 02:02:52 by ccatoire          #+#    #+#             */
-/*   Updated: 2019/07/27 02:02:54 by ccatoire         ###   ########.fr       */
+/*   Created: 2019/07/29 13:10:24 by ccatoire          #+#    #+#             */
+/*   Updated: 2019/07/29 13:10:29 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include "libft.h"
 
-char	**ft_lsttotab(t_list *lst)
+t_list	*ft_lstdup(t_list *lst)
 {
-	char	**new;
-	size_t	i;
+	t_list	*new;
 
-	i = 0;
-	if (!(new = malloc(sizeof(char*) * lst->size + 1)))
-		return (NULL);
+	new = ft_lstnew();
+	lst->node = lst->first;
 	while (lst->node)
 	{
-		new[i] = ft_strdup(lst->node->data);
+		ft_lstadd_end(new, ft_lstnew_node(lst->node->data,
+														lst->node->data_size));
 		lst->node = lst->node->next;
-		i++;
 	}
-	new[i] = 0;
-	return (new);
-}
-
-char	**ft_lsttotab_m(t_list *lst)
-{
-	char	**new;
-	size_t	i;
-
-	i = 0;
-	if (!(new = malloc(sizeof(char*) * lst->size + 1)))
-		return (NULL);
-	while (lst->node)
-	{
-		new[i] = lst->node->data;
-		lst->node = lst->node->next;
-		i++;
-	}
-	new[i] = 0;
 	return (new);
 }

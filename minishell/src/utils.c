@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/30 13:54:45 by ccatoire          #+#    #+#             */
+/*   Updated: 2018/08/30 13:54:47 by ccatoire         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 
 #include "minishell.h"
@@ -17,7 +29,7 @@ char	*get_pwd()
 	return (buff);
 }
 
-char	*get_venv(char *v_name, t_list *env)
+t_node	*get_venv(char *v_name, t_list *env)
 {
 	size_t	size;
 
@@ -28,7 +40,7 @@ char	*get_venv(char *v_name, t_list *env)
 	while (env->node)
 	{
 		if (!ft_strncmp(v_name, env->node->data, size))
-			return (env->node->data);
+			return (env->node);
 		env->node = env->node->next;
 	}
 	return (NULL);
@@ -36,11 +48,13 @@ char	*get_venv(char *v_name, t_list *env)
 
 char	*get_venv_val(char *v_name, t_list *env)
 {
-	char	*venv;
+	t_node	*venv;
+	char	*venv_v;
 
 	if (!(venv = get_venv(v_name, env)))
 		return (NULL);
-	if (!(venv = ft_strchr(venv, '=') + 1))
+	venv_v = venv->data;
+	if (!(venv_v = ft_strchr(venv_v, '=') + 1))
 		return (NULL);
-	return (venv);
+	return (venv_v);
 }

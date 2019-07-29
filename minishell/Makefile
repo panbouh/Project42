@@ -2,10 +2,11 @@ NAME	=	minishell
 
 BUL_PATH	=	bultins
 
-BUL_NAME	=	bul_env.c	\
-				bul_pwd.c	\
-				bul_cd.c	\
-				bul_echo.c
+BUL_NAME	=	bul_pwd.c		\
+				bul_cd.c		\
+				bul_setenv.c	\
+				bul_env.c
+				#bul_echo.c	\
 
 BUL			=	$(addprefix $(BUL_PATH)/,$(BUL_NAME))
 
@@ -16,7 +17,6 @@ SRC_NAME	=	main.c		\
 				a_out.c	\
 				ft_artoli.c	\
 				ft_realloc.c	\
-				onrre.c	\
 				$(BUL)
 
 SRC_PATH	=	src

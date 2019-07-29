@@ -10,16 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strsub_to(const char *s, unsigned int start, char stop)
 {
-	char			*tronc;
+	char			tronc[BUFF_MAX];
 	unsigned int	i;
 
 	if (!s)
 		return (NULL);
+	ft_bzero(tronc, BUFF_MAX);
 	i = 0;
-	if (!(tronc = malloc(sizeof(char) * len + 1)))
-		return (NULL);
 	while (s[i] && s[i] != stop)
 	{
 		tronc[i] = s[start];
@@ -27,5 +28,5 @@ char	*ft_strsub_to(const char *s, unsigned int start, char stop)
 		i++;
 	}
 	tronc[i] = 0;
-	return (tronc);
+	return (ft_strdup(tronc));
 }

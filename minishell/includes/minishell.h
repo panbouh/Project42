@@ -52,10 +52,9 @@ void	del_cli(t_cli *cli);
 /*
 **	utils.c
 */
-char	*get_venv(char *v_name, t_list *env);
+t_node	*get_venv(char *v_name, t_list *env);
 char	*get_venv_val(char *v_name, t_list *env);
 char	*get_pwd();
-
 /*
 **	libft
 */
@@ -65,10 +64,11 @@ void	*ft_realloc(void *src, size_t size);
 /*
 **	Bultins.c
 */
-int		bul_env(char **av, char **env);
+int		bul_env(char **av, t_list *env);
 int		bul_pwd();
-int		bul_echo(char **av, char **env);
-int		bul_cd(char **av, char **env);
+int		bul_echo(char **av, t_list *env);
+int		bul_cd(char **av, t_list *env);
+int		bul_setenv(char **av, t_list *env);
 
 /*
 **	a_out.c

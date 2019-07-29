@@ -15,6 +15,8 @@
 
 t_bul_l		bultab[] =
 {
+	{"env", &bul_env},
+	{"setenv", &bul_setenv},
 	{"pwd", &bul_pwd},
 	{"cd", &bul_cd},
 	{NULL, NULL},
@@ -56,12 +58,17 @@ int			minishell(t_cli *cli)
 	while (42)			//Tant que l'user ne dis pas exit
 	{
 		ft_strdel(&cmd);							//del anciene commande
+		cli->pwd = get_pwd();						//maj du pwd
 		ft_printf("%s > ", cli->pwd);					//prompt
 		get_next_line(0, &cmd);						//get cmd
+		PUTHR
 		if (ft_strcmp("exit", cmd) == 0)
 			break ;
 		if (check_cmd(cmd, cli->env_var) == FAIL)
 			ft_printf("minishell: command not found: %s\n", cmd);
+		PUTHR
+		ft_printf("end :\n");
+		// ft_lstputstr(cli->env_var);
 	}
 	ft_strdel(&cmd);
 	return (OK);
