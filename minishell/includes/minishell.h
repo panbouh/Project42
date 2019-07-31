@@ -46,6 +46,7 @@ int		minishell(t_cli *env);
 /*
 **	init.c
 */
+void	del_env(void **s);
 void	init_cli(t_cli *cli);
 void	del_cli(t_cli *cli);
 

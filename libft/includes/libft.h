@@ -206,7 +206,9 @@ char				*ft_strncpy(char *dest, const char *src, size_t n);
 char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *dest, const char *src, size_t n);
 char				*ft_strchr(const char *s, int c);
+char				*ft_strtchr(const char *str, char **to_find);
 char				*ft_strrchr(const char *s, int c);
+char				*ft_strschr(const char *s, const char *to_find);
 char				*ft_strstr(const char *str, const char *to_find);
 char				*ft_strnstr(const char *str, const char *to_find, size_t n);
 char				*ft_strnew(size_t size);
@@ -225,8 +227,12 @@ char				**ft_strsplit(const char *s, char c);
 void				ft_tabsdel(char **tab);
 size_t				ft_tablen(char **tab);
 void				**ft_tabdup(void **src, size_t size);
+char				**ft_tabtchr(char **tab, char **to_find);
+char				**ft_tabschr(char **tab, const char *to_find);
+char				**ft_tabchr(char **tab, const char *to_find);
 char				**ft_tabsdup(char **src);
 char				**ft_tabcpy(char **src, char **dest);
+char				**ft_tabtskip(char **tab, char **to_find);
 int					**ft_tabnew(int x, int y);
 
 #endif

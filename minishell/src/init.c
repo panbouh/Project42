@@ -12,14 +12,14 @@
 
 #include "minishell.h"
 
-static void	del_data(void **s)
+void	del_env(void **s)
 {
 	ft_strdel((char **)s);
 }
 
 void		del_cli(t_cli *cli)
 {
-	ft_lstdel(&cli->env_var, &del_data);
+	ft_lstdel(&cli->env_var, &del_env);
 	ft_strdel(&cli->pwd);
 }
 

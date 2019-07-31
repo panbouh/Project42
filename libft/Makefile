@@ -122,8 +122,12 @@ PRINT_FILE	=	ft_putchar.c							\
 
 TAB_FILE	=	ft_tabcpy.c								\
 				ft_tabnew.c								\
+				ft_tabtskip.c							\
 				ft_tabdup.c								\
 				ft_tablen.c								\
+				ft_tabschr.c							\
+				ft_tabtchr.c							\
+				ft_tabchr.c								\
 				ft_tabdel.c
 
 STR_FILE	=	ft_skip_char.c							\
@@ -138,6 +142,8 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strncat.c							\
 				ft_strlcat.c							\
 				ft_strchr.c								\
+				ft_strtchr.c							\
+				ft_strschr.c							\
 				ft_strrchr.c							\
 				ft_strstr.c								\
 				ft_strnstr.c							\
@@ -153,7 +159,7 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strequ.c								\
 				ft_strnequ.c							\
 				ft_strsub.c								\
-				ft_strsub_to.c								\
+				ft_strsub_to.c							\
 				ft_strjoin.c							\
 				ft_strtrim.c							\
 				ft_strsplit.c							\

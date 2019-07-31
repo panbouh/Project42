@@ -79,7 +79,7 @@ char	*path_finder(char *ope, char *cdpath)
 
 }
 
-int			bul_cd(char **av, t_list *env)
+int			bul_cd(char **av, t_list *env)		//cd seul double free
 {
 	char		*home;
 	char		*cdpath;

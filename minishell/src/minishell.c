@@ -26,6 +26,7 @@ static int	find_bul(char *cmd, t_list *env)
 {
 	size_t	i;
 	size_t	cmd_s;
+	char	**cmd_t;
 
 	i = 0;
 	cmd_s = ft_strlen_till(cmd, ' ');
@@ -34,7 +35,9 @@ static int	find_bul(char *cmd, t_list *env)
 	{
 		if (!ft_strncmp(cmd, bultab[i].key, cmd_s))
 		{
+			cmd_t = ft_strsplit(cmd, ' ');
 			bultab[i].f(ft_strsplit(cmd, ' '), env);
+			ft_tabsdel(cmd_t);
 			return (OK);
 		}
 		i++;
@@ -44,10 +47,17 @@ static int	find_bul(char *cmd, t_list *env)
 
 static int	check_cmd(char *cmd, t_list *env)
 {
+	char	**cmd_t;
+
 	if (find_bul(cmd, env) == OK)
 		return (OK);
-	if (a_out(ft_strsplit(cmd, ' '), env) == OK)
-		return (OK); 
+	cmd_t = ft_strsplit(cmd, ' ');
+	if (a_out(cmd_t, env) == OK)
+	{
+		ft_tabsdel(cmd_t);
+		return (OK);
+	}
+	ft_tabsdel(cmd_t);
 	return (FAIL);
 }
 
