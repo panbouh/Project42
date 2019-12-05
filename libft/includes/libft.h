@@ -46,6 +46,18 @@
 # define GO			6
 
 /*
+**	whats_my_file_status
+*/
+# define	W_IDK					99
+# define	W_REG					1
+# define	W_DIR					2
+# define	W_LNK					3
+# define	W_CHR					4
+# define	W_BLK					5
+# define	W_FIF					6
+# define	W_SOK					7
+
+/*
 ** #################
 ** #  MACRO DEBUG  #
 ** #################
@@ -86,6 +98,12 @@ int					ft_isprint(int c);
 int					ft_isvalid(char c, char *valid);
 
 /*
+** file
+*/
+int					ft_access(char *file);
+int					whats_my_file(char *file);
+
+/*
 ** math
 */
 size_t				ft_skip_char(const char *s, size_t i, char c, int flags);
@@ -109,6 +127,7 @@ char				*ft_convlu_nbase(unsigned long long n, unsigned int base);
 char				*ft_convimax_nbase(intmax_t n, unsigned int base);
 char				*ft_convumax_nbase(uintmax_t n, unsigned int base);
 char				*ft_addbit(char *bin);
+
 /*
 ** memmory
 */
@@ -187,7 +206,9 @@ char				*ft_strncpy(char *dest, const char *src, size_t n);
 char				*ft_strcat(char *dest, const char *src);
 char				*ft_strncat(char *dest, const char *src, size_t n);
 char				*ft_strchr(const char *s, int c);
+char				*ft_strtchr(const char *str, char **to_find);
 char				*ft_strrchr(const char *s, int c);
+char				*ft_strschr(const char *s, const char *to_find);
 char				*ft_strstr(const char *str, const char *to_find);
 char				*ft_strnstr(const char *str, const char *to_find, size_t n);
 char				*ft_strnew(size_t size);
@@ -206,8 +227,12 @@ char				**ft_strsplit(const char *s, char c);
 void				ft_tabsdel(char **tab);
 size_t				ft_tablen(char **tab);
 void				**ft_tabdup(void **src, size_t size);
+char				**ft_tabtchr(char **tab, char **to_find);
+char				**ft_tabschr(char **tab, const char *to_find);
+char				**ft_tabchr(char **tab, const char *to_find);
 char				**ft_tabsdup(char **src);
 char				**ft_tabcpy(char **src, char **dest);
+char				**ft_tabtskip(char **tab, char **to_find);
 int					**ft_tabnew(int x, int y);
 
 #endif

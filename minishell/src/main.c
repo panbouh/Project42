@@ -15,13 +15,13 @@
 int	main()
 {
 	g_onrre = 0;
-	char	**env;
+	t_cli	cli;
 
-	env = init_env();
+	init_cli(&cli);
 
-	minishell(env);
+	minishell(&cli);
 
-	del_env(env);
+	del_cli(&cli);
 	return (OK);
 }
 
@@ -29,10 +29,13 @@ int	main()
 	Bultins :
 		-echo
 		-cd
-		-setenv
+		-setenvg
 		-unsetenv
 		-env
 		-exit
+	Expension :
+		-~
+		-$
 	fonction autorisee :
 		-malloc,free
 		-access

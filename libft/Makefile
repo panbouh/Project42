@@ -16,6 +16,7 @@ SRC_LIST	=	$(addprefix $(SRC_PATH),list/)
 SRC_MATH	=	$(addprefix $(SRC_PATH),math/)
 SRC_MEM		=	$(addprefix $(SRC_PATH),memory/)
 SRC_MORPH	=	$(addprefix $(SRC_PATH),morphing/)
+SRC_ONRRE	=	$(addprefix $(SRC_PATH),onrre/)
 SRC_PRINT	=	$(addprefix $(SRC_PATH),print/)
 SRC_STR		=	$(addprefix $(SRC_PATH),str/)
 SRC_TAB		=	$(addprefix $(SRC_PATH),tab/)
@@ -29,6 +30,7 @@ SRC		=	$(addprefix $(SRC_CHECK),$(CHECK_FILE))		\
 			$(addprefix $(SRC_MATH),$(MATH_FILE))		\
 			$(addprefix $(SRC_MEM),$(MEM_FILE))			\
 			$(addprefix $(SRC_MORPH),$(MORPH_FILE))		\
+			$(addprefix $(SRC_ONRRE),$(ONRRE_FILE))		\
 			$(addprefix $(SRC_PRINT),$(PRINT_FILE))		\
 			$(addprefix $(SRC_STR),$(STR_FILE))			\
 			$(addprefix $(SRC_TAB),$(TAB_FILE))			\
@@ -51,6 +53,10 @@ CHECK_FILE	=	ft_isalpha.c							\
 				ft_isvalid.c							\
 				ft_isspace.c
 
+FILE_FILE	=	get_next_line.c							\
+				whats_my_file.c							\
+				ft_access.c
+
 LIST_FILE	=	ft_lstnew.c								\
 				ft_lstadd.c								\
 				ft_lstinit.c							\
@@ -62,6 +68,9 @@ LIST_FILE	=	ft_lstnew.c								\
 				ft_lstlen.c								\
 				ft_lstsub.c								\
 				ft_lstmove.c							\
+				ft_lsttotab.c							\
+				ft_lstdup.c								\
+				ft_lsttabsplit.c						\
 				ft_lstput.c								
 
 MATH_FILE	=	ft_power.c								\
@@ -91,6 +100,8 @@ MORPH_FILE	=	ft_atoi.c								\
 				ft_strupper.c							\
 				ft_strlower.c
 
+ONRRE_FILE	=	onrre.c
+
 PRINT_FILE	=	ft_putchar.c							\
 				ft_putstr.c								\
 				ft_putendl.c							\
@@ -111,8 +122,12 @@ PRINT_FILE	=	ft_putchar.c							\
 
 TAB_FILE	=	ft_tabcpy.c								\
 				ft_tabnew.c								\
+				ft_tabtskip.c							\
 				ft_tabdup.c								\
 				ft_tablen.c								\
+				ft_tabschr.c							\
+				ft_tabtchr.c							\
+				ft_tabchr.c								\
 				ft_tabdel.c
 
 STR_FILE	=	ft_skip_char.c							\
@@ -127,6 +142,8 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strncat.c							\
 				ft_strlcat.c							\
 				ft_strchr.c								\
+				ft_strtchr.c							\
+				ft_strschr.c							\
 				ft_strrchr.c							\
 				ft_strstr.c								\
 				ft_strnstr.c							\
@@ -142,6 +159,7 @@ STR_FILE	=	ft_skip_char.c							\
 				ft_strequ.c								\
 				ft_strnequ.c							\
 				ft_strsub.c								\
+				ft_strsub_to.c							\
 				ft_strjoin.c							\
 				ft_strtrim.c							\
 				ft_strsplit.c							\
@@ -157,25 +175,23 @@ WSTR_FILE	=	ft_wstrlen.c							\
 				ft_wstrdup.c							\
 				ft_wstrdel.c
 
-FILE_FILE	=	get_next_line.c
-
-PRINTF_FILE	=	ft_printf.c				\
-				init.c					\
-				flags.c					\
-				calc.c					\
-				err.c					\
-				utils.c					\
-				check_pw.c				\
-				conv_uisc_z_ui.c		\
-				conv_xop_z_id.c			\
-				conv_l_scox.c			\
-				conv_l_ui_h_ox.c		\
-				conv_h_ui_ll_ox.c		\
-				conv_ll_ui_hh_ox.c		\
-				conv_hh_ui_j_ox.c		\
-				conv_j_ui_z_ox.c		\
-				conv_bonus_b.c			\
-				conv_mod_jz.c			\
+PRINTF_FILE	=	ft_printf.c								\
+				init.c									\
+				flags.c									\
+				calc.c									\
+				err.c									\
+				utils.c									\
+				check_pw.c								\
+				conv_uisc_z_ui.c						\
+				conv_xop_z_id.c							\
+				conv_l_scox.c							\
+				conv_l_ui_h_ox.c						\
+				conv_h_ui_ll_ox.c						\
+				conv_ll_ui_hh_ox.c						\
+				conv_hh_ui_j_ox.c						\
+				conv_j_ui_z_ox.c						\
+				conv_bonus_b.c							\
+				conv_mod_jz.c							\
 				conv_mod_lhllhh.c
 
 ##############

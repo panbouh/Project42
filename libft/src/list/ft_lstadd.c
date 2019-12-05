@@ -11,9 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-
 #include "libft.h"
-#include "ft_printf.h"
 
 void	ft_lstadd_end(t_list *dest, t_node *src)
 {

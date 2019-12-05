@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_access.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 13:54:45 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/08/30 13:54:47 by ccatoire         ###   ########.fr       */
+/*   Created: 2019/07/27 23:07:23 by ccatoire          #+#    #+#             */
+/*   Updated: 2019/07/27 23:07:24 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
+#include "onrre.h"
+#include <sys/stat.h>
 
-void	del_env(void **s)
+int		ft_access(char *file)
 {
-	ft_strdel((char **)s);
-}
+	struct stat	info;
 
-void		del_cli(t_cli *cli)
-{
-	ft_lstdel(&cli->env_var, &del_env);
-	ft_strdel(&cli->pwd);
-}
-
-void		init_cli(t_cli *cli)
-{
-	extern char	**environ;
-
-	ft_bzero(cli, sizeof(t_cli));
-	cli->env_var = ft_lsttabsplit_t(environ);
+	if (stat(file, &info) == FAIL)
+		return (set_onrre(E_NOFILE, FAIL));
+	if (!(S_IRUSR & info.st_mode))
+		return (set_onrre(E_NOPERM, FAIL));
+	return (OK);
 }

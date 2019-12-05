@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccatoire <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 13:54:45 by ccatoire          #+#    #+#             */
-/*   Updated: 2018/08/30 13:54:47 by ccatoire         ###   ########.fr       */
+/*   Created: 2019/07/29 13:10:24 by ccatoire          #+#    #+#             */
+/*   Updated: 2019/07/29 13:10:29 by ccatoire         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ft_list.h"
 
-void	del_env(void **s)
+t_list	*ft_lstdup(t_list *lst)
 {
-	ft_strdel((char **)s);
-}
+	t_list	*new;
 
-void		del_cli(t_cli *cli)
-{
-	ft_lstdel(&cli->env_var, &del_env);
-	ft_strdel(&cli->pwd);
-}
-
-void		init_cli(t_cli *cli)
-{
-	extern char	**environ;
-
-	ft_bzero(cli, sizeof(t_cli));
-	cli->env_var = ft_lsttabsplit_t(environ);
+	new = ft_lstnew();
+	lst->node = lst->first;
+	while (lst->node)
+	{
+		ft_lstadd_end(new, ft_lstnew_node(lst->node->data,
+														lst->node->data_size));
+		lst->node = lst->node->next;
+	}
+	return (new);
 }
