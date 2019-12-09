@@ -1,57 +1,68 @@
-nav
+body
 {
-    background-color: rgb(170, 36, 92);
-}
-
-nav a
-{
-  text-decoration: none;
-  color: rgb(0, 255, 42);
-  font-size: 20px;
-  padding: 15px;
-  display:inline-block;
-}
-
-ul
-{
-  display: inline;
   margin: 0;
   padding: 0;
 }
 
-ul li
+nav
 {
-    display: inline-block;
+  background-image:linear-gradient(to right, #7d2c6c, #df2530);
 }
 
-ul li:hover
+a
 {
-    background: #555;
+  text-decoration: none;
+  color: white;
 }
 
-ul li:hover ul
+ul
 {
-    display: block;
+  padding: 0;
 }
 
-ul li ul
+nav li
 {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+nav li a
+{
+  display: block;
+  padding: 20px;
+}
+
+nav li:hover a
+{
+  background-color: #a62954;
+}
+
+nav li:hover .list
+{
+   display: block;
+}
+
+#menu-title:hover
+{
+  background-color: #612254;
+}
+
+.list
+{
+  padding: 0;
   position: absolute;
-  width: 200px;
   display: none;
+  background-color: cadetblue;
+  width: 200px;
 }
 
-ul li ul li
-{ 
-  background: #555; 
-  display: block; 
+.list a:hover
+{
+  background-color: #9f4e6a;
 }
-ul li ul li a
-{
-    display:block !important;
-} 
 
-ul li ul li:hover
+.list li
 {
-    background: #666;
+  display: block;
 }

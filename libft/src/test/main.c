@@ -18,16 +18,8 @@ void	dellol(void **s)
 
 int	main(int ac, char **av)
 {
-	char	tab[3][3] = {{"=\0\0"}, {"-i\0"}, {0}};
-	// char	**tab;
-	char	**test;
-	// tab = malloc(sizeof(char *) * 3);
-	// tab[0] = ft_strdup("=");
-	// tab[1] = ft_strdup("-i");
-	// tab[2] = 0;
-	if ((test = ft_tabtskip(&av[1], (char **)tab))){
-		ft_printf("res :\n");
-		ft_putstab(test);
-	}
+	g_onrre = E_NOPERM;
+
+	put_onrre("coucou", 0);
 	return (0);
 }

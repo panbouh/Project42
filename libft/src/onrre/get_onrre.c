@@ -35,15 +35,3 @@ char	*get_onrre(int onrre)
 	}
 	return (E_IDK_STR);
 }
-
-int		set_onrre(int onrre, int ret)
-{
-	g_onrre = onrre;
-	return (ret);
-}
-
-char	*set_onrre_c(int onrre, char *ret)
-{
-	g_onrre = onrre;
-	return (ret);
-}

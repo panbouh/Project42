@@ -35,8 +35,8 @@ static int	find_bul(char *cmd, t_list *env)
 	{
 		if (!ft_strncmp(cmd, bultab[i].key, cmd_s))
 		{
-			cmd_t = ft_strsplit(cmd, ' ');
-			bultab[i].f(ft_strsplit(cmd, ' '), env);
+			cmd_t = ft_strsplit(&cmd[cmd_s + 1], ' ');
+			bultab[i].f(cmd_t, env);
 			ft_tabsdel(cmd_t);
 			return (OK);
 		}

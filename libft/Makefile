@@ -100,7 +100,9 @@ MORPH_FILE	=	ft_atoi.c								\
 				ft_strupper.c							\
 				ft_strlower.c
 
-ONRRE_FILE	=	onrre.c
+ONRRE_FILE	=	get_onrre.c								\
+				set_onrre.c								\
+				put_onrre.c
 
 PRINT_FILE	=	ft_putchar.c							\
 				ft_putstr.c								\

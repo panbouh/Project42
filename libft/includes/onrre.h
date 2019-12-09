@@ -38,7 +38,8 @@ typedef struct	s_onrre
 }				t_onrre;
 
 char	*get_onrre(int onrre);
-int		set_onrre(int onrre, int ret);
 char	*set_onrre_c(int onrre, char *ret);
+int		set_onrre(int onrre, int ret);
+int		put_onrre(char *s, int ret);
 
 #endif

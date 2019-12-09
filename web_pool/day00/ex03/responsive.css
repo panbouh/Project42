@@ -1,41 +1,41 @@
 .red {
-    background-color: rgb(210, 64, 64);
+    background-color: #fc7d86;
 }
 
 .orange {
-    background-color: rgb(255, 116, 10);
+    background-color: #ffbe90;
 }
 
 .yellow {
-    background-color: rgb(255, 239, 59);
+    background-color: #ff89b9;
 }
 
 .green {
-    background-color: rgb(0, 237, 87);
+    background-color: #cb88da;
 }
 
 .l_green {
-    background-color: rgb(184, 255, 42);
+    background-color: #e187cb;
 }
 
 .d_green {
-    background-color: rgb(0, 147, 95);
+    background-color: #f2f2f2;
 }
 
 .blue {
-    background-color: rgb(0, 123, 255);
+    background-color:#84fe81;
 }
 
 .l_blue {
-    background-color: rgb(0, 255, 208);
+    background-color: #e1cd8b;
 }
 
 .purple {
-    background-color: rgb(131, 64, 208);
+    background-color: #fbe981;
 }
 
 .pink {
-    background-color: rgb(196, 55, 180);
+    background-color: #8487f0;
 }
 
 /* ---------------------------------------------------------------------------------------------------------------- */
@@ -49,9 +49,7 @@ html, body {        /* "activate support for doctype" */
 }
 
 body {
-    /* background-image: url("http://pluspng.com/img-png/science-png-hd-science-objects-animated-background-for-school-education-hd-motion-graphic-stock-video-footage-videoblocks-1920.png"); */
-    /* background-repeat: no-repeat;
-    background-size: cover; */
+    background-color: bisque;
 }
 
 table {
@@ -78,6 +76,7 @@ td div {
 
 .legend
 {
+    border: 3px solid rgb(254, 187, 105);
     width: 30vw;
     height: auto;
 }

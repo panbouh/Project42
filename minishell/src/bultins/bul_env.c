@@ -36,22 +36,24 @@ int				bul_env(char **av, t_list *env)
 	char	ret;
 
 	ret = OK;
-	if (!av[1])
+	if (!av)
 	{
 		ft_lstputstr(env);
 		return (OK);
 	}
-	if (av[1] && !ft_strcmp("-i", av[1]))
-		env = new_env(&av[2], NULL);
+	if (av[0] && !ft_strcmp("-i", av[0]))
+		env = new_env(&av[1], NULL);
 	else
-		env = new_env(&av[1], env);
+		env = new_env(av, env);
 	tab_skip = init_skip();
-	new_av = ft_tabtskip(&av[1], tab_skip);
+	new_av = ft_tabtskip(av, tab_skip);
 	ft_tabsdel(tab_skip);
 	if (new_av)
 		ret = a_out(new_av, env);
 	else
 		ft_lstputstr(env);
 	ft_lstdel(&env, &del_env);
+	if (ret == FAIL)
+		return (put_onrre(new_av[0], FAIL));
 	return (OK);
 }

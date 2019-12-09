@@ -8,6 +8,7 @@ int		bul_setenv(char **av, t_list *env)
 	t_node	*venv;
 
 	i = 0;
+	ft_putstab(av);
 	if (!av)
 		return (FAIL);
 	while (av[i] && ft_strchr(av[i], '='))
