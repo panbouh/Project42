@@ -6,10 +6,8 @@
     function get_op($str)
     {
         $i = 0;
-        for (42; $str[$i] && is_numeric($str[$i]); $i++){}
-        for (42; $str[$i] && $str[$i] === " "; $i++){}
-        if (strpos('/*-+%', $str[$i]) === false)
-            return (false);
+        while (strpos('/*-+%', $str[$i]) === false)
+            $i++;
         return ($i);
     }
 
@@ -39,21 +37,27 @@
 
     function final_check($end)
     {
-        $i = 0;
-        for (42; $end[$i] && !is_numeric($end[$i]); $i++){}
-        if (!$end[$i])
-            return (false);
-        for (42; $end[$i] && is_numeric($end[$i]); $i++){}
-        if ($end[$i])
-            return (false);
+        $i = -1;
+        for (42; isset($end[$i]) && !is_numeric($end[$i]); $i++)
+        {
+            echo "coucou\n";
+            if (strpos('/*-+%', $end[$i]) === true)
+                return (false);
+        }
+        while (isset($end[$i]))
+        {
+            if (strpos('0123456789', $end[$i]) === false)
+                return (false);
+            $i++;
+        }
         return (intval($end));
     }
     // ----------------------------------------------------------------------- //
 
     $str = epur_str($argv[1]);
-    for ($i = 0; $str[$i]; $i++)
+    for ($i = 0; isset($str[$i]); $i++)
     {
-        if (strpos('/*-+% 123456789', $str[$i]) === false)
+        if (strpos('/*-+% 1234567890', $str[$i]) === false)
             {echo "Syntax Error\n"; return (false);}
     }
 
