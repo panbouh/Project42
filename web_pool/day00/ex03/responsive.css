@@ -49,9 +49,9 @@ html, body {        /* "activate support for doctype" */
 }
 
 body {
-    background-image: url("https://www.ema.europa.eu/sites/default/files/regulatory_science_to_2015.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-image: url("http://pluspng.com/img-png/science-png-hd-science-objects-animated-background-for-school-education-hd-motion-graphic-stock-video-footage-videoblocks-1920.png"); */
+    /* background-repeat: no-repeat;
+    background-size: cover; */
 }
 
 table {
@@ -69,9 +69,21 @@ td div {
     font-size: 1vw;
 }
 
+.frame
+{
+    position: fixed;
+    top: 8vh;
+    left: 25vw;
+}
+
+.legend
+{
+    width: 30vw;
+    height: auto;
+}
 
 .blank {
-    border: 0px;
+    border: none;
 }
 
 .mass {
@@ -82,10 +94,46 @@ td div {
 
 .symbol {
     font-weight: bold;
-    font-size: 1.5vw;
+    font-size: 2vw;
+    
 }
 
 .number {
     position: absolute;
     bottom: 0;
+}
+
+.symbol:hover ~ .info
+{
+    display: block;
+}
+
+.symbol:hover ~ .legend
+{
+    display: none;
+}
+
+.info
+{
+    z-index: 1;
+    border: 2px solid black;
+    border-radius: 5px;
+    position: fixed;
+    display: none;
+    top: 5vh;
+    left: 20vw;
+    /* overflow: hidden; */
+}
+
+.info p
+{
+    /* position: absolute; */
+    text-align: justify;
+    text-justify: inter-character;
+    margin: 10px;
+    font-size: 1.3vw;
+    width: 30vw;
+    word-wrap: break-word;
+    word-break: break-word;
+    
 }
