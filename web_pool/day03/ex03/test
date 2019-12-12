@@ -1,8 +1,14 @@
 #!/bin/sh
 
-$URL_M='http://127.0.0.1:8080/day03/ex03/cookie_crisp.php';
+URL_M='http://localhost:8080/ex03/cookie_crisp.php';
 
-echo $url;
-
-#curl -c cook.txt "$url?action=set&name=plat&value=choucroute";
-
+if [ "$1" == 'set' ]
+then
+    curl -c cook.txt "$URL_M?action=set&name=plat&value=choucroute";
+elif [ $1 == 'get' ]
+then
+curl -b cook.txt "$URL_M?action=get&name=plat&value=choucroute";
+elif [ $1 == 'del' ]
+then
+curl -c cook.txt "$URL_M?action=del&name=plat&value=choucroute";
+fi
