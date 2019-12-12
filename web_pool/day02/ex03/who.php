@@ -1,18 +1,31 @@
 #!/usr/bin/php
 <?php
-    $xutmp_f = "/var/run/utmpx";
 
-    // $file_bin = file_get_contents($xutmp_f);
+    function tty_sort($a, $b)
+    {
+        return (strcmp($a["tty"], $b["tty"]));
+    }
 
-    $file_bin = file($xutmp_f);
+    $date = "%b %e %H:%M";
+    date_default_timezone_set('Europe/Paris');
 
-    unset($file_bin[0]);
-    $tmp = implode('\n', $file_bin);
+    $utmpx_f = "/var/run/utmpx";
 
-    print_r($file_bin);
+    $fd = fopen($utmpx_f, 'r');
 
-    $file_trad = unpack('alogin/awho/itime', $tmp);
+    while ($file_bin = fread($fd, 628))
+    {
+        $file_trad[] = unpack("a256login/a4id/a32tty/ipid/itype/isec/imicro/a256host/i16pad", $file_bin);
+    }
+    fclose($fd);
 
-    print_r($file_trad);
+    usort($file_trad, "tty_sort");
 
+    foreach($file_trad as $block)
+    {
+        if ($block['type'] === 7)
+        {
+            echo $block['login'] . " " . $block['tty']  . "  ", strftime($date, $block['sec']), "\n";
+        }
+    }
 ?>

@@ -1,5 +1,4 @@
 <?PHP
-    echo "wsh8\n";
     $action = $_GET["action"];
     $co_name = $_GET["name"];
     $co_val = $_GET["value"];
