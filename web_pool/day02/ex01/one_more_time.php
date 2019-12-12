@@ -12,7 +12,7 @@
     
     function check_format($s)
     {
-        if ((preg_match("/[a-zA-Z]{1}[a-z]+ [0-31]{1,2} [a-zA-Z]{1}[a-z]+ \d{4} [0-2][0-4](:[0-5][0-9]){2}/", $s)) === 0)
+        if ((preg_match("/[a-zA-Z]{1}[a-z]+ [0-31]{1,2} [a-zA-Z]{1}[a-z]+ \d{4} [0-2][0-3](:[0-5][0-9]){2}/", $s)) === 0)
             return (FALSE);
         $day = array(
             'lundi',
@@ -62,11 +62,11 @@
                                 'mai'=>'may',
                                 'juin'=>'jun',
                                 'juillet'=>'jul',
-                                'août'=>'aug',
+                                'aout'=>'aug',
                                 'septembre'=>'sep',
                                 'octobre'=>'oct',
                                 'novembre'=>'nov',
-                                'décembre'=>'dec',
+                                'decembre'=>'dec',
                                 'lundi' => 'mon',
                                 'mardi' => 'tue',
                                 'mercredi' => 'web',
@@ -77,6 +77,8 @@
                             );
         return (strtr(strtolower($s), $transWord));
     }
+
+
     date_default_timezone_set("Europe/Paris");
 
     $date = epur_str($argv[1]);

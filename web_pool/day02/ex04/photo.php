@@ -30,7 +30,7 @@
         return ($ret);
     }
 
-    function dl_img($url_img)
+    function dl_img($url_img, $dir)
     {
         $curl = curl_init ($url_img);
         curl_setopt($curl, CURLOPT_HEADER, false);
@@ -38,30 +38,23 @@
         curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
         $bin = curl_exec($curl);
         curl_close ($curl);
-        if ($fd = fopen('./'.basename($url_img), 'w'))
+        if ($fd = fopen($dir, 'w'))
         {
             fwrite($fd, $bin);
             fclose($fd);
         }
     }
-
     if (!empty($html = get_html($argv[1])))
     {
         if ($img_url = get_img($html, $argv[1]))
         {
-            print_r($img_url);
+            $dir = preg_replace('/^http(s)?:\/\//', "", $argv[1]);
+            if (!file_exists($dir))
+                mkdir ($dir);
             foreach ($img_url as $img)
             {
-                dl_img($img);
+                $path = $dir."/".basename($img);
+                dl_img($im, $path);
             }
         }
     }
-
- 
-
-
-
-    // /<img[^>]+src="([^"]+)"[^>]*>/ig     get img tag
-    // /https?:\/\/.*\.(?:png|jpg)/ig       get url
-    //http://localhost:8000/baba.html
-?>
