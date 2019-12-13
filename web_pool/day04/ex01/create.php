@@ -22,7 +22,8 @@
     }
 
     $login = $_POST['login'];
-    $pwd = hash("whirlpool", $_POST['passwd']);
+    if ($_POST['passwd'])
+        $pwd = hash("whirlpool", $_POST['passwd']);
     $account_t = [];
 
     if (!file_exists($_PRIVATE_PATH))
@@ -36,7 +37,7 @@
 
     if ($login && $pwd && ($_POST['submit']) === "OK")
     {
-        if (account_exist($account_tab, $login) === FALSE)
+        if (!account_exist($account_tab, $login))
         {
             account_create($account_tab, $login, $pwd);
             echo ("OK\n");
@@ -44,4 +45,6 @@
         else
             echo ("ERROR\n");
     }
+    else
+        echo ("ERROR\n");
 ?>

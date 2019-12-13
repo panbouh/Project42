@@ -17,11 +17,16 @@
 
    foreach($accounts_tab as &$account)
    {
-       if ($account['login'] === $login && $account['passwd'] === $oldpw)
+       if ($account['login'] === $login)
        {
-           change_passwd($accounts_tab, $account, $newpw);
-           echo ("OK\n");
+            if ($account['passwd'] === $oldpw)
+                {
+                    change_passwd($accounts_tab, $account, $newpw);
+                    echo ("OK\n");
+                }
+            else
+                echo ("ERROR\n");
        }
    }
-   echo ("ERROR\n");
+//    echo ("ER654ROR\n");
 ?>
