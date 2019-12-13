@@ -49,6 +49,7 @@
         if ($img_url = get_img($html, $argv[1]))
         {
             $dir = preg_replace('/^http(s)?:\/\//', "", $argv[1]);
+            echo $dir."\n\n\n";
             if (!file_exists($dir))
                 mkdir ($dir);
             foreach ($img_url as $img)

@@ -1,14 +1,27 @@
 #!/bin/sh
 
 URL_M='http://localhost:8080/ex03/cookie_crisp.php';
-
-if [ "$1" == 'set' ]
+if [ $2 ]
 then
-    curl -c cook.txt "$URL_M?action=set&name=plat&value=choucroute";
+    NAME=$2;
+else
+    NAME='coockie_name'
+fi
+
+if [ $3 ]
+then
+    VALUE=$3
+else
+    VALUE='coockie_value'
+fi
+
+if [ $1 == 'set' ]
+then
+    curl -c cook.txt "$URL_M?action=set&name=$NAME&value=$VALUE";
 elif [ $1 == 'get' ]
 then
-curl -b cook.txt "$URL_M?action=get&name=plat&value=choucroute";
+curl -b cook.txt "$URL_M?action=get&name=$NAME&value=$VALUE";
 elif [ $1 == 'del' ]
 then
-curl -c cook.txt "$URL_M?action=del&name=plat&value=choucroute";
+curl -c cook.txt "$URL_M?action=del&name=$NAME&value=$VALUE";
 fi
