@@ -1,1 +1,1 @@
-CREATE DATABASE db_ccatoire;
+CREATE DATABASE IF NOT EXISTS db_ccatoire;

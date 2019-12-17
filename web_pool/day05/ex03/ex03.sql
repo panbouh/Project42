@@ -1,6 +1,8 @@
-INSERT INTO ft_table (`login`, creation_date, `group`)
-SELECT last_name AS `login`, birthdate AS creation_date, 'other' AS groupe
-FROM user_card
-WHERE last_name LIKE '%a%' AND LENGTH(nom) < 9
-ORDER BY last_name ASC
+INSERT INTO ft_table (`login`, `group`, `creation_date`)
+SELECT `last_name`, 'other' AS `group`, `birthdate`
+FROM `user_card`
+WHERE
+	(length(`last_name`) < 9) AND
+	(`last_name` LIKE '%a%')
+ORDER BY `last_name` ASC
 LIMIT 10;
