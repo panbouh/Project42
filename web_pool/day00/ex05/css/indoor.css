@@ -1,0 +1,97 @@
+#chair {
+    position: absolute;
+    width: 145px;
+    height: 230px;
+    top: 340px;
+    left: 340px;
+}
+
+#apple {
+    position: absolute;
+    width: 193px;
+    height: 174px;
+    top: 330px;
+    left: 818px;
+}
+
+.info
+{
+    position: fixed;
+    display: none;
+    color: black;
+    z-index: 1;
+    width: 482px;
+    height: 132px;
+    top: 702px;
+    left: 170px;
+    background-color: #88ff89;
+    padding: 10px;
+}
+
+.bulle
+{
+    position: static;
+    width: 100px;
+    height: 100px;
+    top: 300px;
+    left: 800px;
+}
+
+.bulle img
+{
+    width: 100px;
+    height: 100px;
+}
+
+.sel-box
+{
+    position: absolute;
+    border: 3px rgba(255, 0, 0, 0.5) solid;
+    box-shadow: 0px 0px 17px 4px #FF0000;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.sel-box:hover
+{
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+#girl-1
+{
+    top: 245px;
+    left: 20px;
+    width: 70px;
+    height: 239px;
+}
+
+.sel-box:hover .info
+{
+    display: block;
+    /* color: green; */
+}
+
+#girl-2
+{
+    top: 253px;
+    left: 403px;
+    width: 25px;
+    height: 56px;
+}
+
+#boy-1
+{
+    top: 255px;
+    left: 170px;
+    width: 30px;
+    height: 88px;
+}
+
+#boy-2
+{
+    top: 243px;
+    left: 474px;
+    width: 70px;
+    height: 240px;
+}

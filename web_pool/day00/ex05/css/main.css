@@ -1,0 +1,194 @@
+/* 
+** global config
+*/
+body {
+    background-color: #505050;
+    font-family: Arial;
+}
+
+.box {
+    background-color: #909090;
+    border-radius: 10px;
+    box-shadow: 8px 8px 7px;
+}
+
+.button-big
+{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    min-width: 100px;
+    height: 50px;
+}
+
+iframe
+{
+    border: none;
+    width: 1024px;
+    height: 576px;
+    overflow: hidden;
+}
+
+/* 
+**  body site
+*/
+
+/* Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 1420px;
+    height: 137px;
+    margin: 0 auto;
+    margin-top: 18px;
+}
+
+.head-right {
+    position: relative;
+    width: 287px;
+    height: 137px;
+}
+
+/* side-left */
+#side-left {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 140px;
+    height: 425px;
+    left: -160px;
+    top: 0px;
+}
+
+/* center */
+#center {
+    position: relative;
+    margin: 0 auto;
+    width: 1024px;
+    height: 576px;
+    padding: 10px;
+    top: 20px;
+}
+
+
+/* side right */
+#side-right {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 140px;
+    height: 425px;
+    right: -160px;
+    top: 0px;
+}
+
+/* bottom */
+#bottom {
+    position: absolute;
+    background-color: #88ff89;
+    width: 522px;
+    height: 172px;
+    bottom: -95px;
+    left: -245px;
+}
+
+p {
+    padding: 7px 0 0 10px;
+    font-size: 17px;
+    padding-left: 20px;
+}
+
+strong {
+    font-size: 35px;
+    font-weight: normal;
+}
+
+span {
+    text-shadow: 18px 5px 5px red;
+}
+
+#text
+{
+    width: 379px;
+    height: 16px;
+}
+
+button {
+    font-size: 14px;
+}
+
+/* 
+**  IMG
+*/
+/* header */
+.head-img {
+    position: relative;
+    width: 440px;
+    height: 115px;
+    left: 10px;
+}
+
+.body-img
+{
+    width: 1024px;
+    height: 576px;
+}
+
+.zoom-icon {
+    position: absolute;
+    bottom: -20px;
+
+}
+
+.reload-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+}
+
+.close-icon {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* side-left */
+#side-left .img-ajust {
+    width: 63px;
+    height: 63px;
+    padding: 8px 0;
+}
+
+#eye {
+    width: 70px;
+    height: auto;
+    margin: 5px 0;
+    border: 5px solid red;
+    border-radius: 4px;
+}
+
+/* side-right */
+#book {
+    padding-top: 15px; 
+    width: 75px;
+    height: auto;
+}
+
+#towel {
+    padding: 8px 0; 
+    width: 75px;
+    height: auto;
+}
+
+#wall { 
+    background-image: url("../resources/brick.jpg");
+    width: 119px;
+    height: 70px;
+}
